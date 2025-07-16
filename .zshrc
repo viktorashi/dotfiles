@@ -43,20 +43,21 @@ alias gw='git worktree'
 alias grp='git remote prune origin'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
-# alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-# alias configst='config add ~/.config/nvim/ && config status'
-# alias conf='configst'
-# config_folder='$HOME'
-# git_dit='${config_folder}/.cfg/'
-
 config_worktree_folder="$HOME"
 git_dir="${config_worktree_folder}/.cfg/"
 alias configotofolder="cd ${config_worktree_folder}"
 alias config="git --git-dir=${git_dir} --work-tree=${config_worktree_folder}"
+alias conf='config'
 alias configst="config status"
 alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/config_scripts && config status"
-alias conf="configadd"
+alias confadd='configadd'
+alias confad='configadd'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
+alias conflazygit='configlazygit'
+
+#probabil o sa dea doar conflict 
+#daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
+alias confupdate='config fetch $git_dir main:mac && config fetch $git_dir main:windows10'
 
 
 #sunt prea putoare
