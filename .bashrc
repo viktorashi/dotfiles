@@ -1,4 +1,11 @@
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config_worktree_folder="$HOME"
+git_dir="${config_worktree_folder}/.cfg/"
+alias configotofolder="cd ${config_worktree_folder}"
+alias config="git --git-dir=${git_dir} --work-tree=${config_worktree_folder}"
+alias configst="config status"
+alias configadd="config add ${config_worktree_folder}/.config/nvim && config status"
+alias conf="configadd"
+alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
 
 function vol() {
   USAGE="usage: vol [-h | --help | NUMBER_FROM_0_TO_100 | -DECREMENT | +INCREMENT]"
@@ -45,3 +52,4 @@ function vol() {
 
 . "/Users/viktorashi/.deno/env"
 . "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"

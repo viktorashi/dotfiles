@@ -36,7 +36,10 @@ return {
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
+      table.insert(
+        opts.sources,
+        { name = "emoji" }
+      )
     end,
   },
 
@@ -56,7 +59,9 @@ return {
     opts = {
       defaults = {
         layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
+        layout_config = {
+          prompt_position = "top",
+        },
         sorting_strategy = "ascending",
         winblend = 0,
       },
@@ -82,11 +87,21 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").lsp.on_attach(function(_, buffer)
+        require("lazyvim.util").lsp.on_attach(
+          function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
-        end)
+            vim.keymap.set(
+              "n",
+              "<leader>cR",
+              "TypescriptRenameFile",
+              {
+                desc = "Rename File",
+                buffer = buffer,
+              }
+            )
+          end
+        )
       end,
     },
     ---@class PluginLspOpts
@@ -102,7 +117,9 @@ return {
       setup = {
         -- example to setup with typescript.nvim
         tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
+          require("typescript").setup({
+            server = opts,
+          })
           return true
         end,
         -- Specify * to use this function as a fallback for any server
@@ -113,7 +130,9 @@ return {
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
+  {
+    import = "lazyvim.plugins.extras.lang.typescript",
+  },
 
   -- add more treesitter parsers
   {
@@ -177,7 +196,9 @@ return {
   },
 
   -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+  {
+    import = "lazyvim.plugins.extras.ui.mini-starter",
+  },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
