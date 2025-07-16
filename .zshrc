@@ -53,6 +53,7 @@ alias configadd="config add ${config_worktree_folder}/.config/nvim && config add
 alias confadd='configadd'
 alias confad='configadd'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
+alias conflazygit='configlazygit'
 
 #probabil o sa dea doar conflict 
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
