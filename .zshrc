@@ -54,6 +54,10 @@ alias confadd='configadd'
 alias confad='configadd'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
 
+#probabil o sa dea doar conflict 
+#daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
+alias config-update='git fetch . main:mac && git fetch . main:windows10'
+
 
 #sunt prea putoare
 #alias m='make'
