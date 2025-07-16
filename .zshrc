@@ -57,7 +57,7 @@ alias conflazygit='configlazygit'
 
 #probabil o sa dea doar conflict 
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
-alias confupdate='git fetch . main:mac && git fetch . main:windows10'
+alias confupdate='config fetch $git_dir main:mac && config fetch $git_dir main:windows10'
 
 
 #sunt prea putoare
