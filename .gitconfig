@@ -14,7 +14,7 @@
 [pull]
 	rebase = false
 [push]
-	autoSetupRemote = always
+	autoSetupRemote = true
 [credential]
 	helper = store
 [http]
