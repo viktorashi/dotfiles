@@ -18,17 +18,26 @@ map("n", "<leader><delete>", function()
 end, { desc = "Close Buffer" })
 
 map("n", "<F5>", function()
-  require("dap").continue()
-end, { desc = "DAP: Continue/Start" })
+  require("dap").toggle_breakpoint()
+end, {
+  desc = "DAP: Toggle Breakpoint",
+})
 
 map("n", "<F6>", function()
   require("dap").terminate()
 end, { desc = "DAP: Terminate" })
 
-map("n", "<F9>", function()
-  require("dap").toggle_breakpoint()
-end, {
-  desc = "DAP: Toggle Breakpoint",
+map("n", "<F7>", function()
+  require("dap").run_to_cursor()
+end, { desc = "DAP: Run to cursor" })
+--
+map("n", "<F8>", function()
+  require("dap").continue()
+end, { desc = "DAP: Continue/Start" })
+
+vim.keymap.set("n", "<F9>", "<Leader>dr", {
+  remap = true,
+  desc = "Alias for <Leader>dr (open debugabbles)",
 })
 
 map("n", "<F10>", function()
