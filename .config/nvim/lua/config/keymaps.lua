@@ -27,13 +27,13 @@ map("n", "<F6>", function()
   require("dap").terminate()
 end, { desc = "DAP: Terminate" })
 
-map("n", "<F7>", function()
+map("n", "<F8>", function()
   require("dap").run_to_cursor()
 end, { desc = "DAP: Run to cursor" })
 --
-map("n", "<F8>", function()
-  require("dap").continue()
-end, { desc = "DAP: Continue/Start" })
+-- map("n", "<F8>", function()
+--   require("dap").continue()
+-- end, { desc = "DAP: Continue/Start" })
 
 vim.keymap.set("n", "<F9>", "<Leader>dr", {
   remap = true,
