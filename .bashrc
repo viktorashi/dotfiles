@@ -4,6 +4,8 @@
 
 source ~/aliases.sh
 
+# export PATH=$PATH:/c/Users/istan/.local/share/local/share/nvim/mason/bin
+
 # config_worktree_folder="$HOME"
 # git_dir="${config_worktree_folder}/.cfg/"
 # alias configotofolder="cd ${config_worktree_folder}"
