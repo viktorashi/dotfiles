@@ -7,7 +7,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
-alias sc='source ~/.bashrc'
+alias sc='source ~/.zshrc'
 alias gr='egrep -irna'
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
