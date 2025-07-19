@@ -4,7 +4,7 @@
 
 Download all of them from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fconfig_scripts)
 
-### Back it up
+### Back it up terry
 
 ```bash
 #!/bin/bash
