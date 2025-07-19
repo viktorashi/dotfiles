@@ -103,8 +103,10 @@ configlazygit
 ```
 
 > \[!IMPORTANT\] If on Windows you need to hard-link .config/nvim to
-> %USERPROFILE%AppData`\Local`{=tex}`\nvim`{=tex}and nvim-data as
+> %USERPROFILE%AppData`\Local`{=tex}`\nvim `{=tex}and nvim-data as
 > well!! so Neovim sees it!
+
+Run these IN THE OG CMD, *not* PowerShell!!
 
 `link-nvim.bat`
 
@@ -290,3 +292,15 @@ echo --------------------------------------------------
 endlocal
 pause
 ```
+
+to generate these docs I've installed THIS HIGHLY RECOMMENDED FILTER FOR
+`pandoc`,
+[py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)\
+and you can simply run:
+
+``` bash
+pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md
+```
+
+before commiting orrr put it into that into the file go into
+`~/.cfg/hooks/pre-commit` to make it a pre-commmit hook like ya boi
