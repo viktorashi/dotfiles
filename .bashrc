@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/aliases.sh
+source ~/docs/aliases.sh
 
 function vol() {
   USAGE="usage: vol [-h | --help | NUMBER_FROM_0_TO_100 | -DECREMENT | +INCREMENT]"

@@ -20,7 +20,7 @@ alias gc='git commit -a && git push'
 alias gpul='git pull'
 alias gd='git diff'
 alias ga='git add .'
-alias gl='git log --graph --pretty'
+alias gl='git log --graph --pretty --decorate --all'
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
@@ -167,6 +167,7 @@ get_brew_size() {
 }
 
 #deocamdata nu prea merge astsa deci functia de sus nu-i folosita
+# ar trebui sa dea marimea la toate brew sizeurile
 #alias brew-size='get_brew_size'
 alias brew-size="brew list | xargs -n1 -P8 -I {} sh -c \"brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'\" | sort -h -r -k2 - | column -t"
 
