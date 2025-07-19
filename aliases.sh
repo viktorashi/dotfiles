@@ -140,7 +140,7 @@ get_brew_size() {
   data=$(brew list | xargs -n1 -P8 -I {} sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | sort -h -r -k2 - | column -t)
 
   echo "Datele de la formule caske:"
-  echo $"data"
+  echo "$data"
 
   total=0
 
@@ -166,7 +166,7 @@ get_brew_size() {
   # Convert total to MB for better readability
   total_mb=$(echo "scale=2; $total / 1024" | bc)
 
-  echo "Total size: $total_kb KB"
+  echo "Total size: $total KB"
   echo "Total size: $total_mb MB"
 }
 
