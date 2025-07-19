@@ -24,7 +24,7 @@ alias gc='git commit -a && git push'
 alias gpul='git pull'
 alias gd='git diff'
 alias ga='git add .'
-alias gl='git log --graph --pretty'
+alias gl='git log --graph --pretty --decorate --all'
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
