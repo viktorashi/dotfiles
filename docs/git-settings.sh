@@ -7,5 +7,6 @@ git config --global alias.c commit
 git config --global alias.b branch
 git config --global alias.co checkout
 git config --global alias.sw switch
+git config --global alias.a add
 
 git config --global core.editor "nvim"
