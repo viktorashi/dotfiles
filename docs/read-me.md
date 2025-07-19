@@ -2,7 +2,7 @@
 
 ## Run it in `bash, zsh` etc or create a `script.sh` for each and run it in a GNU shell (even on windows)
 
-Download all scripts from <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs" target="_blank">here!</a>
+Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
 
 ### Back it up terry
 
