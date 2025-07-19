@@ -3,7 +3,7 @@
 ## Run it in `bash, zsh` etc or create a `script.sh` for each and run it in a GNU shell (even on windows)
 
 Download all scripts from
-[here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
+`<a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs" target="_blank">`{=html}here!`</a>`{=html}
 
 ### Back it up terry
 
@@ -103,7 +103,7 @@ configlazygit
 ```
 
 > \[!IMPORTANT\] If on Windows you need to hard-link .config/nvim to
-> %USERPROFILE%AppData`\Local`{=tex}`\nvim`{=tex}and nvim-data as
+> %USERPROFILE%AppData`\Local`{=tex}`\nvim `{=tex}and nvim-data as
 > well!! so Neovim sees it!
 
 `link-nvim.bat`
