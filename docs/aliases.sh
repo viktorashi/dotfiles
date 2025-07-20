@@ -54,7 +54,7 @@ alias configotofolder="cd ${config_worktree_folder}"
 alias config="git --git-dir=${git_dir} --work-tree=${config_worktree_folder}"
 alias conf='config'
 alias configst="config status"
-alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/config_scripts && config status"
+alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/docs && config status"
 alias confadd='configadd'
 alias confad='configadd'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
