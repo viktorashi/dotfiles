@@ -12,7 +12,10 @@ alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
 alias sc='source ~/.bashrc'
+alias sour='source'
 alias gr='egrep -irna'
+#cuz who cares about those
+alias tree='tree --gitignore'
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
 #	git config --global alias.<alias-name> "<aliased-git-subcommand>"
