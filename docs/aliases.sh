@@ -12,7 +12,10 @@ alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
 alias sc='source ~/.bashrc'
+alias sour='source'
 alias gr='egrep -irna'
+#cuz who cares about those
+alias tree='tree --gitignore'
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
 #	git config --global alias.<alias-name> "<aliased-git-subcommand>"
@@ -24,7 +27,7 @@ alias gc='git commit -a && git push'
 alias gpul='git pull'
 alias gd='git diff'
 alias ga='git add .'
-alias gl='git log --graph --pretty'
+alias gl='git log --graph --pretty --decorate --all'
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
@@ -51,7 +54,7 @@ alias configotofolder="cd ${config_worktree_folder}"
 alias config="git --git-dir=${git_dir} --work-tree=${config_worktree_folder}"
 alias conf='config'
 alias configst="config status"
-alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/config_scripts && config status"
+alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/docs && config status"
 alias confadd='configadd'
 alias confad='configadd'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
@@ -171,6 +174,7 @@ get_brew_size() {
 }
 
 #deocamdata nu prea merge astsa deci functia de sus nu-i folosita
+# ar trebui sa dea marimea la toate brew sizeurile
 #alias brew-size='get_brew_size'
 alias brew-size="brew list | xargs -n1 -P8 -I {} sh -c \"brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'\" | sort -h -r -k2 - | column -t"
 

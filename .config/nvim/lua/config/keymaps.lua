@@ -17,6 +17,19 @@ map("n", "<leader><delete>", function()
   Snacks.bufdelete()
 end, { desc = "Close Buffer" })
 
+-- map(
+--   "n",
+--   "<C-w>",
+--   ":bdelete<CR>",
+--   { desc = "Inchide bufferu asta ca omu" }
+-- )
+
+map("n", "<C-w>", function()
+  -- vim.bo.buflisted = false
+  -- vim.api.nvim_buf_delete(0, { unload = true })
+  Snacks.bufdelete()
+end, { desc = "Inchide bufferu asta ca omu" })
+
 map("n", "<F5>", function()
   require("dap").toggle_breakpoint()
 end, {
