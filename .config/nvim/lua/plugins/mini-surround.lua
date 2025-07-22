@@ -4,7 +4,7 @@ return {
     opts = {
       mappings = {
         delete = "ds", -- Delete surrounding
-        add = "sa",
+        add = "S",
         replace = "cs",
       },
     },
