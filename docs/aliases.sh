@@ -1,7 +1,7 @@
 # s-au mutat aici toate sa fie frumix
 
 # mai munca specific
-alias proiect='cd /d/worktrees-sharwarma/main-shwarma'
+alias proiect='cd /d/worktrees-sharwarma'
 alias pro='proiect'
 
 alias cls='clear'
