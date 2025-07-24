@@ -106,7 +106,6 @@ alias cha='open -na "PyCharm Professional Edition.app" .'
 alias ch='open -na "PyCharm Professional Edition.app" .'
 alias o='open .'
 
-alias c='code .'
 alias idea='idea .'
 #sa dea follow la redirecturi
 alias curl='curl -L'
