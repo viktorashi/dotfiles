@@ -13,4 +13,4 @@ git config --global alias.a add
 git config --global alias.l log
 git config --global alias.t tag
 
-git config --global core.editor "nvim"
+git config --global core.editor "vim"
