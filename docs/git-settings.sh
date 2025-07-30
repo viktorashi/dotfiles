@@ -15,6 +15,11 @@ git config --global alias.t tag
 
 git config --global core.editor "nvim"
 
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
+
 # kktu asta e sa imi fac conflictele misto
 # [diff]
 #     tool = vimdiff
