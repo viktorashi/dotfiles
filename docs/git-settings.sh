@@ -13,4 +13,18 @@ git config --global alias.a add
 git config --global alias.l log
 git config --global alias.t tag
 
+<<<<<<< Updated upstream
 git config --global core.editor "nvim"
+=======
+git config --global core.editor "vim"
+
+# kktu asta e sa imi fac conflictele misto
+# [diff]
+#     tool = vimdiff
+# [merge]
+#     tool = vimdiff
+#     conflictstyle = zdiff3
+# [mergetool "vimdiff"]
+#     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED \
+#           -c '$wincmd w' -c 'wincmd J'
+>>>>>>> Stashed changes
