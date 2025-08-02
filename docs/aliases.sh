@@ -11,7 +11,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
-alias sc='source ~/.bashrc'
+alias scb='source ~/.bashrc'
+alias scz='source ~/.zshrc'
 alias sour='source'
 alias gr='egrep -irna'
 #cuz who cares about those
