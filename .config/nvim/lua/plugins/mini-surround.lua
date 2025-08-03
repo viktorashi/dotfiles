@@ -3,8 +3,8 @@ return {
     "echasnovski/mini.surround",
     opts = {
       mappings = {
-        delete = "ds", -- Delete surrounding
-        add = "sa",
+        delete = "ds",
+        add = "S",
         replace = "cs",
       },
     },

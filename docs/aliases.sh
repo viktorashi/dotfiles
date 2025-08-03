@@ -7,7 +7,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
-alias sc='source ~/.zshrc'
+alias scb='source ~/.bashrc'
+alias scz='source ~/.zshrc'
 alias sour='source'
 alias gr='egrep -irna'
 #cuz who cares about those
@@ -80,6 +81,9 @@ alias ls='ls -a'
 alias ll='ls -l'
 #FRFRFF fr for reals
 alias fr='flask run' # dupa pui --app <numele la ce package ii zice la aplicatie> run
+#muult prea des dau acum frfr
+alias cr='cargo run'
+alias ct='cargo test'
 #laternativa mai era
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
