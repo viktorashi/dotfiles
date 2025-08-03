@@ -21,6 +21,8 @@ git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 
 # kktu asta e sa imi fac conflictele misto
+# ti-l pui in
+# ~/.gitconfig
 # [diff]
 #     tool = vimdiff
 # [merge]
