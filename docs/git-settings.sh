@@ -12,6 +12,7 @@ git config --global alias.d diff
 git config --global alias.a add
 git config --global alias.l log
 git config --global alias.t tag
+git config --global alias.m merge
 
 git config --global core.editor "nvim"
 
