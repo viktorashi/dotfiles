@@ -48,6 +48,7 @@ end, { desc = "DAP: Run to cursor" })
 --   require("dap").continue()
 -- end, { desc = "DAP: Continue/Start" })
 
+--ba deci mereu le uit sa ma bata mama
 vim.keymap.set("n", "<F9>", "<Leader>dr", {
   remap = true,
   desc = "Alias for <Leader>dr (open debugabbles)",
@@ -73,6 +74,7 @@ end, {
   desc = "DAP: Set Conditional Breakpoint",
 })
 
+--sami scroleze furmusel
 require("neoscroll").setup({
   mappings = { -- Keys to be mapped to their corresponding default scrolling animation
     "<C-u>",
@@ -99,3 +101,35 @@ require("neoscroll").setup({
     "CursorMoved",
   },
 })
+
+-- "aliasuri pt toate greselile pe care poti sa le faci"
+vim.keymap.set("ca", "Wa", "wa")
+vim.keymap.set("ca", "WA", "wa")
+
+function prompt_when_quitting()
+  local choice = vim.fn.confirm(
+    "😢😭 Nu iesii din Vimm, o sa poti sa traiesti fara ell?? 😢😭",
+    "&Y da lol \n &Nuu"
+  )
+  if choice == 1 then
+    vim.cmd("wq")
+  end
+end
+
+vim.api.nvim_create_user_command(
+  "WqConfirm",
+  prompt_when_quitting,
+  {}
+)
+vim.cmd([[cnoreabbrev wq WqConfirm]])
+
+vim.api.nvim_create_user_command(
+  "Wq",
+  prompt_when_quitting,
+  {}
+)
+vim.api.nvim_create_user_command(
+  "WQ",
+  prompt_when_quitting,
+  {}
+)
