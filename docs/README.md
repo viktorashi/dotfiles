@@ -1,9 +1,26 @@
-# All scripts are in `docs`
+#### Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs) and run them inside `bash, zsh`
 
-## Run it in `bash, zsh` etc or create a `script.sh` for each and run it in a GNU shell (even on windows)
+### Orr copy-paste these from below, but you'll need to get `curl` first
 
-Download all scripts from
-[here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
+> [!IMPORTANT]
+> Beforehand for Windows users!
+> Follow [The MSYS2 tutorial](https://www.msys2.org) for installing it.
+> It automatically adds `bash`, which can later be accessed directly through the Windows Terminal via the command `sh`.
+> Inside the `MSYS2` terminal run
+
+```
+pacman -S mingw-w64-x86_64-curl
+```
+
+to get curl so you'll be able to run the following commands:
+
+#### Back up, clone and set up the repo
+
+``` bash
+curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-and-clone.sh | sh
+```
+
+orr you have do them sepperately ig:
 
 ### Back it up terry
 
@@ -11,81 +28,13 @@ just in case
 
 `backup.sh`
 
-``` sh
-#!/bin/bash
-
-# Backup directory name with the current date
-BACKUP_DIR=~/backup_$(date +%Y-%m-%d)
-
-# Create the backup directory
-mkdir -p "$BACKUP_DIR"
-
-echo "Backup process initiated. Files will be saved in: $BACKUP_DIR"
-
-# Backup ~/.bashrc if it exists
-if [ -f ~/.bashrc ]; then
-  cp ~/.bashrc "$BACKUP_DIR"
-  echo "✅ Successfully backed up .bashrc"
-else
-  echo "🔹 .bashrc not found, skipping."
-fi
-
-# Backup ~/.zshrc if it exists
-if [ -f ~/.zshrc ]; then
-  cp ~/.zshrc "$BACKUP_DIR"
-  echo "✅ Successfully backed up .zshrc"
-else
-  echo "🔹 .zshrc not found, skipping."
-fi
-
-# Path to the Neovim configuration on Windows
-WINDOWS_NVIM_CONFIG_PATH="$USERPROFILE/AppData/Local/nvim"
-UNIX_NVIM_CONFIG_PATH="$HOME/.config/nvim/"
-
-# Backup Neovim config if it exists
-if [ -d "$WINDOWS_NVIM_CONFIG_PATH" ]; then
-  cp -r "$WINDOWS_NVIM_CONFIG_PATH" "$BACKUP_DIR/nvim_config"
-  echo "✅ Successfully backed up Neovim configuration"
-else
-  echo "🔹 Neovim configuration not found at $WINDOWS_NVIM_CONFIG_PATH, trying UNIX Path..."
-
-  if [ -d "$UNIX_NVIM_CONFIG_PATH" ]; then
-    cp -r "$UNIX_NVIM_CONFIG_PATH" "$BACKUP_DIR/nvim_config"
-    echo "✅ Successfully backed up Neovim configuration"
-  else
-    echo "🔹 Neovim configuration not found at $UNIX_NVIM_CONFIG_PATH, skipping."
-  fi
-
-fi
-echo "Backup process completed. "
-```
+    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup.sh | sh
 
 ### Cloning the actual config
 
 `cloning-setup.sh`
 
-``` sh
-echo "Now cloning dă marfă"
-
-git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
-echo ".cfg" >>.gitignore #avoiding reccusrive weirdness
-config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-$(config) config --local status.showUntrackedFiles no #only account for the files you specifically mention
-$(config) checkout
-$(config) config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-$(config) fetch
-$(config) branch --set-upstream-to=origin/main
-$(config) switch mac
-$(config) branch --set-upstream-to=origin/mac
-$(config) switch windows10
-$(config) branch --set-upstream-to=origin/windows10
-
-cd docs/
-#no hackerino
-chmod +x git-settings.sh
-./git-settings.sh
-```
+    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/cloning-setup.sh | sh
 
 Now restart your `shell`. *Voila!*
 
@@ -99,205 +48,109 @@ conf s
 #whenever you add a new file and want it to be tracked:
 conf add <filename>
 
+#or shortcut if you've added new plugin files in neovim
+confad
+
 #even view it nicely if you have lazygit:
 configlazygit
 ```
 
-> \[!IMPORTANT\] If on Windows you need to hard-link .config/nvim to
-> %USERPROFILE%AppData`\Local`{=tex}`\nvim`{=tex}and nvim-data as
-> well!! so Neovim sees it!
+You can check them out in `~/docs/aliases.sh`
 
-Run these IN THE OG CMD, *not* PowerShell!!
+## Other dependecies
+
+- [git Delta](https://dandavison.github.io/delta/installation.html)
+- [node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [neovim](https://neovim.io)
+
+Installing these on Windows:
+Get [Scoop](https://scoop.sh).
+and do
+
+```sh
+scoop install neovim
+scoop install delta
+```
+
+For `node` download `nvm-setup.exe` from [nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases) and do:
+
+```sh
+nvm install lts
+nvm use <versiune>
+```
+
+For [Rust](https://www.rust-lang.org) development:
+On Windows you need Visual Studio C/C++ Windows Development Toolchain before even installing `rustup`. After you get it:
+
+```
+rustup update
+rustup component add rust-analyzer
+rustup component add rustfmt
+```
+
+## Setting up Neovim
+
+> [!IMPORTANT]
+> If on Windows you need to hard-link `.config/nvim` to
+> `%USERPROFILE%AppData\Local\nvim` and `nvim-data` as well!! so Neovim
+> sees it!
+
+> [!WARNING]
+> Also I haven't tested if these scripts actually work on windows so feel
+> free to tell me otherwise
+
+Copy-paste this in *PowerShell*, *not* the O.G. CMD.
 
 `link-nvim.bat`
 
-``` bat
-@echo off
-setlocal
-
-:: ============================================================================
-:: Neovim Config Linker (CMD Version)
-::
-:: This script creates a directory junction to link your Neovim configuration
-:: from the .config directory to the AppData\Local directory.
-::
-::   - Target (Link): %USERPROFILE%\AppData\Local\nvim
-::   - Source (Points to): %USERPROFILE%\.config\nvim
-::
-:: IMPORTANT: This script must be run as an Administrator.
-:: To do this, right-click the .bat file and choose "Run as administrator".
-:: ============================================================================
-
-:: --- Configuration ---
-set "SOURCE_RELATIVE_PATH=.config\nvim"
-set "TARGET_RELATIVE_PATH=AppData\Local\nvim"
-
-:: --- Script Body ---
-echo --------------------------------------------------
-echo Neovim Config Linker
-echo --------------------------------------------------
-
-:: Construct the full absolute paths
-set "SOURCE_PATH=%USERPROFILE%\%SOURCE_RELATIVE_PATH%"
-set "TARGET_PATH=%USERPROFILE%\%TARGET_RELATIVE_PATH%"
-
-echo Source (points to): %SOURCE_PATH%
-echo Target (link created at): %TARGET_PATH%
-echo.
-
-:: Check 1: Ensure the source directory exists.
-echo Checking for source directory...
-if not exist "%SOURCE_PATH%\" (
-    echo [ERROR] The source directory does not exist at the path below.
-    echo         Please create it first.
-    echo         %SOURCE_PATH%
-    goto :error
-)
-echo [OK] Source directory found.
-echo.
-
-:: Check 2: Ensure the target path is not already in use.
-echo Checking target path...
-if exist "%TARGET_PATH%" (
-    echo [ERROR] A file, directory, or link already exists at the target location.
-    echo         Please remove or rename it before running this script.
-    echo         %TARGET_PATH%
-    goto :error
-)
-echo [OK] Target path is available.
-echo.
-
-:: Attempt to create the junction.
-echo Attempting to create the directory junction...
-mklink /J "%TARGET_PATH%" "%SOURCE_PATH%"
-
-:: Check if the mklink command was successful.
-if errorlevel 1 (
-    echo [ERROR] Failed to create the junction.
-    echo         Please make sure you are running this script as an Administrator.
-    goto :error
-)
-
-echo.
-echo [SUCCESS] The junction was created successfully!
-echo   '%TARGET_PATH%'
-echo   now points to
-echo   '%SOURCE_PATH%'
-goto :end
-
-:error
-echo.
-echo --------------------------------------------------
-echo Script finished with errors.
-echo --------------------------------------------------
-exit /b 1
-
-:end
-echo.
-echo --------------------------------------------------
-echo Script finished successfully.
-echo --------------------------------------------------
-endlocal
-pause
-
+```
+iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
 ```
 
-`link-nvim-data.bat`
+If it fails because the target already exists, you can
 
-``` bat
-@echo off
-setlocal
-
-:: ============================================================================
-:: Neovim Config Linker (CMD Version)
-::
-:: This script creates a directory junction to link your Neovim configuration
-:: from the .config directory to the AppData\Local directory.
-::
-::   - Target (Link): %USERPROFILE%\AppData\Local\nvim-data
-::   - Source (Points to): %USERPROFILE%\.local\share\nvim
-::
-:: IMPORTANT: This script must be run as an Administrator.
-:: To do this, right-click the .bat file and choose "Run as administrator".
-:: ============================================================================
-
-:: --- Configuration ---
-set "SOURCE_RELATIVE_PATH=.local\share\nvim"
-set "TARGET_RELATIVE_PATH=AppData\Local\nvim-data"
-
-:: --- Script Body ---
-echo --------------------------------------------------
-echo Neovim Config Linker
-echo --------------------------------------------------
-
-:: Construct the full absolute paths
-set "SOURCE_PATH=%USERPROFILE%\%SOURCE_RELATIVE_PATH%"
-set "TARGET_PATH=%USERPROFILE%\%TARGET_RELATIVE_PATH%"
-
-echo Source (points to): %SOURCE_PATH%
-echo Target (link created at): %TARGET_PATH%
-echo.
-
-:: Check 1: Ensure the source directory exists.
-echo Checking for source directory...
-if not exist "%SOURCE_PATH%\" (
-    echo [ERROR] The source directory does not exist at the path below.
-    echo         Please create it first.
-    echo         %SOURCE_PATH%
-    goto :error
-)
-echo [OK] Source directory found.
-echo.
-
-:: Check 2: Ensure the target path is not already in use.
-echo Checking target path...
-if exist "%TARGET_PATH%" (
-    echo [ERROR] A file, directory, or link already exists at the target location.
-    echo         Please remove or rename it before running this script.
-    echo         %TARGET_PATH%
-    goto :error
-)
-echo [OK] Target path is available.
-echo.
-
-:: Attempt to create the junction.
-echo Attempting to create the directory junction...
-mklink /J "%TARGET_PATH%" "%SOURCE_PATH%"
-
-:: Check if the mklink command was successful.
-if errorlevel 1 (
-    echo [ERROR] Failed to create the junction.
-    echo         Please make sure you are running this script as an Administrator.
-    goto :error
-)
-
-echo.
-echo [SUCCESS] The junction was created successfully!
-echo   '%TARGET_PATH%'
-echo   now points to
-echo   '%SOURCE_PATH%'
-goto :end
-
-:error
-echo.
-echo --------------------------------------------------
-echo Script finished with errors.
-echo --------------------------------------------------
-exit /b 1
-
-:end
-echo.
-echo --------------------------------------------------
-echo Script finished successfully.
-echo --------------------------------------------------
-endlocal
-pause
+```
+rmdir /s /q "%USERPROFILE%\AppData\Local\nvim"
 ```
 
-to generate these docs I've installed THIS HIGHLY RECOMMENDED FILTER FOR
-`pandoc`,
-[py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)\
+since you've already backed it up earlier just in case (this was the case)
+
+and run the linking proccess  again
+
+Prolly no need to link `nvim-data` as well, because it'll get automatically
+generated when first opening `nvim` with that config. If you're curious
+about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has
+them at `~\AppData\Local\nvim-data`
+
+You can use this to try it tho
+
+```
+iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim-data.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
+```
+
+Now just make sure you on the `Private` Wifi network (if you know you know) and run the all-lazily:
+
+```sh
+nv 
+```
+
+✅✅✅✅ one more *Voila!*  ✅✅✅✅
+
+#### Contributing (u wont, dont lie)
+
+To generate these docs I've used [pandoc](https://pandoc.org) with THIS
+HIGHLY RECOMMENDED FILTER FOR `pandoc`:
+[py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)
+
 and you can simply run:
+
+``` bash
+make
+```
+
+if your machine has [GNU Make](https://www.gnu.org/software/make)
+
+else just do
 
 ``` bash
 pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md
