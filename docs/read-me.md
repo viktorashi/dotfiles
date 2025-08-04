@@ -4,6 +4,8 @@
 
 Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
 
+You can also [get curl](https://curl.se/windows) if you don't have it already to run these scripts directly. Or get it with [Cygwin](https://www.cygwin.com)
+
 ### Back it up terry
 
 just in case
