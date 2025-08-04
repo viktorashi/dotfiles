@@ -14,6 +14,9 @@ git config --global alias.l log
 git config --global alias.t tag
 git config --global alias.m merge
 
+#sa scapam de line endingurile alea de kkt pe windows
+git config --global core.autocrlf true
+
 git config --global core.editor "nvim"
 
 git config --global core.pager delta
