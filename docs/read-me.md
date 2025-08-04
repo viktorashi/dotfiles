@@ -6,9 +6,6 @@ Download all scripts from [here](https://download-directory.github.io/?url=https
 
 You can also [get curl](https://curl.se/windows) if you don't have it already to run these scripts directly. Or get it with [Cygwin](https://www.cygwin.com)
 
-<<<<<<< Updated upstream
-||||||| Stash base
-=======
 #### Back up, clone and set up the repo
 
 ```bash
@@ -17,7 +14,6 @@ curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/back
 
 orr you have do them sepperately ig:
 
->>>>>>> Stashed changes
 ### Back it up terry
 
 just in case
