@@ -50,14 +50,13 @@ conf add <filename>
 configlazygit
 ```
 
-> \[!IMPORTANT\] If on Windows you need to hard-link `.config/nvim` to
+> [!IMPORTANT] If on Windows you need to hard-link `.config/nvim` to
 > `%USERPROFILE%AppData\Local\nvim` and `nvim-data` as well!! so Neovim
 > sees it!
 
-> \[!WARNING\]
-
-Also I haven't tested if these scripts actually work on windows so feel
-free to tell me otherwise
+> [!WARNING]
+> Also I haven't tested if these scripts actually work on windows so feel
+> free to tell me otherwise
 
 Copy-paste this in *PowerShell*, *not* the O.G. CMD.
 
