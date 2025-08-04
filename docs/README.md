@@ -9,88 +9,28 @@ You can also [get curl](https://curl.se/windows) if you don't have it
 already to run these scripts directly. Or get it with
 [Cygwin](https://www.cygwin.com)
 
-### Back it up terry
+\<\<\<\<\<\<\< Updated upstream \|\|\|\|\|\|\| Stash base ======= \####
+Back up, clone and set up the repo
+
+``` bash
+curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-and-clone.sh | sh
+```
+
+orr you have do them sepperately ig:
+
+> > > > > > > Stashed changes \### Back it up terry
 
 just in case
 
 `backup.sh`
 
-``` sh
-#!/bin/bash
-
-# Backup directory name with the current date
-BACKUP_DIR=~/backup_$(date +%Y-%m-%d)
-
-# Create the backup directory
-mkdir -p "$BACKUP_DIR"
-
-echo "Backup process initiated. Files will be saved in: $BACKUP_DIR"
-
-# Backup ~/.bashrc if it exists
-if [ -f ~/.bashrc ]; then
-  cp ~/.bashrc "$BACKUP_DIR"
-  echo "✅ Successfully backed up .bashrc"
-else
-  echo "🔹 .bashrc not found, skipping."
-fi
-
-# Backup ~/.zshrc if it exists
-if [ -f ~/.zshrc ]; then
-  cp ~/.zshrc "$BACKUP_DIR"
-  echo "✅ Successfully backed up .zshrc"
-else
-  echo "🔹 .zshrc not found, skipping."
-fi
-
-# Path to the Neovim configuration on Windows
-WINDOWS_NVIM_CONFIG_PATH="$USERPROFILE/AppData/Local/nvim"
-UNIX_NVIM_CONFIG_PATH="$HOME/.config/nvim/"
-
-# Backup Neovim config if it exists
-if [ -d "$WINDOWS_NVIM_CONFIG_PATH" ]; then
-  cp -r "$WINDOWS_NVIM_CONFIG_PATH" "$BACKUP_DIR/nvim_config"
-  echo "✅ Successfully backed up Neovim configuration"
-else
-  echo "🔹 Neovim configuration not found at $WINDOWS_NVIM_CONFIG_PATH, trying UNIX Path..."
-
-  if [ -d "$UNIX_NVIM_CONFIG_PATH" ]; then
-    cp -r "$UNIX_NVIM_CONFIG_PATH" "$BACKUP_DIR/nvim_config"
-    echo "✅ Successfully backed up Neovim configuration"
-  else
-    echo "🔹 Neovim configuration not found at $UNIX_NVIM_CONFIG_PATH, skipping."
-  fi
-
-fi
-echo "Backup process completed. "
-```
+    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup.sh | sh
 
 ### Cloning the actual config
 
 `cloning-setup.sh`
 
-``` sh
-echo "Now cloning dă marfă"
-
-git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
-echo ".cfg" >>.gitignore #avoiding reccusrive weirdness
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias config='conf'
-
-conf config --local status.showUntrackedFiles no #only account for the files you specifically mention
-conf checkout
-conf config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-conf fetch
-conf branch --set-upstream-to=origin/main
-conf switch mac
-conf branch --set-upstream-to=origin/mac
-conf switch windows10
-conf branch --set-upstream-to=origin/windows10
-
-cd docs/
-#no hackerino
-chmod +x git-settings.sh
-./git-settings.sh
-```
+    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/cloning-setup.sh | sh
 
 Now restart your `shell`. *Voila!*
 
