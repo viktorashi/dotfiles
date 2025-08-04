@@ -7,6 +7,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias l='ls'
 #i always mess this up so ye
+alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
