@@ -46,10 +46,8 @@ Run these IN THE OG CMD, _not_ PowerShell!!
 ```{.bat include=link-nvim.bat}
 ```
 
-`link-nvim-data.bat`
-
-```{.bat include=link-nvim-data.bat}
-```
+No need to link `nvim-data` as well, because it'll get automatically generated when first opening `nvim` with that config.
+If you're curious about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has them at `C:\Users\istan\AppData\Local\nvim-data`
 
 to generate these docs I've installed THIS HIGHLY RECOMMENDED FILTER FOR `pandoc`, [py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)  
 and you can simply run:
