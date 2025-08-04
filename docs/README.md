@@ -86,7 +86,7 @@ and you can simply run:
 make
 ```
 
-if you're machine has [GNU Make](https://www.gnu.org/software/make)
+if your machine has [GNU Make](https://www.gnu.org/software/make)
 
 else just do
 
