@@ -69,17 +69,18 @@ echo "Now cloning dă marfă"
 
 git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
 echo ".cfg" >>.gitignore #avoiding reccusrive weirdness
-config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='conf'
 
-$(config) config --local status.showUntrackedFiles no #only account for the files you specifically mention
-$(config) checkout
-$(config) config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-$(config) fetch
-$(config) branch --set-upstream-to=origin/main
-$(config) switch mac
-$(config) branch --set-upstream-to=origin/mac
-$(config) switch windows10
-$(config) branch --set-upstream-to=origin/windows10
+conf config --local status.showUntrackedFiles no #only account for the files you specifically mention
+conf checkout
+conf config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+conf fetch
+conf branch --set-upstream-to=origin/main
+conf switch mac
+conf branch --set-upstream-to=origin/mac
+conf switch windows10
+conf branch --set-upstream-to=origin/windows10
 
 cd docs/
 #no hackerino
@@ -104,7 +105,7 @@ configlazygit
 ```
 
 > \[!IMPORTANT\] If on Windows you need to hard-link .config/nvim to
-> %USERPROFILE%AppData`\Local`{=tex}`\nvim`{=tex}and nvim-data as
+> %USERPROFILE%AppData`\Local`{=tex}`\nvim `{=tex}and nvim-data as
 > well!! so Neovim sees it!
 
 Run these IN THE OG CMD, *not* PowerShell!!
@@ -202,102 +203,25 @@ pause
 
 ```
 
-`link-nvim-data.bat`
+No need to link `nvim-data` as well, because it'll get automatically
+generated when first opening `nvim` with that config. If you're curious
+about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has
+them at `C:\Users\istan\AppData\Local\nvim-data`
 
-``` bat
-@echo off
-setlocal
+#### Contributing (u wont, dont lie)
 
-:: ============================================================================
-:: Neovim Config Linker (CMD Version)
-::
-:: This script creates a directory junction to link your Neovim configuration
-:: from the .config directory to the AppData\Local directory.
-::
-::   - Target (Link): %USERPROFILE%\AppData\Local\nvim-data
-::   - Source (Points to): %USERPROFILE%\.local\share\nvim
-::
-:: IMPORTANT: This script must be run as an Administrator.
-:: To do this, right-click the .bat file and choose "Run as administrator".
-:: ============================================================================
-
-:: --- Configuration ---
-set "SOURCE_RELATIVE_PATH=.local\share\nvim"
-set "TARGET_RELATIVE_PATH=AppData\Local\nvim-data"
-
-:: --- Script Body ---
-echo --------------------------------------------------
-echo Neovim Config Linker
-echo --------------------------------------------------
-
-:: Construct the full absolute paths
-set "SOURCE_PATH=%USERPROFILE%\%SOURCE_RELATIVE_PATH%"
-set "TARGET_PATH=%USERPROFILE%\%TARGET_RELATIVE_PATH%"
-
-echo Source (points to): %SOURCE_PATH%
-echo Target (link created at): %TARGET_PATH%
-echo.
-
-:: Check 1: Ensure the source directory exists.
-echo Checking for source directory...
-if not exist "%SOURCE_PATH%\" (
-    echo [ERROR] The source directory does not exist at the path below.
-    echo         Please create it first.
-    echo         %SOURCE_PATH%
-    goto :error
-)
-echo [OK] Source directory found.
-echo.
-
-:: Check 2: Ensure the target path is not already in use.
-echo Checking target path...
-if exist "%TARGET_PATH%" (
-    echo [ERROR] A file, directory, or link already exists at the target location.
-    echo         Please remove or rename it before running this script.
-    echo         %TARGET_PATH%
-    goto :error
-)
-echo [OK] Target path is available.
-echo.
-
-:: Attempt to create the junction.
-echo Attempting to create the directory junction...
-mklink /J "%TARGET_PATH%" "%SOURCE_PATH%"
-
-:: Check if the mklink command was successful.
-if errorlevel 1 (
-    echo [ERROR] Failed to create the junction.
-    echo         Please make sure you are running this script as an Administrator.
-    goto :error
-)
-
-echo.
-echo [SUCCESS] The junction was created successfully!
-echo   '%TARGET_PATH%'
-echo   now points to
-echo   '%SOURCE_PATH%'
-goto :end
-
-:error
-echo.
-echo --------------------------------------------------
-echo Script finished with errors.
-echo --------------------------------------------------
-exit /b 1
-
-:end
-echo.
-echo --------------------------------------------------
-echo Script finished successfully.
-echo --------------------------------------------------
-endlocal
-pause
-```
-
-to generate these docs I've installed THIS HIGHLY RECOMMENDED FILTER FOR
-`pandoc`,
+To generate these docs I've used [pandoc](https://pandoc.org) with THIS
+HIGHLY RECOMMENDED FILTER FOR `pandoc`:
 [py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)\
 and you can simply run:
+
+``` bash
+make
+```
+
+if you're machine has [GNU Make](https://www.gnu.org/software/make)
+
+else just do
 
 ``` bash
 pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md

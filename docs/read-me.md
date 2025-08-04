@@ -49,8 +49,18 @@ Run these IN THE OG CMD, _not_ PowerShell!!
 No need to link `nvim-data` as well, because it'll get automatically generated when first opening `nvim` with that config.
 If you're curious about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has them at `C:\Users\istan\AppData\Local\nvim-data`
 
-to generate these docs I've installed THIS HIGHLY RECOMMENDED FILTER FOR `pandoc`, [py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)  
+#### Contributing (u wont, dont lie)
+
+To generate these docs I've used [pandoc](https://pandoc.org) with THIS HIGHLY RECOMMENDED FILTER FOR `pandoc`: [py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)  
 and you can simply run:
+
+```bash
+make
+```
+
+if you're machine has [GNU Make](https://www.gnu.org/software/make)
+
+else just do
 
 ```bash
 pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md
