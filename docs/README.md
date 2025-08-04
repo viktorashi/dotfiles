@@ -50,7 +50,8 @@ conf add <filename>
 configlazygit
 ```
 
-> [!IMPORTANT] If on Windows you need to hard-link `.config/nvim` to
+> [!IMPORTANT]
+> If on Windows you need to hard-link `.config/nvim` to
 > `%USERPROFILE%AppData\Local\nvim` and `nvim-data` as well!! so Neovim
 > sees it!
 
