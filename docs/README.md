@@ -2,15 +2,24 @@
 
 ## Run it in `bash, zsh` etc or create a `script.sh` for each and run it in a GNU shell (even on windows)
 
-//TODO: explica cum pui bash pe windows
-
 Download all scripts from
 [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
 and run them inside bash.
 
-Orr copy-paste these from below, but you'll need to [get
-curl](https://curl.se/windows) from their website or with
-[Cygwin](https://www.cygwin.com) if you have it already.
+Orr copy-paste these from below, but you'll need to get `curl` first:
+
+> [!IMPORTANT]
+> Beforehand for Windows users!
+> Follow [The MSYS2 tutorial](https://www.msys2.org) for installing it.
+> It automatically adds `bash`, which can later be accessed directly through the Windows Terminal via the command `sh`.
+> Also get [Scoop](https://scoop.sh)
+> Inside the `MSYS2` terminal run
+
+```
+pacman -S mingw-w64-x86_64-curl
+```
+
+to get curl so you'll be able to run the following commands:
 
 #### Back up, clone and set up the repo
 
@@ -63,16 +72,20 @@ Copy-paste this in *PowerShell*, *not* the O.G. CMD.
 
 `link-nvim.bat`
 
-    iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
+```
+iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
+```
 
 No need to link `nvim-data` as well, because it'll get automatically
 generated when first opening `nvim` with that config. If you're curious
 about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has
-them at `C:\Users\istan\AppData\Local\nvim-data`
+them at `~\AppData\Local\nvim-data`
 
 You can use this to try it tho
 
-    iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim-data.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
+```
+iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim-data.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
+```
 
 #### Contributing (u wont, dont lie)
 
