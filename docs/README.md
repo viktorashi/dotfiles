@@ -1,18 +1,11 @@
-# All scripts are in `docs`
+#### Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs) and run them inside `bash, zsh`
 
-## Run it in `bash, zsh` etc or create a `script.sh` for each and run it in a GNU shell (even on windows)
-
-Download all scripts from
-[here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs)
-and run them inside bash.
-
-Orr copy-paste these from below, but you'll need to get `curl` first:
+### Orr copy-paste these from below, but you'll need to get `curl` first
 
 > [!IMPORTANT]
 > Beforehand for Windows users!
 > Follow [The MSYS2 tutorial](https://www.msys2.org) for installing it.
 > It automatically adds `bash`, which can later be accessed directly through the Windows Terminal via the command `sh`.
-> Also get [Scoop](https://scoop.sh)
 > Inside the `MSYS2` terminal run
 
 ```
@@ -55,9 +48,47 @@ conf s
 #whenever you add a new file and want it to be tracked:
 conf add <filename>
 
+#or shortcut if you've added new plugin files in neovim
+confad
+
 #even view it nicely if you have lazygit:
 configlazygit
 ```
+
+You can check them out in `~/docs/aliases.sh`
+
+## Other dependecies
+
+- [git Delta](https://dandavison.github.io/delta/installation.html)
+- [node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [neovim](https://neovim.io)
+
+Installing these on Windows:
+Get [Scoop](https://scoop.sh).
+and do
+
+```sh
+scoop install neovim
+scoop install delta
+```
+
+For `node` download `nvm-setup.exe` from [nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases) and do:
+
+```sh
+nvm install lts
+nvm use <versiune>
+```
+
+For [Rust](https://www.rust-lang.org) development:
+On Windows you need Visual Studio C/C++ Windows Development Toolchain before even installing `rustup`. After you get it:
+
+```
+rustup update
+rustup component add rust-analyzer
+rustup component add rustfmt
+```
+
+## Setting up Neovim
 
 > [!IMPORTANT]
 > If on Windows you need to hard-link `.config/nvim` to
@@ -76,7 +107,17 @@ Copy-paste this in *PowerShell*, *not* the O.G. CMD.
 iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
 ```
 
-No need to link `nvim-data` as well, because it'll get automatically
+If it fails because the target already exists, you can
+
+```
+rmdir /s /q "%USERPROFILE%\AppData\Local\nvim"
+```
+
+since you've already backed it up earlier just in case (this was the case)
+
+and run the linking proccess  again
+
+Prolly no need to link `nvim-data` as well, because it'll get automatically
 generated when first opening `nvim` with that config. If you're curious
 about it anyways, Unix has it as `~/.local/share/nvim/`, and windows has
 them at `~\AppData\Local\nvim-data`
@@ -86,6 +127,14 @@ You can use this to try it tho
 ```
 iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim-data.bat -OutFile "$env:TEMP\lnvim.bat"; & "$env:TEMP\lnvim.bat"; rm "$env:TEMP\lnvim.bat"
 ```
+
+Now just make sure you on the `Private` Wifi network (if you know you know) and run the all-lazily:
+
+```sh
+nv 
+```
+
+✅✅✅✅ one more *Voila!*  ✅✅✅✅
 
 #### Contributing (u wont, dont lie)
 
