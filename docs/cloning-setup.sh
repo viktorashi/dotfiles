@@ -10,7 +10,7 @@ conf() {
 
 git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
 
-echo ".cfg" >>.gitignore #avoiding reccusrive weirdness
+echo ".cfg" >>~/.gitignore #avoiding reccusrive weirdness
 
 # astea sa poti sa folosesti `conf` si dupa
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
