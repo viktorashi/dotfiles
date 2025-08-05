@@ -91,6 +91,7 @@ alias fr='flask run' # dupa pui --app <numele la ce package ii zice la aplicatie
 #muult prea des dau acum frfr
 alias cr='clear && cargo run'
 alias ct='clear && cargo test'
+alias cb='clear && cargo build'
 #laternativa mai era
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
