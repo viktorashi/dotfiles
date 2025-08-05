@@ -4,61 +4,61 @@
 
 source ~/docs/aliases.sh
 
+if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi
+
 function vol() {
-  USAGE="usage: vol [-h | --help | NUMBER_FROM_0_TO_100 | -DECREMENT | +INCREMENT]"
+    USAGE="usage: vol [-h | --help | NUMBER_FROM_0_TO_100 | -DECREMENT | +INCREMENT]"
 
-  # if the argument isn't one of the expected values, display usage instructions
-  if [ "$1" == "-h" ] || [ "$1" == "--help" ] || ! [[ "$1" =~ ^$|^[+-]?[0-9]+$ ]]; then
-    echo "$USAGE"
-    exit 1
-  fi
-
-  # retrieve old volume
-  OLD_VOLUME="$(osascript -e "output volume of (get volume settings)")"
-
-  if [ -z "$1" ]; then
-    echo "$OLD_VOLUME"
-  else
-    # default case: just set volume to specified value
-    NEW_VOLUME="$1"
-
-    # alternatively: decrement or increment?
-    if [[ "$1" == -* ]] || [[ "$1" == +* ]]; then
-      NEW_VOLUME=$(($OLD_VOLUME + $1))
+    # if the argument isn't one of the expected values, display usage instructions
+    if [ "$1" == "-h" ] || [ "$1" == "--help" ] || ! [[ "$1" =~ ^$|^[+-]?[0-9]+$ ]]; then
+        echo "$USAGE"
+        exit 1
     fi
 
-    # clamp to [0, 100]
-    if [ "$NEW_VOLUME" -lt 0 ]; then
-      NEW_VOLUME=0
-    fi
-    if [ "$NEW_VOLUME" -gt 100 ]; then
-      NEW_VOLUME=100
-    fi
+    # retrieve old volume
+    OLD_VOLUME="$(osascript -e "output volume of (get volume settings)")"
 
-    # give feedback
-    MUTED=""
-    if [ "$NEW_VOLUME" -eq 0 ]; then
-      MUTED="(muted)"
-    fi
-    echo "$OLD_VOLUME -> $NEW_VOLUME $MUTED"
+    if [ -z "$1" ]; then
+        echo "$OLD_VOLUME"
+    else
+        # default case: just set volume to specified value
+        NEW_VOLUME="$1"
 
-    # set
-    osascript -e "set volume output volume $NEW_VOLUME"
-  fi
+        # alternatively: decrement or increment?
+        if [[ "$1" == -* ]] || [[ "$1" == +* ]]; then
+            NEW_VOLUME=$(($OLD_VOLUME + $1))
+        fi
+
+        # clamp to [0, 100]
+        if [ "$NEW_VOLUME" -lt 0 ]; then
+            NEW_VOLUME=0
+        fi
+        if [ "$NEW_VOLUME" -gt 100 ]; then
+            NEW_VOLUME=100
+        fi
+
+        # give feedback
+        MUTED=""
+        if [ "$NEW_VOLUME" -eq 0 ]; then
+            MUTED="(muted)"
+        fi
+        echo "$OLD_VOLUME -> $NEW_VOLUME $MUTED"
+
+        # set
+        osascript -e "set volume output volume $NEW_VOLUME"
+    fi
 }
 # bash completion V2 for arduino-cli                          -*- shell-script -*-
 
-__arduino-cli_debug()
-{
+__arduino-cli_debug() {
     if [[ -n ${BASH_COMP_DEBUG_FILE-} ]]; then
-        echo "$*" >> "${BASH_COMP_DEBUG_FILE}"
+        echo "$*" >>"${BASH_COMP_DEBUG_FILE}"
     fi
 }
 
 # Macs have bash3 for which the bash-completion package doesn't include
 # _init_completion. This is a minimal version of that function.
-__arduino-cli_init_completion()
-{
+__arduino-cli_init_completion() {
     COMPREPLY=()
     _get_comp_words_by_ref "$@" cur prev words cword
 }
@@ -73,8 +73,8 @@ __arduino-cli_get_completion_results() {
     args=("${words[@]:1}")
     requestComp="${words[0]} __complete ${args[*]}"
 
-    lastParam=${words[$((${#words[@]}-1))]}
-    lastChar=${lastParam:$((${#lastParam}-1)):1}
+    lastParam=${words[$((${#words[@]} - 1))]}
+    lastChar=${lastParam:$((${#lastParam} - 1)):1}
     __arduino-cli_debug "lastParam ${lastParam}, lastChar ${lastChar}"
 
     if [[ -z ${cur} && ${lastChar} != = ]]; then
@@ -131,7 +131,7 @@ __arduino-cli_process_completion_results() {
         if (((directive & shellCompDirectiveKeepOrder) != 0)); then
             if [[ $(type -t compopt) == builtin ]]; then
                 # no sort isn't supported for bash less than < 4.4
-                if [[ ${BASH_VERSINFO[0]} -lt 4 || ( ${BASH_VERSINFO[0]} -eq 4 && ${BASH_VERSINFO[1]} -lt 4 ) ]]; then
+                if [[ ${BASH_VERSINFO[0]} -lt 4 || (${BASH_VERSINFO[0]} -eq 4 && ${BASH_VERSINFO[1]} -lt 4) ]]; then
                     __arduino-cli_debug "No sort directive not supported in this version of bash"
                 else
                     __arduino-cli_debug "Activating keep order"
@@ -197,7 +197,7 @@ __arduino-cli_handle_activeHelp() {
     if ((${#activeHelp[*]} != 0)); then
         if [ -z $COMP_TYPE ]; then
             # Bash v3 does not set the COMP_TYPE variable.
-            printf "\n";
+            printf "\n"
             printf "%s\n" "${activeHelp[@]}"
             printf "\n"
             __arduino-cli_reprint_commandLine
@@ -248,7 +248,7 @@ __arduino-cli_handle_activeHelp() {
 __arduino-cli_reprint_commandLine() {
     # The prompt format is only available from bash 4.4.
     # We test if it is available before using it.
-    if (x=${PS1@P}) 2> /dev/null; then
+    if (x=${PS1@P}) 2>/dev/null; then
         printf "%s" "${PS1@P}${COMP_LINE[@]}"
     else
         # Can't print the prompt.  Just print the
@@ -283,14 +283,14 @@ __arduino-cli_handle_completion_types() {
     __arduino-cli_debug "__arduino-cli_handle_completion_types: COMP_TYPE is $COMP_TYPE"
 
     case $COMP_TYPE in
-    37|42)
+    37 | 42)
         # Type: menu-complete/menu-complete-backward and insert-completions
         # If the user requested inserting one completion at a time, or all
         # completions at once on the command-line we must remove the descriptions.
         # https://github.com/spf13/cobra/issues/1508
 
         # If there are no completions, we don't need to do anything
-        (( ${#completions[@]} == 0 )) && return 0
+        ((${#completions[@]} == 0)) && return 0
 
         local tab=$'\t'
 
@@ -298,7 +298,10 @@ __arduino-cli_handle_completion_types() {
         IFS=$'\n' read -ra completions -d '' < <(printf "%q\n" "${completions[@]%%$tab*}")
 
         # Only consider the completions that match
-        IFS=$'\n' read -ra COMPREPLY -d '' < <(IFS=$'\n'; compgen -W "${completions[*]}" -- "${cur}")
+        IFS=$'\n' read -ra COMPREPLY -d '' < <(
+            IFS=$'\n'
+            compgen -W "${completions[*]}" -- "${cur}"
+        )
 
         # compgen looses the escaping so we need to escape all completions again since they will
         # all be inserted on the command-line.
@@ -316,20 +319,23 @@ __arduino-cli_handle_standard_completion_case() {
     local tab=$'\t'
 
     # If there are no completions, we don't need to do anything
-    (( ${#completions[@]} == 0 )) && return 0
+    ((${#completions[@]} == 0)) && return 0
 
     # Short circuit to optimize if we don't have descriptions
     if [[ "${completions[*]}" != *$tab* ]]; then
         # First, escape the completions to handle special characters
         IFS=$'\n' read -ra completions -d '' < <(printf "%q\n" "${completions[@]}")
         # Only consider the completions that match what the user typed
-        IFS=$'\n' read -ra COMPREPLY -d '' < <(IFS=$'\n'; compgen -W "${completions[*]}" -- "${cur}")
+        IFS=$'\n' read -ra COMPREPLY -d '' < <(
+            IFS=$'\n'
+            compgen -W "${completions[*]}" -- "${cur}"
+        )
 
         # compgen looses the escaping so, if there is only a single completion, we need to
         # escape it again because it will be inserted on the command-line.  If there are multiple
         # completions, we don't want to escape them because they will be printed in a list
         # and we don't want to show escape characters in that list.
-        if (( ${#COMPREPLY[@]} == 1 )); then
+        if ((${#COMPREPLY[@]} == 1)); then
             COMPREPLY[0]=$(printf "%q" "${COMPREPLY[0]}")
         fi
         return 0
@@ -361,7 +367,7 @@ __arduino-cli_handle_standard_completion_case() {
         # the completion because this length is only used when printing the completions
         # in a list and we don't want show escape characters in that list.
         comp=${compline%%$tab*}
-        if ((${#comp}>longest)); then
+        if ((${#comp} > longest)); then
             longest=${#comp}
         fi
     done < <(printf "%s\n" "${completions[@]}")
@@ -377,8 +383,7 @@ __arduino-cli_handle_standard_completion_case() {
     fi
 }
 
-__arduino-cli_handle_special_char()
-{
+__arduino-cli_handle_special_char() {
     local comp="$1"
     local char=$2
     if [[ "$comp" == *${char}* && "$COMP_WORDBREAKS" == *${char}* ]]; then
@@ -390,8 +395,7 @@ __arduino-cli_handle_special_char()
     fi
 }
 
-__arduino-cli_format_comp_descriptions()
-{
+__arduino-cli_format_comp_descriptions() {
     local tab=$'\t'
     local comp desc maxdesclength
     local longest=$1
@@ -407,25 +411,25 @@ __arduino-cli_format_comp_descriptions()
 
             # $COLUMNS stores the current shell width.
             # Remove an extra 4 because we add 2 spaces and 2 parentheses.
-            maxdesclength=$(( COLUMNS - longest - 4 ))
+            maxdesclength=$((COLUMNS - longest - 4))
 
             # Make sure we can fit a description of at least 8 characters
             # if we are to align the descriptions.
             if ((maxdesclength > 8)); then
                 # Add the proper number of spaces to align the descriptions
-                for ((i = ${#comp} ; i < longest ; i++)); do
+                for ((i = ${#comp}; i < longest; i++)); do
                     comp+=" "
                 done
             else
                 # Don't pad the descriptions so we can fit more text after the completion
-                maxdesclength=$(( COLUMNS - ${#comp} - 4 ))
+                maxdesclength=$((COLUMNS - ${#comp} - 4))
             fi
 
             # If there is enough space for any description text,
             # truncate the descriptions that are too long for the shell width
             if ((maxdesclength > 0)); then
                 if ((${#desc} > maxdesclength)); then
-                    desc=${desc:0:$(( maxdesclength - 1 ))}
+                    desc=${desc:0:$((maxdesclength - 1))}
                     desc+="…"
                 fi
                 comp+="  ($desc)"
@@ -436,8 +440,7 @@ __arduino-cli_format_comp_descriptions()
     done
 }
 
-__start_arduino-cli()
-{
+__start_arduino-cli() {
     local cur prev words cword split
 
     COMPREPLY=()
