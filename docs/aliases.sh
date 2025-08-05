@@ -88,8 +88,8 @@ alias ll='ls -l'
 #FRFRFF fr for reals
 alias fr='flask run' # dupa pui --app <numele la ce package ii zice la aplicatie> run
 #muult prea des dau acum frfr
-alias cr='cargo run'
-alias ct='cargo test'
+alias cr='clear && cargo run'
+alias ct='clear && cargo test'
 #laternativa mai era
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
