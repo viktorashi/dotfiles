@@ -106,7 +106,7 @@ require("neoscroll").setup({
 vim.keymap.set("ca", "Wa", "wa")
 vim.keymap.set("ca", "WA", "wa")
 
-function prompt_when_quitting()
+local prompt_when_quitting = function()
   local choice = vim.fn.confirm(
     "😢😭 Nu iesii din Vimm, o sa poti sa traiesti fara ell?? 😢😭",
     "&Y da lol \n &Nuu"
@@ -133,3 +133,5 @@ vim.api.nvim_create_user_command(
   prompt_when_quitting,
   {}
 )
+
+vim.api.nvim_create_user_command("W", "w", {})
