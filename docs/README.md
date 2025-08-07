@@ -45,6 +45,10 @@ conf status
 #or ,even more lazily:
 conf s
 
+cons sw windows10 # if you're one of those 
+
+conf pull #after you've bothered me
+
 #whenever you add a new file and want it to be tracked:
 conf add <filename>
 
