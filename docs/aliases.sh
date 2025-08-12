@@ -55,6 +55,7 @@ alias configst="config status"
 alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/docs && config status"
 alias confadd='configadd'
 alias confad='configadd'
+alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
 alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
