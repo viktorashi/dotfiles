@@ -50,6 +50,8 @@ conf() {
   config "$@"
 }
 
+rm -rf ~/.cfg
+
 git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
 
 echo ".cfg" >>~/.gitignore #avoiding reccusrive weirdness
