@@ -11,6 +11,7 @@ CONFIG_PATHS=(
   "$HOME/.zshrc"
   "$HOME/.config/nvim"
   "$USERPROFILE/AppData/Local/nvim"
+  "$HOME/docs/"
 )
 
 for CONFIG in "${CONFIG_PATHS[@]}"; do
@@ -68,7 +69,7 @@ conf switch windows10
 conf branch --set-upstream-to=origin/windows10
 conf checkout main
 
-cd ~/docs/
+cd ~/docs/ || exit
 #no hackerino
 chmod +x git-settings.sh
 ./git-settings.sh
