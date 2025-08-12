@@ -73,7 +73,11 @@ conf switch windows10
 conf branch --set-upstream-to=origin/windows10
 conf checkout main
 
-cd ~/docs/ || exit
 #no hackerino
-chmod +x git-settings.sh
-./git-settings.sh
+chmod +x ~/docs/git-settings.sh
+~/docs/git-settings.sh
+
+source ~/.zshrc
+#sau dupa prefereinte
+# source ~/.bashrc
+# sau doar efectiv da-i restart
