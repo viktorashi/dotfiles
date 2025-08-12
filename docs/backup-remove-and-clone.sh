@@ -13,6 +13,7 @@ CONFIG_PATHS=(
   "$USERPROFILE/AppData/Local/nvim"
   "$HOME/docs/"
   "$HOME/.vimrc"
+  "$HOME/.bash_profile"
 )
 
 for CONFIG in "${CONFIG_PATHS[@]}"; do
