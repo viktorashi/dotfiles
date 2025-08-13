@@ -14,27 +14,11 @@ pacman -S mingw-w64-x86_64-curl
 
 to get curl so you'll be able to run the following commands:
 
-#### Back up, clone and set up the repo
+#### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one!
 
 ``` bash
-curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-and-clone.sh | sh
+curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
 ```
-
-orr you have do them sepperately ig:
-
-### Back it up terry
-
-just in case
-
-`backup.sh`
-
-    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup.sh | sh
-
-### Cloning the actual config
-
-`cloning-setup.sh`
-
-    curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/cloning-setup.sh | sh
 
 Now restart your `shell`. *Voila!*
 
@@ -44,6 +28,10 @@ Now restart your `shell`. *Voila!*
 conf status
 #or ,even more lazily:
 conf s
+
+cons sw windows10 # if you're one of those 
+
+conf pull #after you've bothered me
 
 #whenever you add a new file and want it to be tracked:
 conf add <filename>

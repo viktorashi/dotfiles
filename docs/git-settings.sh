@@ -23,6 +23,7 @@ git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
+git config --global core.autocrlf input
 
 # kktu asta e sa imi fac conflictele misto
 # ti-l pui in
