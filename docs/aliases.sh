@@ -1,7 +1,8 @@
 # s-au mutat aici toate sa fie frumix
 
 # mai munca specific
-alias proiect='cd /d/worktrees-sharwarma'
+# alias proiect='cd /d/worktrees-sharwarma/alt'
+alias proiect='cd ~/raspi/'
 alias pro='proiect'
 
 alias cls='clear'
