@@ -2,7 +2,7 @@
 
 # mai munca specific
 # alias proiect='cd /d/worktrees-sharwarma/alt'
-alias proiect='cd ~/raspi/'
+alias proiect='cd ~/raspi/flask_client/'
 alias pro='proiect'
 
 alias cls='clear'
