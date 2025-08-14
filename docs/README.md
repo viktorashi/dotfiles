@@ -14,7 +14,7 @@ pacman -S mingw-w64-x86_64-curl
 
 to get curl so you'll be able to run the following commands:
 
-#### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one!
+#### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
 
 ``` bash
 curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
@@ -56,8 +56,8 @@ Get [Scoop](https://scoop.sh).
 and do
 
 ```sh
-scoop install neovim
-scoop install delta
+scoop install neovim delta zoxide
+
 ```
 
 For `node` download `nvm-setup.exe` from [nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases) and do:
