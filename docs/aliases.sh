@@ -64,6 +64,8 @@ alias conflazygit='configlazygit'
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
 alias confupdate='config fetch $git_dir main:mac && config fetch $git_dir main:windows10'
+alias confmasonupdate='~/docs/configupdatemason.sh'
+alias confupdatebranches='conf switch mac && conf merge main --no-edit && conf switch windows10 && conf merge main --no-edit && conf push --all'
 
 #sunt prea putoare
 #alias m='make'
