@@ -17,7 +17,7 @@ git config --global alias.m merge
 #sa scapam de line endingurile alea de kkt pe windows
 git config --global core.autocrlf true
 
-git config --global core.editor "nvim"
+git config --global core.editor "vi"
 
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
