@@ -22,6 +22,7 @@ return {
         "taplo",
         "typescript-language-server",
         "yaml-language-server",
+        "arduino-language-server",
       },
     },
   },
