@@ -23,6 +23,7 @@ return {
         "typescript-language-server",
         "yaml-language-server",
         "arduino-language-server",
+        "cpplint",
       },
     },
   },
