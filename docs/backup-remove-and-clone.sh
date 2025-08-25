@@ -77,7 +77,7 @@ conf checkout main
 chmod +x ~/docs/git-settings.sh
 ~/docs/git-settings.sh
 
-source ~/.zshrc
+source ~/.bashrc
 #sau dupa prefereinte
 # source ~/.bashrc
 # sau doar efectiv da-i restart

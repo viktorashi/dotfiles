@@ -64,6 +64,8 @@ alias conflazygit='configlazygit'
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
 alias confupdate='config fetch $git_dir main:mac && config fetch $git_dir main:windows10'
+alias confupdatemason='~/docs/configupdatemason.sh'
+alias confupdateallbranches='conf switch mac && conf merge main --no-edit && conf switch windows10 && conf merge main --no-edit && conf push --all'
 
 #sunt prea putoare
 #alias m='make'
@@ -121,6 +123,7 @@ alias ping='ping -o'
 alias pingacas='ping viktorashihome.ddnsfree.com'
 #connecteazate la ssh acasa
 alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
+alias sshraspi='ssh pi@10.5.202.197'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
