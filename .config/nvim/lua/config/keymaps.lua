@@ -135,3 +135,12 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command("W", "w", {})
+
+-- sa nu dai restart de fiecare data cand scihmbi configu
+-- TODO: nu prea merge gen lol
+vim.keymap.set("n", "<leader>rr", function()
+  vim.cmd("source $MYVIMRC")
+  print(
+    "Am incercat sa dau reload la config!!!(nu cred ca a mers lol)"
+  )
+end)
