@@ -86,7 +86,7 @@ alias pip='pip3'
 alias ls='ls -a'
 alias ll='ls -l'
 #FRFRFF fr for reals
-alias fr='flask run' # dupa pui --app <numele la ce package ii zice la aplicatie> run
+alias fr='clear && flask --app . --debug run' # dupa pui --app <numele la ce package ii zice la aplicatie> run
 #muult prea des dau acum frfr
 alias cr='clear && cargo run'
 alias ct='clear && cargo test'
