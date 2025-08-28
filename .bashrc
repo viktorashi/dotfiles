@@ -48,6 +48,7 @@ function vol() {
         osascript -e "set volume output volume $NEW_VOLUME"
     fi
 }
+<<<<<<< HEAD
 # bash completion V2 for arduino-cli                          -*- shell-script -*-
 
 __arduino-cli_debug() {
@@ -475,3 +476,7 @@ else
 fi
 
 # ex: ts=4 sw=4 et filetype=sh
+||||||| 55e0487
+=======
+. "$HOME/.cargo/env"
+>>>>>>> main
