@@ -46,3 +46,4 @@ function vol() {
     osascript -e "set volume output volume $NEW_VOLUME"
   fi
 }
+. "$HOME/.cargo/env"
