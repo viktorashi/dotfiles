@@ -27,6 +27,8 @@ return {
         "docker-language-server",
         "dockerfile-language-server",
         "docker-compose-language-service",
+        "clang-format",
+        "cpptools",
       },
     },
   },
