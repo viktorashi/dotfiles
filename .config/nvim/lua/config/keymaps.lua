@@ -144,3 +144,29 @@ vim.keymap.set("n", "<leader>rr", function()
     "Am incercat sa dau reload la config!!!(nu cred ca a mers lol)"
   )
 end)
+
+-- bindurile pt terminal mode
+local opts = { noremap = true, silent = true }
+local term_map = function(lhs, rhs)
+  vim.keymap.set("t", lhs, rhs, opts)
+end
+
+term_map("<Esc>", [[<C-\><C-n>]])
+
+-- sa merg prin windowuri
+term_map("<C-h>", [[<C-\><C-n><C-w>h]])
+term_map("<C-j>", [[<C-\><C-n><C-w>j]])
+term_map("<C-k>", [[<C-\><C-n><C-w>k]])
+term_map("<C-l>", [[<C-\><C-n><C-w>l]])
+
+-- Normal mode
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+
+-- Insert mode (exit insert, then move)
+vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
+vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
+vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
+vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
