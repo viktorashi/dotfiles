@@ -143,6 +143,9 @@ alias sizepwd='du -d 0'
 alias sort-size="du -sh * | sort -h"
 #sorteaza folderele si fisierle recursiv
 alias sort-recur="du -ah | sort -h"
+#vezi ce viteza de write-speed are un drive pe care esti acm
+alias write-speed='dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/output'
+#da vezi ca ai nevoie de destul de mult spatiu cat sa poata sa-ti scrie experimental pe el si dupa sa-ti zica cat a durat sa-ti scrie
 
 #nu stiu daca e musai recomandata asta tbh =))
 alias shutdown='sudo shutdown -p now'
