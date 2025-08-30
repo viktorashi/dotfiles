@@ -53,13 +53,13 @@ compinit -u
 
 # pwd based on the value of _ZO_RESOLVE_SYMLINKS.
 function __zoxide_pwd() {
-    \builtin pwd -L
+    \builtin pwd -P
 }
 
 # cd + custom logic based on the value of _ZO_ECHO.
 function __zoxide_cd() {
     # shellcheck disable=SC2164
-    \builtin cd -- "$@"
+    \builtin cd -- "$@" && __zoxide_pwd
 }
 
 # =============================================================================
