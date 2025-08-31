@@ -168,7 +168,7 @@ vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 function compile_cpp()
   vim.cmd("w") -- save file
   vim.cmd(
-    "split | terminal g++ % -o %:r.out && ./%:r.out"
+    "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
   )
   vim.cmd("startinsert")
 end
