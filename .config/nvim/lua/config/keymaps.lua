@@ -168,7 +168,7 @@ vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 vim.keymap.set("n", "<F1>", function()
   vim.cmd("w") -- save file
   vim.cmd(
-    "split | terminal g++ % -o %:r && ./%:r"
+    "split | terminal g++ % -o %:r.out && ./%:r.out"
   )
   vim.cmd("startinsert")
 end, { desc = "Compile & Run C++" })
