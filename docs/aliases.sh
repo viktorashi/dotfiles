@@ -68,7 +68,7 @@ alias confupdatemason='~/docs/configupdatemason.sh'
 alias confupdateallbranches='conf switch mac && conf merge main --no-edit && conf switch windows10 && conf merge main --no-edit && conf push --all'
 
 #sunt prea putoare
-#alias m='make'
+alias m='make'
 alias dp='docker ps -a'
 #alias ds='docker start'
 
