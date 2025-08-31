@@ -180,10 +180,18 @@ vim.keymap.set(
   compile_cpp,
   { desc = desc }
 )
-
 vim.keymap.set(
   "i",
   "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+-- frt macbook din partea pea
+vim.keymap.set("n", "§", compile_cpp, { desc = desc })
+vim.keymap.set(
+  "i",
+  "§",
   compile_cpp,
   { desc = desc }
 )
