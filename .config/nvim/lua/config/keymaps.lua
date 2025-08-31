@@ -24,11 +24,24 @@ end, { desc = "Close Buffer" })
 --   { desc = "Inchide bufferu asta ca omu" }
 -- )
 
-map("n", "<C-w>", function()
+function sterge_buffer()
   -- vim.bo.buflisted = false
   -- vim.api.nvim_buf_delete(0, { unload = true })
   Snacks.bufdelete()
-end, { desc = "Inchide bufferu asta ca omu" })
+end
+
+map(
+  "n",
+  "<C-w>",
+  sterge_buffer,
+  { desc = "Inchide bufferu asta ca omu" }
+)
+map(
+  "n",
+  "<Esc>[27;5;119~",
+  ":q<CR>",
+  { noremap = true, silent = true }
+)
 
 map("n", "<F5>", function()
   require("dap").toggle_breakpoint()
