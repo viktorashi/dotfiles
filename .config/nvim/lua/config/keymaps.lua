@@ -188,7 +188,12 @@ vim.keymap.set(
 )
 
 -- frt macbook din partea pea
-vim.keymap.set("n", "§", compile_cpp, { desc = desc })
+vim.keymap.set(
+  "n",
+  "§",
+  compile_cpp,
+  { desc = desc }
+)
 vim.keymap.set(
   "i",
   "§",
