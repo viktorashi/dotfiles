@@ -176,11 +176,32 @@ vim.keymap.set("n", "<F1>", function()
 end, { desc = "Compile & Run C++" })
 =======
 
-vim.keymap.set("n", "<F1>", function()
+function compile_cpp()
   vim.cmd("w") -- save file
   vim.cmd(
     "split | terminal g++ % -o %:r.out && ./%:r.out"
   )
   vim.cmd("startinsert")
+<<<<<<< Updated upstream
 end, { desc = "Compile & Run C++" })
+>>>>>>> Stashed changes
+||||||| Stash base
+end, { desc = "Compile & Run C++" })
+=======
+end
+desc = "Compile & Run C++"
+
+vim.keymap.set(
+  "n",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+vim.keymap.set(
+  "i",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
 >>>>>>> Stashed changes
