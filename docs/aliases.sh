@@ -16,6 +16,7 @@ alias sc='source ~/.bashrc'
 alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
+alias sourceaiflask='source /c/Users/istan/Envs/ai_flaskulet/Scripts/activate'
 alias gr='egrep -irna'
 #cuz who cares about those
 alias tree='cmd //c tree //a //F'
