@@ -27,6 +27,8 @@ return {
         "dockerfile-language-server",
         "docker-compose-language-service",
         "clang-format",
+        "jinja-lsp",
+        "curlylint",
       },
     },
   },
