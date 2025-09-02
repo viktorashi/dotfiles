@@ -16,20 +16,20 @@ to get curl so you'll be able to run the following commands:
 
 #### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
 
-``` bash
+```bash
 curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
 ```
 
-Now restart your `shell`. *Voila!*
+Now restart your `shell`. _Voila!_
 
 ##### You should have my lazy-aah aliases so you can use things like
 
-``` bash
+```bash
 conf status
 #or ,even more lazily:
 conf s
 
-cons sw windows10 # if you're one of those 
+cons sw windows10 # if you're one of those
 
 conf pull #after you've bothered me
 
@@ -87,7 +87,7 @@ rustup component add rustfmt
 > Also I haven't tested if these scripts actually work on windows so feel
 > free to tell me otherwise
 
-Copy-paste this in *PowerShell*, *not* the O.G. CMD.
+Copy-paste this in _PowerShell_, _not_ the O.G. CMD.
 
 `link-nvim.bat`
 
@@ -103,7 +103,7 @@ rmdir /s /q "%USERPROFILE%\AppData\Local\nvim"
 
 since you've already backed it up earlier just in case (this was the case)
 
-and run the linking proccess  again
+and run the linking proccess again
 
 Prolly no need to link `nvim-data` as well, because it'll get automatically
 generated when first opening `nvim` with that config. If you're curious
@@ -119,10 +119,15 @@ iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim-d
 Now just make sure you on the `Private` Wifi network (if you know you know) and run the all-lazily:
 
 ```sh
-nv 
+nv
 ```
 
-✅✅✅✅ one more *Voila!*  ✅✅✅✅
+#### Different neovim notes for binds and stuffs
+
+Starting a command with `":term"` takes the output of the command and spits it into a buffer
+FINALLYyY found da issue
+
+✅✅✅✅ one more _Voila!_ ✅✅✅✅
 
 #### Contributing (u wont, dont lie)
 
@@ -132,7 +137,7 @@ HIGHLY RECOMMENDED FILTER FOR `pandoc`:
 
 and you can simply run:
 
-``` bash
+```bash
 make
 ```
 
@@ -140,7 +145,7 @@ if your machine has [GNU Make](https://www.gnu.org/software/make)
 
 else just do
 
-``` bash
+```bash
 pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md
 ```
 

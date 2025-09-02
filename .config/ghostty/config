@@ -1,0 +1,4 @@
+font-family="Monaco"
+font-size=24
+theme = Atom
+shell-integration-features = sudo
