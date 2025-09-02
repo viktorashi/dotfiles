@@ -164,8 +164,6 @@ vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
 vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
-<<<<<<< Updated upstream
-||||||| Stash base
 
 vim.keymap.set("n", "<F1>", function()
   vim.cmd("w") -- save file
@@ -174,7 +172,6 @@ vim.keymap.set("n", "<F1>", function()
   )
   vim.cmd("startinsert")
 end, { desc = "Compile & Run C++" })
-=======
 
 function compile_cpp()
   vim.cmd("w") -- save file
@@ -182,14 +179,7 @@ function compile_cpp()
     "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
   )
   vim.cmd("startinsert")
-<<<<<<< Updated upstream
-end, { desc = "Compile & Run C++" })
->>>>>>> Stashed changes
-||||||| Stash base
-end, { desc = "Compile & Run C++" })
-=======
 end
-desc = "Compile & Run C++"
 
 vim.keymap.set(
   "n",
@@ -204,4 +194,3 @@ vim.keymap.set(
   compile_cpp,
   { desc = desc }
 )
->>>>>>> Stashed changes
