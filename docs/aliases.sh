@@ -128,7 +128,7 @@ alias ping='ping -o'
 alias pingacas='ping viktorashihome.ddnsfree.com'
 #connecteazate la ssh acasa
 alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
-alias sshraspi='ssh pi@10.5.202.197 '
+alias sshraspi='ssh pi@10.5.202.197'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
