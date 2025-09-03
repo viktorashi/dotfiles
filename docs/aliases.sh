@@ -126,9 +126,9 @@ alias findport='sudo lsof -i '
 alias ping='ping -o'
 #dai ping acasa sa vezi macar daca merge chestia
 alias pingacas='ping viktorashihome.ddnsfree.com'
-#connecteazate la ssh acasa
+#connecteazate la ash acasa
 alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
-alias sshraspi='ssh pi@10.5.202.197'
+alias sshraspi='ssh pi@10.5.202.103'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
