@@ -179,7 +179,7 @@ vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 
 function compile_cpp()
-  vim.cmd("w") -- save file
+  vim.cmd("wa") -- save all files
   vim.cmd(
     "split | terminal g++ -std=c++20 % -o %:r.out && ./%:r.out"
   )
