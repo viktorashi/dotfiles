@@ -16,6 +16,7 @@ alias sc='source ~/.bashrc'
 alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
+alias sourceaiflask='source /c/Users/istan/Envs/ai_flaskulet/Scripts/activate'
 alias gr='egrep -irna'
 #cuz who cares about those
 alias tree='cmd //c tree //a //F'
@@ -104,7 +105,7 @@ alias cb='clear && cargo build'
 
 # Set up fzf key bindings
 alias iv='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
-alias nv='nvim'
+alias nv='nvim .'
 
 ##############
 #de editoare##
@@ -126,7 +127,7 @@ alias findport='sudo lsof -i '
 alias ping='ping -o'
 #dai ping acasa sa vezi macar daca merge chestia
 alias pingacas='ping viktorashihome.ddnsfree.com'
-#connecteazate la ssh acasa
+#connecteazate la ash acasa
 alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
 alias sshraspi='ssh pi@10.5.202.103'
 #sa vezi ma merge netu

@@ -172,7 +172,7 @@ function compile_cpp()
   )
   vim.cmd("startinsert")
 end
-local desc = "Compile & Run C++"
+desc = "Compile & Run C++"
 
 vim.keymap.set(
   "n",
