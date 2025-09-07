@@ -181,38 +181,39 @@ vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 
-function compile_cpp()
-  vim.cmd("wa") -- save all files
-  vim.cmd(
-    "split | terminal g++ -std=c++20 % -o %:r.out && ./%:r.out"
-  )
-  vim.cmd("startinsert")
-end
-local desc = "Compile & Run C++"
-
-vim.keymap.set(
-  "n",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-vim.keymap.set(
-  "i",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-
--- frt macbook din partea pea
-vim.keymap.set(
-  "n",
-  "§",
-  compile_cpp,
-  { desc = desc }
-)
-vim.keymap.set(
-  "i",
-  "§",
-  compile_cpp,
-  { desc = desc }
-)
+-- dont really need it nomo
+-- function compile_cpp()
+--   vim.cmd("wa") -- save all files
+--   vim.cmd(
+--     "split | terminal g++ -std=c++20 % -o %:r.out && ./%:r.out"
+--   )
+--   vim.cmd("startinsert")
+-- end
+-- local desc = "Compile & Run C++"
+--
+-- vim.keymap.set(
+--   "n",
+--   "<F1>",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+-- vim.keymap.set(
+--   "i",
+--   "<F1>",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+--
+-- -- frt macbook din partea pea
+-- vim.keymap.set(
+--   "n",
+--   "§",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+-- vim.keymap.set(
+--   "i",
+--   "§",
+--   compile_cpp,
+--   { desc = desc }
+-- )
