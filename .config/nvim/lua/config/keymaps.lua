@@ -12,11 +12,6 @@ local map = vim.keymap.set
 --   { noremap = true, silent = true }
 -- )
 
--- sper ca merge pe windows panarama
-map("n", "<leader><delete>", function()
-  Snacks.bufdelete()
-end, { desc = "Close Buffer" })
-
 -- map(
 --   "n",
 --   "<C-w>",
@@ -29,6 +24,14 @@ function sterge_buffer()
   -- vim.api.nvim_buf_delete(0, { unload = true })
   Snacks.bufdelete()
 end
+
+-- sper ca merge pe windows panarama
+map(
+  "n",
+  "<leader><delete>",
+  sterge_buffer,
+  { desc = "Close Buffer" }
+)
 
 map(
   "n",
@@ -185,7 +188,7 @@ function compile_cpp()
   )
   vim.cmd("startinsert")
 end
-desc = "Compile & Run C++"
+local desc = "Compile & Run C++"
 
 vim.keymap.set(
   "n",
