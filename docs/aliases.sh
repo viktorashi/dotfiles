@@ -128,7 +128,7 @@ alias sshraspi='ssh pi@10.5.202.197'
 #pt codespacu pe care pot sa builduiesc rustu de linux
 alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
 alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
-alias sshraspi='ssh pi@10.5.202.103'
+alias sshraspi='ssh pi@10.5.202.61'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
