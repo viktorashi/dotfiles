@@ -105,7 +105,7 @@ alias cb='clear && cargo build'
 
 # Set up fzf key bindings
 alias iv='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
-alias nv='nvim .'
+alias nv='nvim'
 
 ##############
 #de editoare##
