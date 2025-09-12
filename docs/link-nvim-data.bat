@@ -24,7 +24,7 @@ echo Neovim Config Linker
 echo --------------------------------------------------
 
 :: Construct the full absolute paths
-set "SOURCE_PATH=~/%SOURCE_RELATIVE_PATH%"
+set "SOURCE_PATH=%USERPROFILE%/%SOURCE_RELATIVE_PATH%"
 set "TARGET_PATH=%USERPROFILE%/%TARGET_RELATIVE_PATH%"
 
 echo Source (points to): %SOURCE_PATH%
