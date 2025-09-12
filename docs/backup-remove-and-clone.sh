@@ -11,7 +11,6 @@ CONFIG_PATHS=(
   "~/.zshrc"
   "~/.config/nvim"
   "~/.config/ghostty"
-  "$USERPROFILE/AppData/Local/nvim"
   "~/.vimrc"
   "~/.bash_profile"
 )
