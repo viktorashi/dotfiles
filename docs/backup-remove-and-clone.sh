@@ -11,7 +11,6 @@ CONFIG_PATHS=(
   "$HOME/.zshrc"
   "$HOME/.config/nvim"
   "$USERPROFILE/AppData/Local/nvim"
-  "$HOME/docs/"
   "$HOME/.vimrc"
   "$HOME/.bash_profile"
 )
