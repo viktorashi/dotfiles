@@ -10,6 +10,7 @@ CONFIG_PATHS=(
   "$HOME/.bashrc"
   "$HOME/.zshrc"
   "$HOME/.config/nvim"
+  "$HOME/.config/ghostty"
   "$USERPROFILE/AppData/Local/nvim"
   "$HOME/.vimrc"
   "$HOME/.bash_profile"
