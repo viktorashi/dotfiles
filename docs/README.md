@@ -9,10 +9,19 @@
 > Inside the `MSYS2` terminal run
 
 ```
-pacman -S mingw-w64-x86_64-curl
+pacman -S mingw-w64-x86_64-curl zsh
 ```
 
-to get curl so you'll be able to run the following commands:
+to get curl and zsh.
+To use them inside Windows Terminal (kinda hacky) you'll need to add
+
+```
+C:\msys64\usr\bin
+```
+
+to your Windows environment variables
+
+Now you'll be able to run the following commands:
 
 #### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
 
