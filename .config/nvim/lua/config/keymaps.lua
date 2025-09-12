@@ -12,11 +12,6 @@ local map = vim.keymap.set
 --   { noremap = true, silent = true }
 -- )
 
--- sper ca merge pe windows panarama
-map("n", "<leader><delete>", function()
-  Snacks.bufdelete()
-end, { desc = "Close Buffer" })
-
 -- map(
 --   "n",
 --   "<C-w>",
@@ -24,11 +19,32 @@ end, { desc = "Close Buffer" })
 --   { desc = "Inchide bufferu asta ca omu" }
 -- )
 
-map("n", "<C-w>", function()
+function sterge_buffer()
   -- vim.bo.buflisted = false
   -- vim.api.nvim_buf_delete(0, { unload = true })
   Snacks.bufdelete()
-end, { desc = "Inchide bufferu asta ca omu" })
+end
+
+-- sper ca merge pe windows panarama
+map(
+  "n",
+  "<leader><delete>",
+  sterge_buffer,
+  { desc = "Close Buffer" }
+)
+
+map(
+  "n",
+  "<C-w>",
+  sterge_buffer,
+  { desc = "Inchide bufferu asta ca omu" }
+)
+map(
+  "n",
+  "<Esc>[27;5;119~",
+  ":q<CR>",
+  { noremap = true, silent = true }
+)
 
 map("n", "<F5>", function()
   require("dap").toggle_breakpoint()
@@ -165,25 +181,39 @@ vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 
-function compile_cpp()
-  vim.cmd("w") -- save file
-  vim.cmd(
-    "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
-  )
-  vim.cmd("startinsert")
-end
-local desc = "Compile & Run C++"
-
-vim.keymap.set(
-  "n",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-
-vim.keymap.set(
-  "i",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
+-- dont really need it nomo
+-- function compile_cpp()
+--   vim.cmd("wa") -- save all files
+--   vim.cmd(
+--     "split | terminal g++ -std=c++20 % -o %:r.out && ./%:r.out"
+--   )
+--   vim.cmd("startinsert")
+-- end
+-- local desc = "Compile & Run C++"
+--
+-- vim.keymap.set(
+--   "n",
+--   "<F1>",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+-- vim.keymap.set(
+--   "i",
+--   "<F1>",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+--
+-- -- frt macbook din partea pea
+-- vim.keymap.set(
+--   "n",
+--   "§",
+--   compile_cpp,
+--   { desc = desc }
+-- )
+-- vim.keymap.set(
+--   "i",
+--   "§",
+--   compile_cpp,
+--   { desc = desc }
+-- )

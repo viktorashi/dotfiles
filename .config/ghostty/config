@@ -2,3 +2,5 @@ font-family="Monaco"
 font-size=24
 theme = Atom
 shell-integration-features = sudo
+# sa poata sa vada neovim cmd+w sa putem sa inchidem ferestra cu el
+keybind = cmd+w=csi:27;5;119~

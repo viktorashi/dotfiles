@@ -69,7 +69,7 @@ alias confupdatemason='~/docs/configupdatemason.sh'
 alias confupdateallbranches='conf switch mac && conf merge main --no-edit && conf switch windows10 && conf merge main --no-edit && conf push --all'
 
 #sunt prea putoare
-#alias m='make'
+alias m='make'
 alias dp='docker ps -a'
 #alias ds='docker start'
 
@@ -125,6 +125,10 @@ alias pingacas='ping viktorashihome.ddnsfree.com'
 #connecteazate la ssh acasa
 alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
 alias sshraspi='ssh pi@10.5.202.197'
+#pt codespacu pe care pot sa builduiesc rustu de linux
+alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
+alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
+alias sshraspi='ssh pi@10.5.202.61'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
