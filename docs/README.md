@@ -12,7 +12,7 @@
 pacman -S mingw-w64-x86_64-curl zsh
 ```
 
-to get curl and zsh.
+To get curl and zsh.
 To use them inside Windows Terminal (kinda hacky) you'll need to add
 
 ```
@@ -20,7 +20,6 @@ C:\msys64\usr\bin
 ```
 
 to your Windows environment variables
-
 Now you'll be able to run the following commands:
 
 #### Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
@@ -106,9 +105,17 @@ iwr https://raw.githubusercontent.com/viktorashi/my-config/main/docs/link-nvim.b
 
 If it fails because the target already exists, you can
 
+```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\AppData\Local\nvim"
 ```
+
+in powershell, or
+
+```cmd
 rmdir /s /q "%USERPROFILE%\AppData\Local\nvim"
 ```
+
+if you're a `CMD` user thyself.
 
 since you've already backed it up earlier just in case (this was the case)
 
