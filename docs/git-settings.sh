@@ -18,7 +18,7 @@ git config --global pull.rebase false
 #sa scapam de line endingurile alea de kkt pe windows
 git config --global core.autocrlf true
 
-git config --global core.editor "vi"
+git config --global core.editor "vim"
 
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'

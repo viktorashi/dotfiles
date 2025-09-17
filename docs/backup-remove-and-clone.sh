@@ -7,13 +7,12 @@ echo "📁 Backup process initiated. Files will be saved in: $BACKUP_DIR"
 echo
 
 CONFIG_PATHS=(
-  "$HOME/.bashrc"
-  "$HOME/.zshrc"
-  "$HOME/.config/nvim"
-  "$HOME/.config/ghostty"
-  "$USERPROFILE/AppData/Local/nvim"
-  "$HOME/.vimrc"
-  "$HOME/.bash_profile"
+  "~/.bashrc"
+  "~/.zshrc"
+  "~/.config/nvim"
+  "~/.config/ghostty"
+  "~/.vimrc"
+  "~/.bash_profile"
 )
 
 for CONFIG in "${CONFIG_PATHS[@]}"; do
