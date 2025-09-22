@@ -92,30 +92,30 @@ return {
       },
     },
   },
-  {
-    "ltex-plus/ltex-ls-plus",
-    ft = { "tex", "bib" },
-    config = function()
-      local lspconfig = require("lspconfig")
-
-      -- TEMPORARILY DISABLE LTEX/Languagetool
-      local enable_ltex = false -- change to true to enable again
-
-      if enable_ltex then
-        lspconfig.ltex.setup({
-          cmd = { "ltex-ls-plus.cmd" },
-          filetypes = { "tex", "bib" },
-          settings = {
-            ltex = {
-              ignoreEnvironments = {
-                "lstlisting",
-                "verbatim",
-                "minted",
-              },
-            },
-          },
-        })
-      end
-    end,
-  },
+  -- {
+  --   "ltex-plus/ltex-ls-plus",
+  --   ft = { "tex", "bib" },
+  --   config = function()
+  --     local lspconfig = require("lspconfig")
+  --
+  --     -- TEMPORARILY DISABLE LTEX/Languagetool
+  --     local enable_ltex = false -- change to true to enable again
+  --
+  --     if enable_ltex then
+  --       lspconfig.ltex.setup({
+  --         cmd = { "ltex-ls-plus.cmd" },
+  --         filetypes = { "tex", "bib" },
+  --         settings = {
+  --           ltex = {
+  --             ignoreEnvironments = {
+  --               "lstlisting",
+  --               "verbatim",
+  --               "minted",
+  --             },
+  --           },
+  --         },
+  --       })
+  --     end
+  --   end,
+  -- },
 }

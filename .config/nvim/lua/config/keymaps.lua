@@ -194,7 +194,7 @@ M.toggle_ltex = function()
       local clients = vim.lsp.get_active_clients()
       for _, client in ipairs(clients) do
         if client.id == M.client_id then
-          client.stop()
+          client.stop(true)
           vim.notify("LTEX disabled")
           break
         end
