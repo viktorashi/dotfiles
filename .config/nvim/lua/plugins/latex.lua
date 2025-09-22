@@ -98,22 +98,24 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      -- setup the default ltex server to use the plus binary
-      lspconfig.ltex.setup({
-        cmd = { "ltex-ls-plus.cmd" }, -- make sure this binary is in your PATH
-        filetypes = { "tex", "bib" },
-        settings = {
-          ltex = {
-            -- ignore code environments
-            ignoreEnvironments = {
-              "lstlisting",
-              "verbatim",
-              "minted",
+      -- TEMPORARILY DISABLE LTEX/Languagetool
+      local enable_ltex = false -- change to true to enable again
+
+      if enable_ltex then
+        lspconfig.ltex.setup({
+          cmd = { "ltex-ls-plus.cmd" },
+          filetypes = { "tex", "bib" },
+          settings = {
+            ltex = {
+              ignoreEnvironments = {
+                "lstlisting",
+                "verbatim",
+                "minted",
+              },
             },
-            -- you can add other settings here, e.g., dictionaries, rules
           },
-        },
-      })
+        })
+      end
     end,
   },
 }
