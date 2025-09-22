@@ -4,9 +4,9 @@ return {
     lazy = false,
     config = function()
       vim.g.tex_flavor = "latex"
-      vim.g.vimtex_view_method = "general" -- Linux (use skim on macOS, sumatrapdf on Windows)
+      vim.g.vimtex_view_method = "general"
       vim.g.vimtex_view_general_viewer =
-        "SumatraPDF.exe"
+        "SumatraPDF.exe" -- or skim/zathura depending on OS
       vim.g.vimtex_view_general_options =
         "-reuse-instance -forward-search @tex @line @pdf"
       vim.g.vimtex_compiler_method = "latexmk"
@@ -20,28 +20,19 @@ return {
       }
     end,
   },
+
   {
     "kdheepak/cmp-latex-symbols",
     ft = { "tex", "plaintex", "latex" },
     dependencies = { "hrsh7th/nvim-cmp" },
-    -- disable the plugin's after/plugin script
-    lazy = true,
-    config = function()
-      -- run after nvim-cmp is fully loaded
-      local cmp_status, cmp =
-        pcall(require, "cmp")
-      if not cmp_status then
-        return
-      end
-
-      -- register latex_symbols source for current buffer
-      cmp.setup.buffer({
-        sources = cmp.config.sources({
-          { name = "latex_symbols" },
-        }),
-      })
+    init = function()
+      -- prevent the plugin’s after/plugin script from breaking when cmp is not loaded
+      require("lazy.core.loader").disable_rtp_plugin(
+        "cmp-latex-symbols"
+      )
     end,
   },
+
   {
     "latex-lsp/tree-sitter-bibtex",
     ft = "bib",
@@ -52,6 +43,7 @@ return {
       })
     end,
   },
+
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -71,10 +63,12 @@ return {
                 forwardSearchAfter = true,
               },
               forwardSearch = {
-                executable = "zathura", -- skim/sumatrapdf depending on OS
+                executable = "SumatraPDF.exe", -- adjust: skim/zathura/sumatrapdf
                 args = {
-                  "--synctex-forward",
-                  "%l:1:%f",
+                  "-reuse-instance",
+                  "-forward-search",
+                  "%f",
+                  "%l",
                   "%p",
                 },
               },
@@ -85,7 +79,7 @@ return {
               diagnosticsDelay = 300,
               formatterLineLength = 80,
               latexFormatter = "latexindent",
-              bibtexFormatter = "texlab", -- enables BibTeX completion
+              bibtexFormatter = "texlab",
             },
           },
         },

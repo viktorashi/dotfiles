@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    ft = { "tex", "plaintex", "latex" }, -- only load for LaTeX
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -8,6 +9,7 @@ return {
       "hrsh7th/cmp-cmdline",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "kdheepak/cmp-latex-symbols",
     },
     config = function()
       local cmp = require("cmp")
@@ -28,6 +30,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "latex_symbols" },
         }, {
           { name = "buffer" },
           { name = "path" },
