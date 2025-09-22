@@ -180,57 +180,57 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
--- toggle ltex-ls-plus on the fly
-local M = {}
-M.ltex_enabled = false
-M.client_id = nil
-
-M.toggle_ltex = function()
-  local lspconfig = require("lspconfig")
-
-  if M.ltex_enabled then
-    -- disable LTEX: stop the client
-    if M.client_id then
-      local clients = vim.lsp.get_active_clients()
-      for _, client in ipairs(clients) do
-        if client.id == M.client_id then
-          client.stop(true)
-          vim.notify("LTEX disabled")
-          break
-        end
-      end
-      M.client_id = nil
-    end
-    M.ltex_enabled = false
-  else
-    -- enable LTEX
-    lspconfig.ltex.setup({
-      cmd = { "ltex-ls-plus.cmd" },
-      filetypes = { "tex", "bib" },
-      on_attach = function(client)
-        M.client_id = client.id
-      end,
-      settings = {
-        ltex = {
-          ignoreEnvironments = {
-            "lstlisting",
-            "verbatim",
-            "minted",
-          },
-        },
-      },
-    })
-    -- manually attach LTEX to current buffer
-    vim.cmd("edit") -- reload buffer to attach LSP
-    M.ltex_enabled = true
-    vim.notify("LTEX enabled")
-  end
-end
-
--- keymap to toggle: <leader>lt
-vim.keymap.set(
-  "n",
-  "<leader>lt",
-  M.toggle_ltex,
-  { desc = "Toggle LTEX" }
-)
+-- -- toggle ltex-ls-plus on the fly
+-- local M = {}
+-- M.ltex_enabled = false
+-- M.client_id = nil
+--
+-- M.toggle_ltex = function()
+--   local lspconfig = require("lspconfig")
+--
+--   if M.ltex_enabled then
+--     -- disable LTEX: stop the client
+--     if M.client_id then
+--       local clients = vim.lsp.get_active_clients()
+--       for _, client in ipairs(clients) do
+--         if client.id == M.client_id then
+--           client.stop(true)
+--           vim.notify("LTEX disabled")
+--           break
+--         end
+--       end
+--       M.client_id = nil
+--     end
+--     M.ltex_enabled = false
+--   else
+--     -- enable LTEX
+--     lspconfig.ltex.setup({
+--       cmd = { "ltex-ls-plus.cmd" },
+--       filetypes = { "tex", "bib" },
+--       on_attach = function(client)
+--         M.client_id = client.id
+--       end,
+--       settings = {
+--         ltex = {
+--           ignoreEnvironments = {
+--             "lstlisting",
+--             "verbatim",
+--             "minted",
+--           },
+--         },
+--       },
+--     })
+--     -- manually attach LTEX to current buffer
+--     vim.cmd("edit") -- reload buffer to attach LSP
+--     M.ltex_enabled = true
+--     vim.notify("LTEX enabled")
+--   end
+-- end
+--
+-- -- keymap to toggle: <leader>lt
+-- vim.keymap.set(
+--   "n",
+--   "<leader>lt",
+--   M.toggle_ltex,
+--   { desc = "Toggle LTEX" }
+-- )
