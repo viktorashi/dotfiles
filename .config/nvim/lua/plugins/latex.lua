@@ -18,6 +18,10 @@ return {
           "-synctex=1",
         },
       }
+      vim.g.vimtex_quickfix_mode = 0 -- 0 = never open automatically, 1 = open if errors, 2 = always
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      vim.g.vimtex_quickfix_autoclose_after_success =
+        1
     end,
   },
 
@@ -85,5 +89,29 @@ return {
         },
       },
     },
+  },
+  {
+    "ltex-plus/ltex-ls-plus",
+    ft = { "tex", "bib" },
+    config = function()
+      local lspconfig = require("lspconfig")
+
+      -- setup the default ltex server to use the plus binary
+      lspconfig.ltex.setup({
+        cmd = { "ltex-ls-plus.cmd" }, -- make sure this binary is in your PATH
+        filetypes = { "tex", "bib" },
+        settings = {
+          ltex = {
+            -- ignore code environments
+            ignoreEnvironments = {
+              "lstlisting",
+              "verbatim",
+              "minted",
+            },
+            -- you can add other settings here, e.g., dictionaries, rules
+          },
+        },
+      })
+    end,
   },
 }
