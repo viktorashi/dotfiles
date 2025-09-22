@@ -11,6 +11,12 @@ return {
         "-reuse-instance -forward-search @tex @line @pdf"
       vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_bibtex_sources = { "bib" }
+      vim.g.vimtex_quickfix_mode = 0 -- 0 = never open automatically, 1 = open if errors, 2 = always
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      vim.g.vimtex_quickfix_autoclose_after_success =
+        1
+      vim.g.vimtex_view_general_options_latexmk =
+        vim.g.vimtex_view_general_options
       vim.g.vimtex_compiler_latexmk = {
         options = {
           "-pdf",
@@ -18,10 +24,6 @@ return {
           "-synctex=1",
         },
       }
-      vim.g.vimtex_quickfix_mode = 0 -- 0 = never open automatically, 1 = open if errors, 2 = always
-      vim.g.vimtex_quickfix_open_on_warning = 0
-      vim.g.vimtex_quickfix_autoclose_after_success =
-        1
     end,
   },
 

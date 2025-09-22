@@ -164,3 +164,18 @@ vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
 vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
+
+-- inside your vimtex config in latex.lua
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>lf", -- forward search: code -> pdf
+  ":VimtexView<CR>",
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>lb", -- backward search: pdf -> code (requires nvr / remote)
+  ":!nvr --remote +%l '%f'<CR>",
+  { noremap = true, silent = true }
+)
