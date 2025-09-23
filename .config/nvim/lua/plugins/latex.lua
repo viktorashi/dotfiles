@@ -22,7 +22,7 @@ return {
           "-pdf",
           "-interaction=nonstopmode",
           "-synctex=1",
-          "-outdir=build",
+          "-auxdir=build",
         },
       }
     end,
