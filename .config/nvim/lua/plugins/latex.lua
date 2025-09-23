@@ -3,43 +3,69 @@ return {
     "lervag/vimtex",
     lazy = false,
     config = function()
+      -- TeX flavor
       vim.g.tex_flavor = "latex"
+
+      -- Viewer setup (SumatraPDF)
       vim.g.vimtex_view_method = "general"
       vim.g.vimtex_view_general_viewer =
-        "SumatraPDF.exe" -- or skim/zathura depending on OS
+        "SumatraPDF.exe"
       vim.g.vimtex_view_general_options =
         "-reuse-instance -forward-search @tex @line @pdf"
-      vim.g.vimtex_compiler_method = "latexmk"
-      vim.g.vimtex_bibtex_sources = { "bib" }
-      vim.g.vimtex_quickfix_mode = 0 -- 0 = never open automatically, 1 = open if errors, 2 = always
-      vim.g.vimtex_quickfix_open_on_warning = 0
-      vim.g.vimtex_quickfix_autoclose_after_success =
-        1
       vim.g.vimtex_view_general_options_latexmk =
         vim.g.vimtex_view_general_options
+
+      -- Compiler setup
+      vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_compiler_latexmk = {
+        executable = "latexmk",
         options = {
           "-pdf",
           "-interaction=nonstopmode",
           "-synctex=1",
-          "-auxdir=build",
+          "-silent",
+          "-use-make",
         },
       }
+
+      -- Quickfix / diagnostics
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      vim.g.vimtex_quickfix_autoclose_after_success =
+        1
+
+      -- User commands
+      vim.api.nvim_create_user_command(
+        "BuildLatex",
+        function()
+          vim.cmd("VimtexCompile")
+        end,
+        {}
+      )
+
+      vim.api.nvim_create_user_command(
+        "CleanLatex",
+        function()
+          vim.cmd("VimtexClean")
+        end,
+        {}
+      )
     end,
   },
 
+  -- Optional: LaTeX symbols completion
   {
     "kdheepak/cmp-latex-symbols",
     ft = { "tex", "plaintex", "latex" },
     dependencies = { "hrsh7th/nvim-cmp" },
     init = function()
-      -- prevent the plugin’s after/plugin script from breaking when cmp is not loaded
       require("lazy.core.loader").disable_rtp_plugin(
         "cmp-latex-symbols"
       )
     end,
   },
 
+  -- BibTeX support
   {
     "latex-lsp/tree-sitter-bibtex",
     ft = "bib",
@@ -77,6 +103,9 @@ return {
                   "%f",
                   "%l",
                   "%p",
+                  "@pdf",
+                  "@line",
+                  "@tex",
                 },
               },
               chktex = {
