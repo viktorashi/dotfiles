@@ -123,7 +123,7 @@ alias ping='ping -o'
 #dai ping acasa sa vezi macar daca merge chestia
 alias pingacas='ping viktorashi.home.ro'
 #connecteazate la ssh acasa
-alias sshacas='ssh Victor@viktorashi.home.ro'
+alias sshacas='ssh -i ~/.ssh/id_ed25519 -p 16969 victor@viktorashi.home.ro'
 #pt codespacu pe care pot sa builduiesc rustu de linux
 #alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
 #alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
