@@ -22,7 +22,7 @@ alias tree='tree --gitignore'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -a && git push'
-alias gpul='git pull'
+alias gpl='git pull'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias ga='git add .'
@@ -121,14 +121,13 @@ alias findport='sudo lsof -i '
 #cam mereu vreau doar sa se opreasca direct cand il gaseste
 alias ping='ping -o'
 #dai ping acasa sa vezi macar daca merge chestia
-alias pingacas='ping viktorashihome.ddnsfree.com'
+alias pingacas='ping viktorashi.home.ro'
 #connecteazate la ssh acasa
-alias sshacas='ssh viktorashi@viktorashihome.ddnsfree.com'
-alias sshraspi='ssh pi@10.5.202.197'
+alias sshacas='ssh Victor@viktorashi.home.ro'
 #pt codespacu pe care pot sa builduiesc rustu de linux
-alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
-alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
-alias sshraspi='ssh pi@10.5.202.61'
+#alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
+#alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
+#alias sshraspi='ssh pi@10.5.202.61'
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
