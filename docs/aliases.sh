@@ -92,7 +92,9 @@ alias fr='clear && flask --app . --debug run' # dupa pui --app <numele la ce pac
 alias cr='clear && cargo run'
 alias ct='clear && cargo test'
 alias cb='clear && cargo build'
-#laternativa mai era
+
+alias r='radian'
+
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
 #alias licenta='cd ~/Documents/toate-de-la-faculta-trecut/licenta/texuri/bachelor-thesis-repo/bachelor-thesis'
