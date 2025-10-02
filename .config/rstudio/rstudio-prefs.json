@@ -1,0 +1,10 @@
+{
+    "initial_working_directory": "~",
+    "posix_terminal_shell": "zsh",
+    "check_for_updates": false,
+    "enable_mousewheel_zoom": true,
+    "remove_history_duplicates": true,
+    "reformat_on_save": true,
+    "code_formatter": "styler",
+    "editor_theme": "Ambiance"
+}
