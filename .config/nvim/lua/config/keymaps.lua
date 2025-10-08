@@ -39,6 +39,21 @@ map(
   sterge_buffer,
   { desc = "Inchide bufferu asta ca omu" }
 )
+
+map(
+  { "n", "v", "i" },
+  "<D-w>",
+  sterge_buffer,
+  { noremap = true, silent = true }
+)
+
+map(
+  { "n", "v", "i" },
+  "<D-s>",
+  "<cmd>w<cr>",
+  { noremap = true, silent = true }
+)
+
 map(
   "n",
   "<Esc>[27;5;119~",
