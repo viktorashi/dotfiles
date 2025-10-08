@@ -80,7 +80,7 @@ end, { desc = "DAP: Run to cursor" })
 -- end, { desc = "DAP: Continue/Start" })
 
 --ba deci mereu le uit sa ma bata mama
-vim.keymap.set("n", "<F9>", "<Leader>dr", {
+map("n", "<F9>", "<Leader>dr", {
   remap = true,
   desc = "Alias for <Leader>dr (open debugabbles)",
 })
@@ -134,8 +134,8 @@ require("neoscroll").setup({
 })
 
 -- "aliasuri pt toate greselile pe care poti sa le faci"
-vim.keymap.set("ca", "Wa", "wa")
-vim.keymap.set("ca", "WA", "wa")
+map("ca", "Wa", "wa")
+map("ca", "WA", "wa")
 
 local prompt_when_quitting = function()
   local choice = vim.fn.confirm(
@@ -169,7 +169,7 @@ vim.api.nvim_create_user_command("W", "w", {})
 
 -- sa nu dai restart de fiecare data cand scihmbi configu
 -- TODO: nu prea merge gen lol
-vim.keymap.set("n", "<leader>rr", function()
+map("n", "<leader>rr", function()
   vim.cmd("source $MYVIMRC")
   print(
     "Am incercat sa dau reload la config!!!(nu cred ca a mers lol)"
@@ -179,7 +179,7 @@ end)
 -- bindurile pt terminal mode
 local opts = { noremap = true, silent = true }
 local term_map = function(lhs, rhs)
-  vim.keymap.set("t", lhs, rhs, opts)
+  map("t", lhs, rhs, opts)
 end
 
 term_map("<Esc>", [[<C-\><C-n>]])
@@ -191,44 +191,7 @@ term_map("<C-k>", [[<C-\><C-n><C-w>k]])
 term_map("<C-l>", [[<C-\><C-n><C-w>l]])
 
 -- Insert mode (exit insert, then move)
-vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
-vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
-vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
-vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
-
--- dont really need it nomo
--- function compile_cpp()
---   vim.cmd("wa") -- save all files
---   vim.cmd(
---     "split | terminal g++ -std=c++20 % -o %:r.out && ./%:r.out"
---   )
---   vim.cmd("startinsert")
--- end
--- local desc = "Compile & Run C++"
---
--- vim.keymap.set(
---   "n",
---   "<F1>",
---   compile_cpp,
---   { desc = desc }
--- )
--- vim.keymap.set(
---   "i",
---   "<F1>",
---   compile_cpp,
---   { desc = desc }
--- )
---
--- -- frt macbook din partea pea
--- vim.keymap.set(
---   "n",
---   "§",
---   compile_cpp,
---   { desc = desc }
--- )
--- vim.keymap.set(
---   "i",
---   "§",
---   compile_cpp,
---   { desc = desc }
--- )
+map("i", "<C-h>", "<Esc><C-w>h", opts)
+map("i", "<C-j>", "<Esc><C-w>j", opts)
+map("i", "<C-k>", "<Esc><C-w>k", opts)
+map("i", "<C-l>", "<Esc><C-w>l", opts)

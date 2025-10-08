@@ -5,7 +5,8 @@
 -- Neovide font configuration
 if vim.g.neovide then
   -- UI scaling
-  vim.g.neovide_scale_factor = 1.6
+  local default_scale = 1.8
+  vim.g.neovide_scale_factor = default_scale
 
   -- Optional nice extras:
   vim.g.neovide_cursor_animation_length = 0.03
@@ -34,7 +35,7 @@ if vim.g.neovide then
     set_scale(vim.g.neovide_scale_factor / 1.1)
   end
   local function reset_scale()
-    set_scale(1.6)
+    set_scale(default_scale)
   end
 
   -- map in normal/insert/visual so it works anywhere
