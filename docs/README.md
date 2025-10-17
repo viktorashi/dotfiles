@@ -18,6 +18,10 @@ To use them inside Windows Terminal (kinda hacky) you'll need to add
 ```
 C:\msys64\mingw64\bin
 ```
+and run
+```
+~/docs/vindovs/link-windows-thangs.bat
+```
 
 to your Windows environment variables
 Now you'll be able to run the following commands:
@@ -58,6 +62,7 @@ You can check them out in `~/docs/aliases.sh`
 - [git Delta](https://dandavison.github.io/delta/installation.html)
 - [node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [neovim](https://neovim.io)
+- [Neovide](https://neovide.dev)
 
 Installing these on Windows:
 Get [Scoop](https://scoop.sh).
