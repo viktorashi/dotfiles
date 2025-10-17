@@ -16,7 +16,7 @@ To get curl and zsh.
 To use them inside Windows Terminal (kinda hacky) you'll need to add
 
 ```
-C:\msys64\usr\bin
+C:\msys64\mingw64\bin
 ```
 
 to your Windows environment variables
