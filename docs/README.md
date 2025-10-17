@@ -9,7 +9,7 @@
 > Inside the `MSYS2` terminal run
 
 ```
-pacman -S mingw-w64-x86_64-curl zsh
+pacman -S curl zsh
 ```
 
 To get curl and zsh.
