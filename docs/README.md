@@ -64,7 +64,8 @@ Get [Scoop](https://scoop.sh).
 and do
 
 ```sh
-scoop install neovim delta zoxide
+scoop bucket add extras
+scoop install neovim delta zoxide fd lazygit
 
 ```
 
