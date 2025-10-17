@@ -176,8 +176,8 @@
     },
     "list": [
       {
-        "commandline": "C:\\msys64\\usr\\bin\\zsh.exe ",
-        "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
+	"commandline": "C:\\msys64\\usr\\bin\\env.exe MSYSTEM=MSYS /usr/bin/zsh.exe --login -i",
+	"guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
         "icon": "C:\\msys64\\msys2.ico",
         "name": "MSYS2 Zsh",
         "startingDirectory": "%USERPROFILE%"
