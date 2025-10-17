@@ -68,8 +68,7 @@ Get [Scoop](https://scoop.sh).
 and do
 
 ```sh
-scoop install neovim delta zoxide
-
+scoop install neovim delta zoxide fd
 ```
 
 For `node` download `nvm-setup.exe` from [nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases) and do:
