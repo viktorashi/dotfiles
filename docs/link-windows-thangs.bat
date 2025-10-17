@@ -15,6 +15,7 @@ REM Use full paths or paths relative to this script
 
 set "pair[0]=%USERPROFILE%\.config\nvim|%USERPROFILE%\AppData\Local\nvim"
 set "pair[1]=%USERPROFILE%\docs\windowsterm-settings.json|%USERPROFILE%\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+set "pair[2]=%USERPROFILE%\docs\msys-profile|C:\msys64\etc\profile"
 
 REM Count the number of pairs (update this if you add more pairs)
 set pair_count=4
