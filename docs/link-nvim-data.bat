@@ -15,8 +15,8 @@ setlocal
 :: ============================================================================
 
 :: --- Configuration ---
-set "SOURCE_RELATIVE_PATH=.local\share\nvim"
-set "TARGET_RELATIVE_PATH=AppData\Local\nvim-data"
+set "SOURCE_RELATIVE_PATH=.config/nvim"
+set "TARGET_RELATIVE_PATH=AppData/Local/nvim-data"
 
 :: --- Script Body ---
 echo --------------------------------------------------
@@ -24,8 +24,8 @@ echo Neovim Config Linker
 echo --------------------------------------------------
 
 :: Construct the full absolute paths
-set "SOURCE_PATH=%USERPROFILE%\%SOURCE_RELATIVE_PATH%"
-set "TARGET_PATH=%USERPROFILE%\%TARGET_RELATIVE_PATH%"
+set "SOURCE_PATH=%USERPROFILE%/%SOURCE_RELATIVE_PATH%"
+set "TARGET_PATH=%USERPROFILE%/%TARGET_RELATIVE_PATH%"
 
 echo Source (points to): %SOURCE_PATH%
 echo Target (link created at): %TARGET_PATH%
