@@ -2,6 +2,10 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr =
+  "v:lua.LazyVim.treesitter.foldexpr()"
+
 -- Neovide font configuration
 if vim.g.neovide then
   -- UI scaling
