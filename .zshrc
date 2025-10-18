@@ -15,19 +15,9 @@ source ~/docs/aliases.sh
 # Set up fzf fuzzy completion
 source <(fzf --zsh)
 
-#rezolva virtualenvwrapperu
-source /Library/Frameworks/Python.framework/Versions/3.11/bin/virtualenvwrapper.sh
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-. "/Users/viktorashi/.deno/env"
-
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.3.0
-
 #configu de prompt
-
 parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
 }
