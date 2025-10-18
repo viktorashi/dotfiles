@@ -25,8 +25,8 @@ to your path
 ```
 
 Which allows you to:
+Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
 ```bash
-# Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
 curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
 ```
 
