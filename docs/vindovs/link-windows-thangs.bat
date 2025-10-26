@@ -37,26 +37,26 @@ for /L %%i in (0,1,%pair_count%) do (
             if exist "!source!\*" (
                 REM Source is a directory
                 if exist "!dest!" (
-                    echo   WARNING: Destination already exists. Skipping...
+                    echo   WARNING: Destination already exists. Deleting...
+                    rmdir /S /Q "!dest!"
+                )
+                mklink /J "!dest!" "!source!"
+                if !errorlevel! equ 0 (
+                    echo   SUCCESS: Junction created
                 ) else (
-                    mklink /J "!dest!" "!source!"
-                    if !errorlevel! equ 0 (
-                        echo   SUCCESS: Junction created
-                    ) else (
-                        echo   ERROR: Failed to create junction
-                    )
+                    echo   ERROR: Failed to create junction
                 )
             ) else if exist "!source!" (
                 REM Source is a file
                 if exist "!dest!" (
-                    echo   WARNING: Destination already exists. Skipping...
+                    echo   WARNING: Destination already exists. Deleting...
+                    del /Q "!dest!"
+                )
+                mklink "!dest!" "!source!"
+                if !errorlevel! equ 0 (
+                    echo   SUCCESS: Symbolic link created
                 ) else (
-                    mklink "!dest!" "!source!"
-                    if !errorlevel! equ 0 (
-                        echo   SUCCESS: Symbolic link created
-                    ) else (
-                        echo   ERROR: Failed to create symbolic link
-                    )
+                    echo   ERROR: Failed to create symbolic link
                 )
             ) else (
                 echo   ERROR: Source does not exist
