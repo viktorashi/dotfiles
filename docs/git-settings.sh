@@ -25,6 +25,9 @@ git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 git config --global core.autocrlf input
+git config --global delta.syntax-theme "Dracula"
+git config --global delta.line-numbers true
+git config --global delta.side-by-side true
 
 # kktu asta e sa imi fac conflictele misto
 # ti-l pui in
