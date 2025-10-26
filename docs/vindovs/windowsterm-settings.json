@@ -102,7 +102,7 @@
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
+    "defaultProfile": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
     "keybindings": 
     [
         {
@@ -193,6 +193,12 @@
         },
         "list": 
         [
+            {
+                "commandline": "wsl",
+                "guid": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
+                "name": "WSL zsh",
+                "startingDirectory": "~"
+            },
             {
                 "commandline": "C:\\msys64\\usr\\bin\\env.exe MSYSTEM=MSYS /usr/bin/zsh.exe --login -i",
                 "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
