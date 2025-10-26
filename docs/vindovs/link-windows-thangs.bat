@@ -17,6 +17,7 @@ set "pair[0]=%USERPROFILE%\.config\nvim|%USERPROFILE%\AppData\Local\nvim"
 set "pair[1]=%USERPROFILE%\docs\vindovs\windowsterm-settings.json|%USERPROFILE%\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 set "pair[2]=%USERPROFILE%\docs\vindovs\msys-profile|C:\msys64\etc\profile"
 set "pair[3]=%USERPROFILE%\docs\vindovs\nsswitch.conf|C:\msys64\etc\nsswitch.conf"
+set "pair[4]=%USERPROFILE%\docs\vindovs\msys2.conf|C:\msys64\etc\msys2.conf"
 
 REM Count the number of pairs (update this if you add more pairs)
 set pair_count=4
