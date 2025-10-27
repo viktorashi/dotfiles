@@ -150,7 +150,7 @@ alias write-speed='dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/ou
 #da vezi ca ai nevoie de destul de mult spatiu cat sa poata sa-ti scrie experimental pe el si dupa sa-ti zica cat a durat sa-ti scrie
 
 #nu stiu daca e musai recomandata asta tbh =))
-alias shutdown='sudo shutdown -p now'
+alias shutdown='sudo shutdown -h now'
 
 #sorteaza homebrewurile dupa size
 #da deocamdata nu e folositan nicaieri ca nu-mi dau eu seama
