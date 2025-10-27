@@ -81,8 +81,6 @@ alias di='docker image'
 alias dil='docker image list'
 alias dcu='docker compose up'
 alias dcd='docker compose down'
-#alias py='python3'
-alias python='python3'
 alias ls='ls -a'
 alias ll='ls -l'
 #FRFRFF fr for reals
