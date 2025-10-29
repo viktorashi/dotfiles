@@ -199,3 +199,6 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(batman --export-env)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Created by `pipx` on 2025-10-25 14:34:10
+export PATH="$PATH:/Users/viktorashi/.local/bin"
