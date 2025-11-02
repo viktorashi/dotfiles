@@ -54,7 +54,7 @@ conf_worktree_folder="$HOME"
 git_dir="${conf_worktree_folder}/.cfg/"
 alias confgotofolder="cd ${conf_worktree_folder}"
 alias conf="git --git-dir=${git_dir} --work-tree=${conf_worktree_folder}"
-alias confad="conf add ${conf_worktree_folder}/.conf/nvim && conf add ${conf_worktree_folder}/docs && conf status"
+alias confad="conf add ${conf_worktree_folder}/.config/nvim && conf add ${conf_worktree_folder}/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
