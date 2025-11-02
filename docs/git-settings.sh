@@ -25,6 +25,7 @@ git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 git config --global core.autocrlf input
+git config --global http.postBuffer 524288000
 
 # kktu asta e sa imi fac conflictele misto
 # ti-l pui in
