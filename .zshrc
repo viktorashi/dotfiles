@@ -198,7 +198,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(batman --export-env)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Created by `pipx` on 2025-10-25 14:34:10
 export PATH="$PATH:/Users/viktorashi/.local/bin"
