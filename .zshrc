@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/docs/aliases.sh
+source ~/docs/shared.sh
 
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
