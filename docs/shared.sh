@@ -191,5 +191,3 @@ alias brew-clean='brew cleanup --prune=all'
 
 ##kkturi random gen literally
 alias getrandom='cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c50'
-
-export XDG_CONFIG_HOME="$HOME/.config"
