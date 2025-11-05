@@ -29,7 +29,6 @@ return {
         "clang-format",
         "jinja-lsp",
         "curlylint",
-        "r-languageserver",
       },
     },
   },
