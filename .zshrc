@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/docs/aliases.sh
+source ~/docs/shared.sh
 
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
@@ -19,12 +19,6 @@ source <(fzf --zsh)
 source /Library/Frameworks/Python.framework/Versions/3.11/bin/virtualenvwrapper.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-. "/Users/viktorashi/.deno/env"
-
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.3.0
 
 #configu de prompt
 
