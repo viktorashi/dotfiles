@@ -37,13 +37,12 @@ alias gb='git branch -a'
 #foloseste sa dai stash cu un nume sa stii ce are stashul in el (pui "mesaj" dupa)
 alias gsp='git stash push -m' #<mesaj> dupa
 alias gsl='git stash list'
+alias gcl='git clone'
 
 #pe astea de jos le-am pus cum leam pus fiindca stash pop == apply && drop, si dupa daca ii dai drop e prea tarziu daca ai vreun conflict si ai facut vreo prostie
 alias gsa='git stash apply' #mai intai asta ca e mai safe decat pop
 alias gsd='git stash drop'  #asta face practic pop
-
 alias gw='git worktree'
-
 alias grp='git remote prune origin'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
