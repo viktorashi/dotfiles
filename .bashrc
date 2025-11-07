@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/docs/aliases.sh
+source ~/docs/shared.sh
 
 if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi
 

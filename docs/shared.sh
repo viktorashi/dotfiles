@@ -28,6 +28,7 @@ alias tree='cmd //c tree //a //F'
 alias gs='git status'
 alias gp='git push'
 alias gc='git commit -a && git push'
+alias gcl='git clone'
 alias gpl='git pull'
 alias gd='git diff'
 alias gds='git diff --staged'
@@ -53,24 +54,18 @@ alias gw='git worktree'
 alias grp='git remote prune origin'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
-config_worktree_folder="$HOME"
-git_dir="${config_worktree_folder}/.cfg/"
-alias configotofolder="cd ${config_worktree_folder}"
-alias config="git --git-dir=${git_dir} --work-tree=${config_worktree_folder}"
-alias conf='config'
-alias configst="config status"
-alias configadd="config add ${config_worktree_folder}/.config/nvim && config add ${config_worktree_folder}/docs && config status"
-alias confadd='configadd'
-alias confad='configadd'
+git_dir="$HOME/.cfg/"
+alias confgotofolder="cd $HOME"
+alias conf="git --git-dir=${git_dir} --work-tree=$HOME"
+alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
-alias configlazygit="lazygit --git-dir=${config_worktree_folder}/.cfg/ --work-tree=${config_worktree_folder}"
-alias conflazygit='configlazygit'
+alias conflazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
-alias confupdate='config fetch $git_dir main:mac && config fetch $git_dir main:windows10'
+alias confupdate='conf fetch $git_dir main:mac && conf fetch $git_dir main:windows10'
 alias confupdatemason='~/docs/configupdatemason.sh'
 alias confupdateallbranches='conf switch mac && conf merge main --no-edit && conf switch windows10 && conf merge main --no-edit && conf push --all'
 
