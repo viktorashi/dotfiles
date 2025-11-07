@@ -28,6 +28,7 @@ git config --global core.autocrlf input
 git config --global delta.syntax-theme "Dracula"
 git config --global delta.line-numbers true
 git config --global delta.side-by-side true
+git config --global http.postBuffer 524288000
 
 # kktu asta e sa imi fac conflictele misto
 # ti-l pui in

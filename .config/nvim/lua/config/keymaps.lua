@@ -190,8 +190,48 @@ term_map("<C-j>", [[<C-\><C-n><C-w>j]])
 term_map("<C-k>", [[<C-\><C-n><C-w>k]])
 term_map("<C-l>", [[<C-\><C-n><C-w>l]])
 
--- Insert mode (exit insert, then move)
 map("i", "<C-h>", "<Esc><C-w>h", opts)
 map("i", "<C-j>", "<Esc><C-w>j", opts)
 map("i", "<C-k>", "<Esc><C-w>k", opts)
 map("i", "<C-l>", "<Esc><C-w>l", opts)
+
+vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
+vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
+vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
+vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
+
+function compile_cpp()
+  vim.cmd("w") -- save file
+  vim.cmd(
+    "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
+  )
+  vim.cmd("startinsert")
+end
+local desc = "Compile & Run C++"
+
+vim.keymap.set(
+  "n",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+vim.keymap.set(
+  "i",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
+vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
+vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
+vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
+
+vim.keymap.set("n", "<leader>ff", function()
+  require("telescope.builtin").live_grep({
+    additional_args = { "--hidden" },
+  })
+end, {
+  desc = "Find Text (Grep including hidden files)",
+})
