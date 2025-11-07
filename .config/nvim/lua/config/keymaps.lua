@@ -165,7 +165,6 @@ vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 
-<<<<<<< Updated upstream
 function compile_cpp()
   vim.cmd("w") -- save file
   vim.cmd(
@@ -188,39 +187,7 @@ vim.keymap.set(
   compile_cpp,
   { desc = desc }
 )
-||||||| Stash base
-function compile_cpp()
-  vim.cmd("w") -- save file
-  vim.cmd(
-    "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
-  )
-  vim.cmd("startinsert")
-end
-desc = "Compile & Run C++"
 
-vim.keymap.set(
-  "n",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-
-vim.keymap.set(
-  "i",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-=======
--- function compile_cpp()
---   vim.cmd("w") -- save file
---   vim.cmd(
---     "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
---   )
---   vim.cmd("startinsert")
--- end
--- desc = "Compile & Run C++"
---
 -- vim.keymap.set(
 --   "n",
 --   "<F1>",
@@ -234,4 +201,17 @@ vim.keymap.set(
 --   compile_cpp,
 --   { desc = desc }
 -- )
->>>>>>> Stashed changes
+--
+
+vim.keymap.set(
+  "n",
+  "<leader>ff",
+  function()
+    require("telescope.builtin").live_grep({
+      additional_args = { "--hidden" },
+    })
+  end,
+  {
+    desc = "Find Text (Grep including hidden files)",
+  }
+)
