@@ -44,6 +44,11 @@ export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$
 autoload -Uz compinit
 compinit -u
 
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
+
 # shellcheck shell=bash
 
 # =============================================================================
