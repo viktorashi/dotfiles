@@ -87,7 +87,7 @@ alias cr='clear && cargo run'
 alias ct='clear && cargo test'
 alias cb='clear && cargo build'
 
-alias r='radian  --ask-save --save --restore-data --debug'
+alias r='clear && radian  --ask-save --save --restore-data --debug'
 
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
