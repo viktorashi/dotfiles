@@ -1,3 +1,6 @@
 git:
   pagers:
-    - pager: delta --paging=never  --line-numbers  --navigate --dark
+    - pager: delta --dark --paging=never --line-numbers
+# git:
+#   pagers:
+#     - pager: delta --paging=never  --line-numbers  --navigate --dark
