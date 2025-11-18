@@ -117,7 +117,8 @@ alias curl='curl -L'
 #vezi ce programe folosesc un anumit port
 alias findport='sudo lsof -i '
 #cam mereu vreau doar sa se opreasca direct cand il gaseste
-alias ping='ping -o'
+# nu merge pe leeanoox
+# alias ping='ping -o'
 #dai ping acasa sa vezi macar daca merge chestia
 alias pingacas='ping viktorashi.home.ro'
 #connecteazate la ssh acasa
