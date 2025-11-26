@@ -97,6 +97,7 @@ alias python="python3"
 
 # Set up fzf key bindings
 alias iv='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})"'
 alias nv='nvim'
 
 ##############
