@@ -5,7 +5,6 @@ return {
       ensure_installed = {
         "bash-language-server",
         "beautysh",
-        "black",
         "codelldb",
         "eslint-lsp",
         "json-lsp",
