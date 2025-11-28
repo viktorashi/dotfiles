@@ -28,6 +28,7 @@ return {
         "clang-format",
         "jinja-lsp",
         "curlylint",
+        "ruff",
       },
     },
   },
