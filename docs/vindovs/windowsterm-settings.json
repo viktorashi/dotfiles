@@ -142,10 +142,6 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "User.paste",
-            "keys": "ctrl+v"
-        },
-        {
             "id": null,
             "keys": "ctrl+shift+t"
         },
@@ -168,6 +164,10 @@
         {
             "id": "User.switchToTab.ED268D78",
             "keys": "ctrl+9"
+        },
+        {
+            "id": "User.paste",
+            "keys": "alt+v"
         }
     ],
     "newTabMenu": 
@@ -200,7 +200,7 @@
                 "startingDirectory": "~"
             },
             {
-                "commandline": "C:\\msys64\\usr\\bin\\env.exe MSYSTEM=MSYS /usr/bin/zsh.exe --login -i",
+                "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -use-full-path -shell zsh",
                 "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
                 "icon": "C:\\msys64\\msys2.ico",
                 "name": "MSYS2 Zsh",
@@ -227,6 +227,7 @@
         ]
     },
     "schemes": [],
+    "searchWebDefaultQueryUrl": "https://www.google.com/search?q=%22%s%22",
     "theme": "dark",
     "themes": []
 }

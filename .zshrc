@@ -40,6 +40,9 @@ COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
+export PATH="/ucrt64/bin:$PATH"
+export PATH="/msys64/usr/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 
 autoload -Uz compinit
 compinit -u
