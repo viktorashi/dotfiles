@@ -34,7 +34,7 @@ map(
 )
 
 map(
-  "n",
+  { "n", "v", "i" },
   "<C-w>",
   sterge_buffer,
   { desc = "Inchide bufferu asta ca omu" }
@@ -43,6 +43,20 @@ map(
 map(
   { "n", "v", "i" },
   "<D-w>",
+  sterge_buffer,
+  { noremap = true, silent = true }
+)
+
+map(
+  { "n", "v", "i" },
+  "<A-w>",
+  sterge_buffer,
+  { noremap = true, silent = true }
+)
+
+map(
+  { "n", "v", "i" },
+  "<A-W>",
   sterge_buffer,
   { noremap = true, silent = true }
 )
