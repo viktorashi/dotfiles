@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/docs/aliases.sh
+source ~/docs/shared.sh
 
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
@@ -198,4 +198,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(batman --export-env)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
