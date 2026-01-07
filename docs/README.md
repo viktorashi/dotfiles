@@ -13,19 +13,23 @@ pacman -S curl zsh
 ```
 
 Add
+
 ```
 C:\msys64\mingw64\bin
 ```
-to your path 
+
+to your path
 
 > [!IMPORTANT]
-> If on Windows you need to hard-link *a lot of stuff* that's tracked, so run this 
+> If on Windows you need to hard-link _a lot of stuff_ that's tracked, so run this
+
 ```
 ~/docs/vindovs/link-windows-thangs.bat
 ```
 
 Which allows you to:
 Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
 ```
@@ -33,6 +37,7 @@ curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/back
 Restart your `shell`. _Voila!_
 
 Now you'll be able to run the following commands:
+
 ##### You should have my lazy-aah aliases so you can use things like
 
 ```bash
@@ -85,6 +90,7 @@ rustup update
 rustup component add rust-analyzer
 rustup component add rustfmt
 ```
+
 Now just make sure you on the `Private` Wifi network (if you know you know) and run the all-lazily:
 
 ```sh
@@ -97,6 +103,10 @@ Starting a command with `":term"` takes the output of the command and spits it i
 FINALLYyY found da issue
 
 ✅✅✅✅ one more _Voila!_ ✅✅✅✅
+
+Aaand also im using:
+Powertoys to bing Caps to Scape.
+BringAllBack so im back on windows 7, aesthethics-wise
 
 #### Contributing (u wont, dont lie)
 
