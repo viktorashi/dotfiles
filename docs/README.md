@@ -17,12 +17,10 @@ Add
 ```
 C:\msys64\mingw64\bin
 ```
-
-to your path
+to your path 
 
 > [!IMPORTANT]
-> If on Windows you need to hard-link _a lot of stuff_ that's tracked, so run this
-
+> If on Windows you need to hard-link *a lot of stuff* that's tracked, so run this 
 ```
 ~/docs/vindovs/link-windows-thangs.bat
 ```
