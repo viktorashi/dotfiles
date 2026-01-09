@@ -191,9 +191,10 @@ map("n", "<leader>rr", function()
 end)
 
 -- bindurile pt terminal mode
-local opts = { noremap = true, silent = true }
+local opts_astea_default =
+  { noremap = true, silent = true }
 local term_map = function(lhs, rhs)
-  map("t", lhs, rhs, opts)
+  map("t", lhs, rhs, opts_astea_default)
 end
 
 term_map("<Esc>", [[<C-\><C-n>]])
@@ -204,15 +205,55 @@ term_map("<C-j>", [[<C-\><C-n><C-w>j]])
 term_map("<C-k>", [[<C-\><C-n><C-w>k]])
 term_map("<C-l>", [[<C-\><C-n><C-w>l]])
 
-map("i", "<C-h>", "<Esc><C-w>h", opts)
-map("i", "<C-j>", "<Esc><C-w>j", opts)
-map("i", "<C-k>", "<Esc><C-w>k", opts)
-map("i", "<C-l>", "<Esc><C-w>l", opts)
+map(
+  "i",
+  "<C-h>",
+  "<Esc><C-w>h",
+  opts_astea_default
+)
+map(
+  "i",
+  "<C-j>",
+  "<Esc><C-w>j",
+  opts_astea_default
+)
+map(
+  "i",
+  "<C-k>",
+  "<Esc><C-w>k",
+  opts_astea_default
+)
+map(
+  "i",
+  "<C-l>",
+  "<Esc><C-w>l",
+  opts_astea_default
+)
 
-vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
-vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
-vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
-vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
+vim.keymap.set(
+  "i",
+  "<C-h>",
+  "<Esc><C-w>h",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-j>",
+  "<Esc><C-w>j",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-k>",
+  "<Esc><C-w>k",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-l>",
+  "<Esc><C-w>l",
+  opts_astea_default
+)
 
 function compile_cpp()
   vim.cmd("w") -- save file
@@ -237,10 +278,30 @@ vim.keymap.set(
   { desc = desc }
 )
 
-vim.keymap.set("i", "<C-h>", "<Esc><C-w>h", opts)
-vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
-vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
-vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
+vim.keymap.set(
+  "i",
+  "<C-h>",
+  "<Esc><C-w>h",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-j>",
+  "<Esc><C-w>j",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-k>",
+  "<Esc><C-w>k",
+  opts_astea_default
+)
+vim.keymap.set(
+  "i",
+  "<C-l>",
+  "<Esc><C-w>l",
+  opts_astea_default
+)
 
 vim.keymap.set("n", "<leader>ff", function()
   require("telescope.builtin").live_grep({
@@ -259,3 +320,29 @@ vim.keymap.set("n", "<leader>sf", function()
     search = "",
   })
 end, { desc = "Fuzzy Grep (Content)" })
+
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<A-v>",
+  "<C-V>",
+  opts_astea_default
+)
+
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<A-c>",
+  function()
+    vim.api.nvim_command("normal! yy")
+  end,
+
+  opts_astea_default
+)
+
+vim.keymap.set(
+  { "n", "i", "v" },
+  "<A-s>",
+  function()
+    vim.api.nvim_command("write")
+  end,
+  opts_astea_default
+)
