@@ -239,14 +239,14 @@ end, {
 
 vim.keymap.set(
   { "n", "i", "v" },
-  "<Alt-v",
-  "<C-V",
+  "<A-v>",
+  "<C-V>",
   opts_astea_default
 )
 
 vim.keymap.set(
   { "n", "i", "v" },
-  "<Alt-c",
+  "<A-c>",
   function()
     vim.api.nvim_command("normal! yy")
   end,
@@ -256,7 +256,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n", "i", "v" },
-  "<Alt-s",
+  "<A-s>",
   function()
     vim.api.nvim_command("write")
   end,
