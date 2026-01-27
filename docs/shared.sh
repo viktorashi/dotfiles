@@ -11,6 +11,7 @@ alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
+alias sourv='source .venv/bin/activate'
 alias gr='egrep -irna'
 #cuz who cares about those
 alias tree='tree --gitignore'
@@ -97,7 +98,9 @@ alias python="python3"
 
 # Set up fzf key bindings
 alias iv='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias ic='fzf -m --preview="bat --color=always {}" --bind "enter:become(code {+})"'
 alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})"'
+
 alias nv='nvim'
 
 ##############
