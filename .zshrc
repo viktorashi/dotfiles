@@ -198,3 +198,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(batman --export-env)"
+
+# Added by Antigravity
+export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/viktorashi/.opencode/bin:$PATH
