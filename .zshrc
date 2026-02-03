@@ -19,6 +19,7 @@ source <(fzf --zsh)
 # source /Library/Frameworks/Python.framework/Versions/3.11/bin/virtualenvwrapper.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "c:\Program Files\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-rc.zsh"
 
 # . "/Users/viktorashi/.deno/env"
 
