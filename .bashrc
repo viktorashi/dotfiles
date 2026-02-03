@@ -47,3 +47,4 @@ function vol() {
   fi
 }
 . "$HOME/.cargo/env"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"

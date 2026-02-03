@@ -16,6 +16,7 @@ source ~/docs/shared.sh
 source <(fzf --zsh)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
 #configu de prompt
 parse_git_branch() {
