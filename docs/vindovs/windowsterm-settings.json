@@ -20,10 +20,6 @@
             "id": "User.switchToTab.2A0DA8E0"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
             "command": 
             {
                 "action": "newTab"
@@ -31,12 +27,8 @@
             "id": "User.newTab.5DEADB41"
         },
         {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 7
-            },
-            "id": "User.switchToTab.D7681B66"
+            "command": "paste",
+            "id": "User.paste"
         },
         {
             "command": 
@@ -45,6 +37,14 @@
                 "index": 8
             },
             "id": "User.switchToTab.ED268D78"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "id": "User.switchToTab.D7681B66"
         },
         {
             "command": 
@@ -79,17 +79,17 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 5
+                "index": 2
             },
-            "id": "User.switchToTab.75247157"
+            "id": "User.switchToTab.87C324ED"
         },
         {
             "command": 
             {
                 "action": "switchToTab",
-                "index": 2
+                "index": 5
             },
-            "id": "User.switchToTab.87C324ED"
+            "id": "User.switchToTab.75247157"
         },
         {
             "command": 
@@ -114,12 +114,12 @@
             "keys": "ctrl+alt+8"
         },
         {
-            "id": "Terminal.SwitchToTab0",
-            "keys": "ctrl+alt+1"
-        },
-        {
             "id": "User.switchToTab.75247157",
             "keys": "ctrl+6"
+        },
+        {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "ctrl+alt+1"
         },
         {
             "id": "Terminal.SwitchToTab0",
@@ -197,7 +197,7 @@
                 "commandline": "wsl",
                 "guid": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
                 "name": "WSL zsh",
-                "startingDirectory": "~"
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -use-full-path -shell zsh",
@@ -223,6 +223,18 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "guid": "{2c437a2f-8901-5c16-962c-0a4c3afdbe06}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{88be1976-797f-586b-b8b0-0336ddca8aa0}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
