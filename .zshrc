@@ -45,6 +45,8 @@ export PATH="/ucrt64/bin:$PATH"
 export PATH="/msys64/usr/bin:$PATH"
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 
+export EDITOR="nvim"
+
 autoload -Uz compinit
 compinit -u
 
