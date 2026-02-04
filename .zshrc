@@ -200,3 +200,4 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(batman --export-env)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(codex completion zsh)"
