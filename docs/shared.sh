@@ -97,7 +97,7 @@ alias python="python3"
 #alias licenta='cd ~/Documents/toate-de-la-faculta-trecut/licenta/texuri/bachelor-thesis-repo/bachelor-thesis'
 
 # Set up fzf key bindings
-alias iv='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias iv='(git ls-files; [ -f .env ] && echo .env) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
 alias ic='fzf -m --preview="bat --color=always {}" --bind "enter:become(code {+})"'
 alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})"'
 
