@@ -1,5 +1,5 @@
 model = "gpt-5.2-codex"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 personality = "pragmatic"
 [projects."/home/istan/projects-repos/ai_core"]
 trust_level = "trusted"
