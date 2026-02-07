@@ -11,4 +11,6 @@ export PATH="$PATH:/mnt/c/nvm4w/nodejs"
 export PATH="$PATH:/snap/bin"
 export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 export NVM_DIR="$HOME/.nvm"
+export ACR_NAME="stratecai"
+export SERVICE_PRINCIPAL_NAME="ca04454e-62bc-4787-a26e-62469f8b5187"
 eval "$(batman --export-env)"
