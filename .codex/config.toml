@@ -12,4 +12,10 @@ trust_level = "trusted"
 
 # web_search = "cached"  # default; serves results from the web search cache
 web_search = "live"  # fetch the most recent data from the web (same as --search)
+
+[projects."/mnt/d/aplicatiuni/AutoHotkey"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
 # web_search = "disabled"
