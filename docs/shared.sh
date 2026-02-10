@@ -106,14 +106,6 @@ alias nv='nvim'
 ##############
 #de editoare##
 
-##############
-#deschide pycharm in curr_dirkoilk;
-alias charm='open -na "PyCharm Professional Edition.app" .'
-alias char='open -na "PyCharm Professional Edition.app" .'
-alias cha='open -na "PyCharm Professional Edition.app" .'
-alias ch='open -na "PyCharm Professional Edition.app" .'
-alias o='open .'
-
 alias c='code .'
 alias idea='idea .'
 #sa dea follow la redirecturi
