@@ -199,3 +199,4 @@ eval "$(zoxide init zsh)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(codex completion zsh)"
+eval "$(batman --export-env)"
