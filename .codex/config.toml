@@ -1,4 +1,4 @@
-model = "gpt-5.2-codex"
+model = "gpt-5.3-codex"
 model_reasoning_effort = "high"
 personality = "pragmatic"
 [projects."/home/istan/projects-repos/ai_core"]
@@ -14,6 +14,12 @@ trust_level = "trusted"
 web_search = "live"  # fetch the most recent data from the web (same as --search)
 
 [projects."/mnt/d/aplicatiuni/AutoHotkey"]
+trust_level = "trusted"
+
+[projects."/mnt/c/Users/istan/repos-projects/companion"]
+trust_level = "trusted"
+
+[projects."/mnt/c/Users/istan/repos-projects/integrity-extractor"]
 trust_level = "trusted"
 
 [notice.model_migrations]
