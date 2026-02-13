@@ -43,8 +43,6 @@ ssh-add --apple-use-keychain ~/.ssh/id_rsa_backup > /dev/null 2>&1
 autoload -Uz compinit
 compinit -u
 
-# shellcheck shell=bash
-
 # =============================================================================
 #
 # Utility functions for zoxide.
