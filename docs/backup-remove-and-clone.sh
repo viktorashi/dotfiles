@@ -78,5 +78,5 @@ chmod +x ~/docs/git-settings.sh
 
 source ~/.bashrc
 #sau dupa prefereinte
-# source ~/.bashrc
+# source ~/.zshrc
 # sau doar efectiv da-i restart
