@@ -19,6 +19,8 @@
 !c::Send "^c"
 !v::Send "^v"
 !a::Send "^a"
+!x::Send "^x"
+!r::Send "^r"
 !Backspace::Send "+{Home}{Del}"
 
 
