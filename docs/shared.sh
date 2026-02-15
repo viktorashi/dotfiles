@@ -93,7 +93,7 @@ alias fr='clear && flask --app . --debug run' # dupa pui --app <numele la ce pac
 alias cr='clear && cargo run'
 alias ct='clear && cargo test'
 alias cb='clear && cargo build'
-alias cbc='clear && cargo build && ./copy_binaries.sh'
+alias cbc='clear && cargo build && powershell.exe ./copy_binaries.ps1'
 #laternativa mai era
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
