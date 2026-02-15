@@ -44,4 +44,5 @@
 !9::Send "^!9"
 ^w::Send "^+w"
 
+
 #HotIf ; Reset hotkey criteria for any future additions
