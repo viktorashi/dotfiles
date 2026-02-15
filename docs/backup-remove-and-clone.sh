@@ -11,8 +11,11 @@ CONFIG_PATHS=(
   "~/.zshrc"
   "~/.config/nvim"
   "~/.config/ghostty"
+  "~/.config/lazygit/"
+  "~/.config/scoop"
   "~/.vimrc"
   "~/.bash_profile"
+  "~/auto-hotkey"
 )
 
 for CONFIG in "${CONFIG_PATHS[@]}"; do
