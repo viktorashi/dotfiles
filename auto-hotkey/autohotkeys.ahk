@@ -21,6 +21,7 @@
 !a::Send "^a"
 !x::Send "^x"
 !r::Send "^r"
+!f::Send "^f"
 !Backspace::Send "+{Home}{Del}"
 
 
