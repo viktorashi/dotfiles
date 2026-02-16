@@ -30,15 +30,10 @@ COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 
-# Start ssh-agent if not already running
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    eval "$(ssh-agent -s)"
+# start ssh-agent if not already running
+if [[ -o interactive ]] && [[ -S "$SSH_AUTH_SOCK" ]]; then
+    ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 </dev/tty
 fi
-
-# Load key into agent from keychain
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add --apple-use-keychain ~/.ssh/id_rsa_backup > /dev/null 2>&1
-
 
 autoload -Uz compinit
 compinit -u
