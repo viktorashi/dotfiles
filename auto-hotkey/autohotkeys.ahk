@@ -4,7 +4,7 @@
 #Requires AutoHotkey v2.0
 
 ; --- Google Chrome, Opera GX ---
-#HotIf WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe opera.exe") || WinActive("ahk_exe msedge.exe") || WinActive("ahk_exe ms-teams.exe")
+#HotIf WinActive("ahk_exe chrome.exe") || WinActive("ahk_exe opera.exe") || WinActive("ahk_exe msedge.exe") || WinActive("ahk_exe ms-teams.exe") || WinActive("ahk_exe Code.exe")|| WinActive("ahk_exe notepad.exe")
 !1::Send "^1"
 !2::Send "^2"
 !3::Send "^3"
