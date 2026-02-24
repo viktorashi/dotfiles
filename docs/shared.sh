@@ -88,6 +88,7 @@ alias fr='clear && flask --app . --debug run' # dupa pui --app <numele la ce pac
 alias cr='clear && cargo run'
 alias ct='clear && cargo test'
 alias cb='clear && cargo build'
+alias cbc='clear && cargo build && ./copy_binaries.sh'
 
 alias r='clear && radian  --ask-save --save --restore-data --debug'
 alias python="python3"
