@@ -6,6 +6,8 @@ return {
       servers = {
         ty = {},
         ruff_lsp = {},
+        pyright = { enabled = false },
+        basedpyright = { enabled = false },
       },
     },
   },
