@@ -28,6 +28,18 @@ trust_level = "trusted"
 [projects."/home/istan"]
 trust_level = "trusted"
 
+[projects."/home/istan/projects-repos/crossterm_glossary"]
+trust_level = "trusted"
+
+[projects."/home/istan/projects-repos"]
+trust_level = "trusted"
+
+[projects."/mnt/c/Users/istan/repos-projects"]
+trust_level = "trusted"
+
+[projects."/mnt/c/Users/istan/repos-projects/stratecgpt2"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
@@ -37,3 +49,9 @@ hide_full_access_warning = true
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining"]
 # web_search = "disabled"
+#
+#
+
+[mcp_servers.complaints]
+command = "/mnt/c/Users/istan/repos-projects/companion/mcp_bridge/development/rust_mcp_servers/target/debug/complaints-mcp-server"
+args = ["/mnt/c/Users/istan/repos-projects/integrity-extractor/extracts/fulls/73k-entries-130cols.parquet"]
