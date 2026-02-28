@@ -13,7 +13,7 @@ return {
         "markdownlint-cli2",
         "marksman",
         "prettier",
-        "pyright",
+        "ty",
         "shellcheck",
         "shfmt",
         "stylua",
