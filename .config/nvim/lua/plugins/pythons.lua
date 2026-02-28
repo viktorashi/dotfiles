@@ -1,10 +1,10 @@
 return {
-  -- Use pyright for type checking
+  -- Use ty for type checking
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {},
+        ty = {},
         ruff_lsp = {},
       },
     },
@@ -20,5 +20,3 @@ return {
     },
   },
 }
-
-
