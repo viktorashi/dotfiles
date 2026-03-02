@@ -9,6 +9,9 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr =
   "v:lua.LazyVim.treesitter.foldexpr()"
 
+vim.o.exrc = true
+vim.o.secure = true
+
 -- Neovide font configuration
 if vim.g.neovide then
   -- UI scaling
