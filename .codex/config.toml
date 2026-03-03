@@ -40,6 +40,9 @@ trust_level = "trusted"
 [projects."/mnt/c/Users/istan/repos-projects/stratecgpt2"]
 trust_level = "trusted"
 
+[projects."/home/istan/snap/firefox/common/Downloads"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
