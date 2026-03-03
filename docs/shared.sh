@@ -97,7 +97,7 @@ alias cb='clear && cargo build'
 
 # Set up fzf key bindings
 alias iv='(git rev-parse --is-inside-work-tree >/dev/null 2>&1 && (git ls-files; [ -f .env ] && echo .env) || find . -maxdepth 4 -type f;) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
-alias gv='fzf -m --disabled --prompt="rg> " --bind "start:reload:rg --files" --bind "change:reload:rg --files-with-matches --smart-case --hidden -g '\''!.git'\'' -- {q} 2>/dev/null || true" --bind "enter:become(nvim {+})" --preview="if [ -n \"{q}\" ]; then rg --smart-case --line-number --color=always -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"'
+alias gv='fzf -m --disabled --prompt="rg> " --bind "start:reload:rg --files" --bind "change:reload:rg --files-with-matches --smart-case --hidden -g '\''!.git'\'' -- {q} 2>/dev/null || true" --bind "enter:become(nvim {+})" --preview="if [ -n \"{q}\" ]; then rg --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"'
 alias ic='fzf -m --preview="bat --color=always {}" --bind "enter:become(code {+})"'
 alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})"'
 
