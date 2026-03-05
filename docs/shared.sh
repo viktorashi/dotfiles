@@ -118,7 +118,7 @@ alias nv='nvim'
 ##############
 #de editoare##
 
-alias c='code .'
+# alias c='code .'
 alias idea='idea .'
 #sa dea follow la redirecturi
 alias curl='curl -L'
