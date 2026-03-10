@@ -45,7 +45,7 @@ alias gcl='git clone'
 alias gsa='git stash apply' #mai intai asta ca e mai safe decat pop
 alias gsd='git stash drop'  #asta face practic pop
 alias gw='git worktree'
-alias grp='git remote prune origin'
+alias grp='git remote prune origin && git pull --prune'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
 git_dir="$HOME/.cfg/"
