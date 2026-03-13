@@ -196,4 +196,11 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(codex completion zsh)"
 eval "$(batman --export-env)"
 eval "$(register-python-argcomplete pipx)"
+
+# bun completions
+[ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(COMPLETE=zsh prek)"
