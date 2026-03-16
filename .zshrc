@@ -6,8 +6,8 @@
 # Fixes jumbled output after exiting fullscreen programs (nvim, htop, less, etc.)
 autoload -Uz add-zsh-hook
 _fix_terminal() {
-    # Resets text, character set, and re-enables line wrap in one go
-    printf '\e[0m\e(B\e[?7h'
+    # Resets text, character set, re-enables line wrap, and forces block cursor
+    printf '\e[0m\e(B\e[?7h\e[2 q'
 }
 add-zsh-hook precmd _fix_terminal
 
