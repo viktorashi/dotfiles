@@ -2,6 +2,14 @@
 ## ALIASES ####
 ###############
 
+# Restore terminal to a sane state before each prompt.
+# Fixes jumbled output after exiting fullscreen programs (nvim, htop, less, etc.)
+_fix_terminal() {
+    # Resets text, character set, and re-enables line wrap in one go
+    printf '\e[0m\e(B\e[?7h'
+}
+add-zsh-hook precmd _fix_terminal
+
 source ~/docs/shared.sh
 
 #######################################################################
