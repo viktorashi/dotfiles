@@ -4,6 +4,7 @@
 
 # Restore terminal to a sane state before each prompt.
 # Fixes jumbled output after exiting fullscreen programs (nvim, htop, less, etc.)
+autoload -Uz add-zsh-hook
 _fix_terminal() {
     # Resets text, character set, and re-enables line wrap in one go
     printf '\e[0m\e(B\e[?7h'
