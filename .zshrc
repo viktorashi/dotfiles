@@ -39,9 +39,45 @@ COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 
-# start ssh-agent if not already running
+# Unlock SSH + GPG with a single passphrase prompt
+_unlock_keys() {
+    ssh-add -l >/dev/null 2>&1 && return  # SSH already loaded, skip
+
+    printf "Passphrase (SSH + GPG): "
+    read -rs _PASSPHRASE
+    echo
+
+    # Unlock SSH key via askpass (no disk write — uses /dev/stdin via subshell)
+    local _tmpask=$(mktemp /tmp/.askpass.XXXXXX)
+    printf '#!/bin/sh\nprintf "%%s" "%s"\n' "$_PASSPHRASE" > "$_tmpask"
+    chmod 700 "$_tmpask"
+    DISPLAY=:0 SSH_ASKPASS="$_tmpask" SSH_ASKPASS_REQUIRE=force \
+        ssh-add ~/.ssh/id_ed25519 2>/dev/null
+    rm -f "$_tmpask"
+
+    # Preset GPG passphrase for signing key + encryption subkey
+    # Reload agent config so allow-preset-passphrase is active even if the
+    # agent started before gpg-agent.conf was written (common after a reboot).
+    gpgconf --reload gpg-agent 2>/dev/null
+    local _preset=/usr/lib/gnupg/gpg-preset-passphrase
+    for _grip in 17BFCD737D3966A8FF005C496F7DF9D08191F623 \
+                 5CFA0FEDF3D2F0CBD180E67FD0C3929739BB9637; do
+        printf "%s" "$_PASSPHRASE" | "$_preset" --preset "$_grip" 2>/dev/null
+    done
+
+    unset _PASSPHRASE _tmpask _grip
+}
+
+# Run once, just before the first prompt — after the terminal is fully
+# initialised (avoiding the WSL first-connection race that floods read -rs
+# with stray VT sequences / mouse events on the first tab after a reboot).
+_unlock_keys_once() {
+    add-zsh-hook -d precmd _unlock_keys_once
+    _unlock_keys
+}
+
 if [[ -o interactive ]] && [[ -S "$SSH_AUTH_SOCK" ]]; then
-    ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 </dev/tty
+    add-zsh-hook precmd _unlock_keys_once
 fi
 
 autoload -Uz compinit
