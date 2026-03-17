@@ -246,3 +246,8 @@ eval "$(register-python-argcomplete pipx)"
 [ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
 
 eval "$(COMPLETE=zsh prek)"
+
+# Fix vi-mode backspace: allow deleting past the insert-mode entry point
+# (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
