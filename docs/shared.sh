@@ -45,6 +45,29 @@ alias gcl='git clone'
 #pe astea de jos le-am pus cum leam pus fiindca stash pop == apply && drop, si dupa daca ii dai drop e prea tarziu daca ai vreun conflict si ai facut vreo prostie
 alias gsa='git stash apply' #mai intai asta ca e mai safe decat pop
 alias gsd='git stash drop'  #asta face practic pop
+
+#store in stash fara sa le scoata din worktree, si doar la staged changes
+gss() {
+  local msg="${1:-Stashed staged changes}"
+  
+  # 1. Check if there are actually staged changes
+  if git diff --cached --quiet; then
+    echo "No staged changes to stash."
+    return 0
+  fi
+
+  local rev=$(git stash create "$msg")
+  
+  if [ -n "$rev" ]; then
+    # 3. Store it properly in the stash reflog
+    git stash store -m "$msg" "$rev"
+    echo "Staged changes stashed as: $msg"
+    echo "Worktree and Index remain UNTOUCHED."
+  else
+    echo "Failed to create stash snapshot."
+  fi
+}
+
 alias gw='git worktree'
 alias grp='git remote prune origin && git pull --prune'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
