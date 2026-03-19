@@ -3,4 +3,10 @@ model_reasoning_effort = "medium"
 personality = "pragmatic"
 # web_search = "cached"  # default; serves results from the web search cache
 web_search = "live"  # fetch the most recent data from the web (same as --search)
+
+[projects."/Users/viktorashi"]
+trust_level = "untrusted"
+
+[projects."/Users/viktorashi/faculta/web-internet-security/docs"]
+trust_level = "trusted"
 # web_search = "disabled"
