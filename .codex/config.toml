@@ -1,4 +1,4 @@
-model = "gpt-5.2-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 # web_search = "cached"  # default; serves results from the web search cache
@@ -9,4 +9,10 @@ trust_level = "untrusted"
 
 [projects."/Users/viktorashi/faculta/web-internet-security/docs"]
 trust_level = "trusted"
+
+[projects."/Users/viktorashi/.bin/ffmpeg"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.2-codex" = "gpt-5.4"
 # web_search = "disabled"
