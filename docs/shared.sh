@@ -182,6 +182,9 @@ alias write-speed='dd if=/dev/zero of=/tmp/output bs=8k count=10k; rm -f /tmp/ou
 #nu stiu daca e musai recomandata asta tbh =))
 alias shutdown='sudo shutdown -p now'
 
+# I always forget where to find these (get in there and get to grepping)
+alias copilot-history='cd ~/.copilot/session-state'
+
 #sorteaza homebrewurile dupa size
 #da deocamdata nu e folositan nicaieri ca nu-mi dau eu seama
 get_brew_size() {
