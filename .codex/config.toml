@@ -3,6 +3,7 @@ model_reasoning_effort = "medium"
 personality = "pragmatic"
 # web_search = "cached"  # default; serves results from the web search cache
 web_search = "live"  # fetch the most recent data from the web (same as --search)
+approvals_reviewer = "user"
 
 [projects."/Users/viktorashi"]
 trust_level = "untrusted"
@@ -12,6 +13,24 @@ trust_level = "trusted"
 
 [projects."/Users/viktorashi/.bin/ffmpeg"]
 trust_level = "trusted"
+
+[projects."/Users/viktorashi/.local/bin/ffmpeg"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/Music/BTS-Arirang"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/nerdin-out"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/.local/bin"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/.bin"]
+trust_level = "trusted"
+
+[notice]
+hide_full_access_warning = true
 
 [notice.model_migrations]
 "gpt-5.2-codex" = "gpt-5.4"
