@@ -30,6 +30,12 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias ga='git add .'
 alias gl='git log --graph --pretty --decorate --all --show-signature'
+
+# iti face semnatura la toate commiturile (inclusiv cel dat ca argument) in sus non-interactiv
+git-sign-from-commit() {
+  git rebase --exec "git commit --amend --no-edit -n -S" "$1~1"
+}
+
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
@@ -49,7 +55,7 @@ alias gsd='git stash drop'  #asta face practic pop
 #store in stash fara sa le scoata din worktree, si doar la staged changes
 gss() {
   local msg="${1:-Stashed staged changes}"
-  
+
   # 1. Check if there are actually staged changes
   if git diff --cached --quiet; then
     echo "No staged changes to stash."
@@ -57,7 +63,7 @@ gss() {
   fi
 
   local rev=$(git stash create "$msg")
-  
+
   if [ -n "$rev" ]; then
     # 3. Store it properly in the stash reflog
     git stash store -m "$msg" "$rev"
