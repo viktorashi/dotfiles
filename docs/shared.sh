@@ -29,7 +29,7 @@ alias gpl='git pull'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias ga='git add .'
-alias gl='git log --graph --pretty --decorate --all'
+alias gl='git log --graph --pretty --decorate --all --show-signature'
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
