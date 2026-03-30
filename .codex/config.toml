@@ -62,3 +62,6 @@ status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-rem
 [mcp_servers.complaints]
 command = "/mnt/c/Users/istan/repos-projects/companion/mcp_bridge/development/rust_mcp_servers/target/debug/complaints-mcp-server"
 args = ["/mnt/c/Users/istan/repos-projects/integrity-extractor/extracts/fulls/73k-entries-130cols.parquet"]
+
+[plugins."github@openai-curated"]
+enabled = true
