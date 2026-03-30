@@ -36,6 +36,18 @@ git-sign-from-commit() {
   git rebase --exec "git commit --amend --no-edit -n -S" "$1~1"
 }
 
+# Signs ONLY the specific commit provided as an argument, non-interactively
+git-sign-single-commit() {
+  if [ -z "$1" ]; then
+    echo "Error: Please provide a commit hash."
+    return 1
+  fi
+
+  # Temporarily override the editor to inject the 'exec' command ONLY after the very first line (the target commit)
+  GIT_SEQUENCE_EDITOR='f() { awk "NR==1{print; print \"exec git commit --amend --no-edit -n -S\"; next} 1" "$1" > "$1.tmp" && mv "$1.tmp" "$1"; }; f' \
+    git rebase -i "$1~1"
+}
+
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
