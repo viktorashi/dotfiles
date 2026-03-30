@@ -150,6 +150,7 @@ _rg_pick_open() {
     --preview "if [ -n \"{q}\" ]; then rg --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"
 }
 alias gv='_rg_pick_open nvim'
+alias gvnh='_rg_pick_open --hidden --glob "!.git/*" --glob "!.*/*" nvim'
 alias egc='_rg_pick_open code'
 alias egb='_rg_pick_open bat'
 alias ic='fzf -m --preview="bat --color=always {}" --bind "enter:become(code {+})"'
