@@ -70,11 +70,11 @@ and do
 scoop install neovim delta zoxide fd
 ```
 
-For `node` download `nvm-setup.exe` from [nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases) and do:
+For `node` install [fnm](https://github.com/Schniz/fnm) and do:
 
 ```sh
-nvm install lts
-nvm use <versiune>
+fnm install 22
+fnm default 22
 ```
 
 For [Rust](https://www.rust-lang.org) development:

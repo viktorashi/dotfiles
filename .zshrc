@@ -234,8 +234,7 @@ fi
 eval "$(zoxide init zsh)"
 
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(codex completion zsh)"
@@ -251,3 +250,10 @@ eval "$(COMPLETE=zsh prek)"
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
+
+# fnm
+FNM_PATH="/home/istan/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
