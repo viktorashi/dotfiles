@@ -236,6 +236,13 @@ eval "$(zoxide init zsh)"
 
 
 
+# fnm
+FNM_PATH="/home/istan/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
+
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(codex completion zsh)"
 eval "$(batman --export-env)"
@@ -249,11 +256,3 @@ eval "$(COMPLETE=zsh prek)"
 # Fix vi-mode backspace: allow deleting past the insert-mode entry point
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
 bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^H' backward-delete-char
-
-# fnm
-FNM_PATH="/home/istan/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
