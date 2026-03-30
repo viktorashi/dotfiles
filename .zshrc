@@ -204,3 +204,6 @@ export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
 
 # opencode
 export PATH=/Users/viktorashi/.opencode/bin:$PATH
+
+# Added by Antigravity
+export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
