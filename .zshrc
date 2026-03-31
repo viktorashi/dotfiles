@@ -256,3 +256,19 @@ eval "$(COMPLETE=zsh prek)"
 # Fix vi-mode backspace: allow deleting past the insert-mode entry point
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
 bindkey -M viins '^?' backward-delete-char
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/istan/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/istan/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/istan/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/istan/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
