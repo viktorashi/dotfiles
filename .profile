@@ -39,6 +39,7 @@ export PATH="$PATH:/mnt/c/Users/istan/AppData/Local/Programs/Git/usr/bin"
 export PATH="$PATH:/snap/bin"
 export PATH="$PATH:/mnt/c/Program Files/Integrity/ILMClient13/bin/"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 . "$HOME/.cargo/env"
 export SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt"
@@ -55,4 +56,3 @@ export GPG_TTY=$(tty)
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
