@@ -12,7 +12,9 @@ alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
 alias sv='source .venv/bin/activate'
-alias gr='egrep -irna'
+alias gr='rg -P'
+alias rg='rg -P'
+alias grep='rg -P'
 #cuz who cares about those
 alias tree='tree --gitignore'
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
