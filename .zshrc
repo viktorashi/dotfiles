@@ -2,7 +2,7 @@
 ## ALIASES ####
 ###############
 
-source ~/docs/aliases.sh
+source ~/docs/shared.sh
 
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
@@ -19,12 +19,13 @@ source <(fzf --zsh)
 # source /Library/Frameworks/Python.framework/Versions/3.11/bin/virtualenvwrapper.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "c:\Program Files\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-rc.zsh"
 
 # . "/Users/viktorashi/.deno/env"
 
 # source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 # source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-export WORKON_HOME=~/Envs
+# export WORKON_HOME=~/Envs
 # source /c/Users/istan/scoop/persist/python/Scripts/virtualenvwrapper.sh
 # chruby ruby-3.3.0
 
@@ -40,9 +41,19 @@ COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
 export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
+export PATH="/ucrt64/bin:$PATH"
+export PATH="/msys64/usr/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
+
+export EDITOR="nvim"
 
 autoload -Uz compinit
 compinit -u
+
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
 
 # shellcheck shell=bash
 

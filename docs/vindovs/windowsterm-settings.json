@@ -90,7 +90,7 @@
   ],
   "copyFormatting": "none",
   "copyOnSelect": false,
-  "defaultProfile": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
+  "defaultProfile": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
   "keybindings": [
     {
       "id": "User.switchToTab.D7681B66",
@@ -121,6 +121,14 @@
       "keys": "alt+shift+d"
     },
     {
+      "id": null,
+      "keys": "alt+shift+plus"
+    },
+    {
+      "id": null,
+      "keys": "alt+shift+minus"
+    },
+    {
       "id": "User.switchToTab.6CD791B",
       "keys": "ctrl+alt+4"
     },
@@ -129,16 +137,12 @@
       "keys": "ctrl+shift+f"
     },
     {
-      "id": "User.paste",
-      "keys": "ctrl+v"
-    },
-    {
       "id": null,
       "keys": "ctrl+shift+t"
     },
     {
       "id": "User.newTab.5DEADB41",
-      "keys": "ctrl+t"
+      "keys": "alt+t"
     },
     {
       "id": "User.switchToTab.2A0DA8E0",
@@ -155,6 +159,10 @@
     {
       "id": "User.switchToTab.ED268D78",
       "keys": "ctrl+9"
+    },
+    {
+      "id": "User.paste",
+      "keys": "alt+v"
     }
   ],
   "newTabMenu": [
@@ -170,14 +178,20 @@
       "backgroundImageStretchMode": "fill",
       "colorScheme": "Tango Dark",
       "font": {
-        "face": "0xProto Nerd Font Mono",
-        "size": 18
+        "face": "JetBrainsMono Nerd Font",
+        "size": 13.3
       }
     },
     "list": [
       {
-	"commandline": "C:\\msys64\\usr\\bin\\env.exe MSYSTEM=MSYS /usr/bin/zsh.exe --login -i",
-	"guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
+        "commandline": "wsl",
+        "guid": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
+        "name": "WSL zsh",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
+        "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -use-full-path -shell zsh",
+        "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
         "icon": "C:\\msys64\\msys2.ico",
         "name": "MSYS2 Zsh",
         "startingDirectory": "%USERPROFILE%"
@@ -199,10 +213,23 @@
         "hidden": false,
         "name": "Ubuntu",
         "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+      },
+      {
+        "guid": "{2c437a2f-8901-5c16-962c-0a4c3afdbe06}",
+        "hidden": false,
+        "name": "Developer Command Prompt for VS 18",
+        "source": "Windows.Terminal.VisualStudio"
+      },
+      {
+        "guid": "{88be1976-797f-586b-b8b0-0336ddca8aa0}",
+        "hidden": false,
+        "name": "Developer PowerShell for VS 18",
+        "source": "Windows.Terminal.VisualStudio"
       }
     ]
   },
   "schemes": [],
+  "searchWebDefaultQueryUrl": "https://www.google.com/search?q=%22%s%22",
   "theme": "dark",
   "themes": []
 }

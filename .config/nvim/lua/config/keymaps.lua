@@ -165,14 +165,6 @@ vim.keymap.set("i", "<C-j>", "<Esc><C-w>j", opts)
 vim.keymap.set("i", "<C-k>", "<Esc><C-w>k", opts)
 vim.keymap.set("i", "<C-l>", "<Esc><C-w>l", opts)
 
--- inside your vimtex config in latex.lua
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>lf", -- forward search: code -> pdf
-  ":VimtexView<CR>",
-  { noremap = true, silent = true }
-)
-
 vim.api.nvim_set_keymap(
   "n",
   "<leader>lb", -- backward search: pdf -> code (requires nvr / remote)
@@ -228,9 +220,41 @@ vim.api.nvim_set_keymap(
 -- end
 --
 -- -- keymap to toggle: <leader>lt
+
+function compile_cpp()
+  vim.cmd("w") -- save file
+  vim.cmd(
+    "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
+  )
+  vim.cmd("startinsert")
+end
+
+local desc = "Compile & Run C++"
+vim.keymap.set(
+  "i",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+vim.keymap.set(
+  "n",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
 -- vim.keymap.set(
 --   "n",
 --   "<leader>lt",
 --   M.toggle_ltex,
 --   { desc = "Toggle LTEX" }
 -- )
+
+vim.keymap.set("n", "<leader>ff", function()
+  require("telescope.builtin").live_grep({
+    additional_args = { "--hidden" },
+  })
+end, {
+  desc = "Find Text (Grep including hidden files)",
+})
