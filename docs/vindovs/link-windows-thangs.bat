@@ -19,9 +19,10 @@ set "pair[2]=%USERPROFILE%\docs\vindovs\msys-profile|C:\msys64\etc\profile"
 set "pair[3]=%USERPROFILE%\docs\vindovs\nsswitch.conf|C:\msys64\etc\nsswitch.conf"
 set "pair[4]=%USERPROFILE%\docs\vindovs\msys2.conf|C:\msys64\etc\msys2.conf"
 set "pair[5]=%USERPROFILE%\.config\nvim|%USERPROFILE%\.local\share\nvim"
+set "pair[6]=%USERPROFILE%\docs\vindovs\azurestorage-explorer-settings.json|%USERPROFILE%\AppData\Roaming\StorageExplorer\settings.json"
 
 REM Count the number of pairs (update this if you add more pairs)
-set pair_count=4
+set pair_count=6
 
 REM Process each pair
 for /L %%i in (0,1,%pair_count%) do (
