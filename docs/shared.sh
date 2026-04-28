@@ -31,7 +31,7 @@ alias gpl='git pull'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias ga='git add .'
-alias gl='git log --graph --pretty --decorate --all --show-signature'
+alias gl='git log --graph --all --show-signature --format="%C(yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(reset)%an <%ae>%n%C(bold)Date:   %C(reset)%C(green)%ad%C(reset) [Orig: %ai]%n%n    %s%n" --date=local'
 
 # iti face semnatura la toate commiturile (inclusiv cel dat ca argument) in sus non-interactiv
 git-sign-from-commit() {
