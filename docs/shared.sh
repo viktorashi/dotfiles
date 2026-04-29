@@ -142,7 +142,8 @@ alias python="python3"
 #alias licenta='cd ~/Documents/toate-de-la-faculta-trecut/licenta/texuri/bachelor-thesis-repo/bachelor-thesis'
 
 # Set up fzf key bindings
-alias iv='(git rev-parse --is-inside-work-tree >/dev/null 2>&1 && (git ls-files; [ -f .env ] && echo .env) || find . -maxdepth 4 -type f;) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias iv='(git ls-files --cached --others --exclude-standard 2>/dev/null || find . -type f; [ -f .env ] && echo .env) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+
 _rg_pick_open() {
   local opener="$1"
   fzf -m --disabled --prompt="rg> " \
