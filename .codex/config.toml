@@ -1,9 +1,9 @@
-model = "gpt-5.4"
-model_reasoning_effort = "medium"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "high"
 personality = "pragmatic"
 # web_search = "cached"  # default; serves results from the web search cache
 web_search = "live"  # fetch the most recent data from the web (same as --search)
-approvals_reviewer = "user"
+approvals_reviewer = "guardian_subagent"
 
 [projects."/Users/viktorashi"]
 trust_level = "untrusted"
@@ -29,9 +29,24 @@ trust_level = "trusted"
 [projects."/Users/viktorashi/.bin"]
 trust_level = "trusted"
 
+[projects."/Users/viktorashi/Downloads/logouripoze/cvnou"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/Pictures/irl/fujifilm/DCIM/157_FUJI"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/faculta/admineala-securitatea-retelelor/nsa-proiect"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
 [notice.model_migrations]
 "gpt-5.2-codex" = "gpt-5.4"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2
+
+[plugins."github@openai-curated"]
+enabled = true
 # web_search = "disabled"
