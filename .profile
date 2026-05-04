@@ -54,3 +54,6 @@ export GPG_TTY=$(tty)
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
+
+# rust
+export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
