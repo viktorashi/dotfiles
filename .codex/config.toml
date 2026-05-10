@@ -45,7 +45,7 @@ hide_full_access_warning = true
 "gpt-5.2-codex" = "gpt-5.4"
 
 [tui.model_availability_nux]
-"gpt-5.5" = 2
+"gpt-5.5" = 4
 
 [plugins."github@openai-curated"]
 enabled = true
