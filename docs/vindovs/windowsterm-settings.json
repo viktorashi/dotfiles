@@ -163,6 +163,10 @@
     {
       "id": "User.paste",
       "keys": "alt+v"
+    },
+    {
+      "id": "User.find",
+      "keys": "alt+f"
     }
   ],
   "newTabMenu": [
