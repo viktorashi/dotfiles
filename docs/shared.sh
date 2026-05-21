@@ -99,7 +99,7 @@ alias cbc='clear && cargo build && powershell.exe ./copy_binaries.ps1'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
 #alias licenta='cd ~/Documents/toate-de-la-faculta-trecut/licenta/texuri/bachelor-thesis-repo/bachelor-thesis'
 
-alias iv='(git ls-files; [ -f .env ] && echo .env) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias iv='(git ls-files --cached --others --exclude-standard 2>/dev/null || find . -type f; [ -f .env ] && echo .env) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
 alias nv='nvim'
 
 ##############
@@ -110,7 +110,6 @@ alias nv='nvim'
 alias charm='open -na "PyCharm Professional Edition.app" .'
 alias char='open -na "PyCharm Professional Edition.app" .'
 alias cha='open -na "PyCharm Professional Edition.app" .'
-alias ch='open -na "PyCharm Professional Edition.app" .'
 alias o='open .'
 
 alias idea='idea .'
