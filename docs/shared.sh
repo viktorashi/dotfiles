@@ -11,6 +11,7 @@ alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
+alias sv='source .venv/bin/activate'
 alias gr='egrep -irna'
 #cuz who cares about those
 alias tree='tree --gitignore'
