@@ -1,4 +1,4 @@
-model = "gpt-5.4-mini"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 personality = "pragmatic"
 # web_search = "cached"  # default; serves results from the web search cache
@@ -36,6 +36,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/viktorashi/faculta/admineala-securitatea-retelelor/nsa-proiect"]
+trust_level = "trusted"
+
+[projects."/Users/viktorashi/isa-s-mecbuk;)/licenta/repo-licenta"]
 trust_level = "trusted"
 
 [notice]
