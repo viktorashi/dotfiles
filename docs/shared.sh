@@ -120,6 +120,7 @@ alias di='docker image'
 alias dil='docker image list'
 alias dcu='docker compose up'
 alias dcd='docker compose down'
+alias docker-clean='docker system prune -a --volumes'
 #ba deci mi-au dat la dureri kkturile asteaa, nu le mai decomenta gataa
 #
 alias t='tmux'
