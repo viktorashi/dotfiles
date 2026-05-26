@@ -29,7 +29,7 @@ return {
         "jinja-lsp",
         "curlylint",
         "ruff",
-        "ty",
+        "pyrefly",
       },
     },
   },
