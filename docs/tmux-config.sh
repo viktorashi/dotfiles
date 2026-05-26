@@ -1,2 +1,2 @@
 #Run this every time you change that config
-tmux source-file ~/.tmux.conf
+tmux source-file ~/.config/tmux/.tmux.conf
