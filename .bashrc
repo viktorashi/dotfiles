@@ -64,3 +64,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+autoload -U bashcompinit
+bashcompinit
