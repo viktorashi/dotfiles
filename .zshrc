@@ -48,8 +48,6 @@ gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit -u
-autoload -U bashcompinit
-bashcompinit
 
 # =============================================================================
 #
