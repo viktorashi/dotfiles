@@ -57,3 +57,5 @@ export BUN_INSTALL="$HOME/.bun"
 
 # rust
 export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
+
+export PASTEL_COLOR_MODE=24bit
