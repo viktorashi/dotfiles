@@ -182,6 +182,11 @@ alias sshacas='ssh victor@viktorashi.home.ro'
 #alias sshcodespace='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
 #alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
 #alias sshraspi='ssh pi@10.5.202.61'
+
+sshraspi() {
+  /mnt/c/Users/istan/repos-projects/SHWARMA_soft/script_kiddies/ssh-raspi.sh
+}
+
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
