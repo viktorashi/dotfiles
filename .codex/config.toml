@@ -46,6 +46,9 @@ trust_level = "trusted"
 [projects."/mnt/c/Users/istan/repos-projects/nerdin-out-pelamunca"]
 trust_level = "trusted"
 
+[projects."/home/istan/.copilot"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
