@@ -54,26 +54,42 @@ switch ($Action) {
             $found | Where-Object { $_.Source -eq $choice }
         } else { $found[0] }
 
-        if ($target.Source -eq "Registry") {
-            Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $target.Name
-        } else {
-            Unregister-ScheduledTask -TaskName $target.Name -Confirm:$false
+        try {
+            if ($target.Source -eq "Registry") {
+                Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $target.Name -ErrorAction Stop
+            } else {
+                Unregister-ScheduledTask -TaskName $target.Name -Confirm:$false -ErrorAction Stop
+            }
+            Write-Host "SUCCESS: Deleted '$($target.Name)' from $($target.Source)." -ForegroundColor Green
+        } catch {
+            if ($_.Exception.Message -match "Access is denied" -or $_.FullyQualifiedErrorId -match "PermissionDenied") {
+                Write-Host "FAILED: Access Denied. You need to run PowerShell as Administrator to modify system-level tasks like '$($target.Name)'." -ForegroundColor Red
+            } else {
+                Write-Host "FAILED: Could not delete '$($target.Name)'. Error: $($_.Exception.Message)" -ForegroundColor Red
+            }
         }
-        Write-Host "SUCCESS: Deleted '$($target.Name)' from $($target.Source)." -ForegroundColor Green
     }
 
     "create" {
         if (-not $ShortName -or -not $Path) { Write-Error "Name and Path required."; return }
         $targetType = if ($Type) { $Type } else { "Task" }
         
-        if ($targetType -eq "Registry") {
-            New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $ShortName -Value $Path -PropertyType String
-        } else {
-            $action = New-ScheduledTaskAction -Execute $Path
-            $trigger = New-ScheduledTaskTrigger -AtLogOn
-            Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $ShortName
+        try {
+            if ($targetType -eq "Registry") {
+                New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $ShortName -Value $Path -PropertyType String -ErrorAction Stop
+            } else {
+                $action = New-ScheduledTaskAction -Execute $Path
+                $trigger = New-ScheduledTaskTrigger -AtLogOn
+                Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $ShortName -ErrorAction Stop | Out-Null
+            }
+            Write-Host "SUCCESS: Created '$ShortName' as a $targetType." -ForegroundColor Green
+        } catch {
+            if ($_.Exception.Message -match "Access is denied" -or $_.FullyQualifiedErrorId -match "PermissionDenied") {
+                Write-Host "FAILED: Access Denied. You need to run PowerShell as Administrator to create this $targetType." -ForegroundColor Red
+            } else {
+                Write-Host "FAILED: Could not create '$ShortName'. Error: $($_.Exception.Message)" -ForegroundColor Red
+            }
         }
-        Write-Host "SUCCESS: Created '$ShortName' as a $targetType." -ForegroundColor Green
     }
 
     "update" {
@@ -82,7 +98,6 @@ switch ($Action) {
         $Action = "create"; . $MyInvocation.MyCommand.Path @PSBoundParameters
     }
 }
-
 
 
 # # asa le vezi:
