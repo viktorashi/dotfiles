@@ -5,7 +5,7 @@
 # .\manage-startup-apps.ps1 -Action delete -ShortName "Claude" 
 
 param(
-    [Parameter(Position=0)] # Allows .\manage-startup-apps.ps1 list
+    [Parameter(Position=0)]
     [ValidateSet("list", "delete", "create", "update")]
     [string]$Action = "list",
 
@@ -36,11 +36,11 @@ function Get-StartupItem {
 
 switch ($Action) {
     "list" {
-        Write-Host "--- Registry Startup Items ---" -ForegroundColor Cyan
-        Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" | Select-Object * -ExcludeProperty PSPath, PSParentPath, PSChildName, PSDrive, PSProvider | Format-List
+        Write-Host "--- Registry (Run Keys) ---" -ForegroundColor Cyan
+        Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" | Format-List
         
-        Write-Host "`n--- Scheduled Tasks (Interactive) ---" -ForegroundColor Cyan
-        Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled' -and $_.Principal.LogonType -eq 'Interactive'} | Select-Object TaskName, TaskPath | Format-Table -AutoSize
+        Write-Host "`n--- Scheduled Tasks ---" -ForegroundColor Cyan
+        Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled'} | Select-Object TaskName, TaskPath | Format-Table -AutoSize
     }
 
     "delete" {
@@ -75,16 +75,16 @@ switch ($Action) {
         }
         Write-Host "SUCCESS: Created '$ShortName' as a $targetType." -ForegroundColor Green
     }
+
+    "update" {
+        # Update is just a delete followed by a create using the script itself
+        $Action = "delete"; . $MyInvocation.MyCommand.Path @PSBoundParameters
+        $Action = "create"; . $MyInvocation.MyCommand.Path @PSBoundParameters
+    }
 }
 
 
 
-
-
-
-
-# ce incercasem inainte:
-#
 # # asa le vezi:
 # Get-CimInstance Win32_StartupCommand | Select-Object Name, Command, Location
 #
