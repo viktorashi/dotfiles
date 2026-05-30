@@ -3,6 +3,24 @@
 # Usage example: daca doar dai run dă list la toate entryurile
 # .\manage-startup-apps.ps1 -Action update -ShortName "MyScript" -Path "C:\NewPath\app.exe" -Type Registry
 # .\manage-startup-apps.ps1 -Action delete -ShortName "Claude" 
+# Usage examples:
+# 1. Listing items:
+#    .\manage-startup-apps.ps1 -Action list                               # List all startup items (default)
+#    .\manage-startup-apps.ps1 -Action list -ShortName "*"                # List all startup items
+#    .\manage-startup-apps.ps1 -Action list -ShortName "Discord*"         # List items starting with "Discord"
+#    .\manage-startup-apps.ps1 -Action list -ShortName "*Sync"            # List items ending with "Sync"
+#    .\manage-startup-apps.ps1 -Action list -ShortName "App?"             # List items starting with "App" followed by 1 character (e.g. App1, AppA)
+#    .\manage-startup-apps.ps1 -Action list -ShortName "[A-C]*"           # List items starting with A, B, or C
+#    .\manage-startup-apps.ps1 -Action list -ShortName "[DT]*"            # List items starting with D or T
+#
+# 2. Deleting items:
+#    .\manage-startup-apps.ps1 -Action delete -ShortName "Claude"          # Delete a specific item named "Claude"
+#    .\manage-startup-apps.ps1 -Action delete -ShortName "Test*"          # Delete all items starting with "Test" (bulk delete, prompts for confirmation)
+#    .\manage-startup-apps.ps1 -Action delete -ShortName "*"               # Delete all items (bulk delete, prompts for confirmation)
+#
+# 3. Creating/Updating:
+#    .\manage-startup-apps.ps1 -Action create -ShortName "MyScript" -Path "C:\Path\app.exe" -Type Registry
+#    .\manage-startup-apps.ps1 -Action update -ShortName "MyScript" -Path "C:\NewPath\app.exe" -Type Registry 
 
 param(
     [Parameter(Position=0)]
@@ -16,56 +34,102 @@ param(
 )
 
 function Get-StartupItem {
-    param($Name)
+    param($Pattern)
     $results = @()
-    # Check Registry (Note: This checks if the property EXISTS, not the path)
+    # Check Registry
     $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
     if (Test-Path $regPath) {
-        $props = Get-ItemProperty -Path $regPath
-        if ($props.PSObject.Properties[$Name]) {
-            $results += [PSCustomObject]@{ Source = "Registry"; Name = $Name }
+        $item = Get-Item -Path $regPath
+        $matchedProps = $item.Property | Where-Object { $_ -like $Pattern }
+        foreach ($p in $matchedProps) {
+            $results += [PSCustomObject]@{ Source = "Registry"; Name = $p }
         }
     }
     # Check Tasks
-    $task = Get-ScheduledTask | Where-Object { $_.TaskName -eq $Name }
-    if ($task) {
-        $results += [PSCustomObject]@{ Source = "Task"; Name = $Name }
+    $tasks = Get-ScheduledTask | Where-Object { $_.TaskName -like $Pattern }
+    foreach ($t in $tasks) {
+        $results += [PSCustomObject]@{ Source = "Task"; Name = $t.TaskName }
     }
     return $results
 }
 
 switch ($Action) {
     "list" {
+        $pattern = if ($ShortName) { $ShortName } else { "*" }
+        
         Write-Host "--- Registry (Run Keys) ---" -ForegroundColor Cyan
-        Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" | Format-List
+        $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+        if (Test-Path $regPath) {
+            $item = Get-Item -Path $regPath
+            $matchedProps = $item.Property | Where-Object { $_ -like $pattern }
+            if ($matchedProps) {
+                $propsObj = Get-ItemProperty -Path $regPath
+                $matchedProps | ForEach-Object {
+                    [PSCustomObject]@{
+                        Name = $_
+                        Value = $propsObj.$_
+                    }
+                } | Format-Table -AutoSize
+            } else {
+                Write-Host "No matching registry items found." -ForegroundColor Gray
+            }
+        }
         
         Write-Host "`n--- Scheduled Tasks ---" -ForegroundColor Cyan
-        Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled'} | Select-Object TaskName, TaskPath | Format-Table -AutoSize
+        Get-ScheduledTask | Where-Object { $_.State -ne 'Disabled' -and $_.TaskName -like $pattern } | Select-Object TaskName, TaskPath | Format-Table -AutoSize
     }
 
     "delete" {
-        $found = Get-StartupItem -Name $ShortName
-        if ($found.Count -eq 0) { Write-Host "No startup item found named '$ShortName'." -ForegroundColor Red; return }
+        if (-not $ShortName) {
+            Write-Host "FAILED: ShortName is required for delete action." -ForegroundColor Red
+            return
+        }
+        $found = Get-StartupItem -Pattern $ShortName
+        if ($found.Count -eq 0) { Write-Host "No startup item found matching '$ShortName'." -ForegroundColor Red; return }
         
-        $target = if ($found.Count -gt 1) {
-            Write-Host "Collision detected! Found in multiple locations:"
-            $found | Format-Table
-            $choice = Read-Host "Select source to delete (Registry/Task)"
-            $found | Where-Object { $_.Source -eq $choice }
-        } else { $found[0] }
-
-        try {
-            if ($target.Source -eq "Registry") {
-                Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $target.Name -ErrorAction Stop
-            } else {
-                Unregister-ScheduledTask -TaskName $target.Name -Confirm:$false -ErrorAction Stop
+        $hasWildcard = $ShortName.Contains('*') -or $ShortName.Contains('?')
+        
+        $targets = if ($hasWildcard) {
+            Write-Host "Matching items found:" -ForegroundColor Cyan
+            $found | Format-Table -AutoSize | Out-Host
+            $confirm = Read-Host "Are you sure you want to delete these $($found.Count) items? (y/N)"
+            if ($confirm -notmatch "^y(es)?$") {
+                Write-Host "Deletion cancelled." -ForegroundColor Yellow
+                return
             }
-            Write-Host "SUCCESS: Deleted '$($target.Name)' from $($target.Source)." -ForegroundColor Green
-        } catch {
-            if ($_.Exception.Message -match "Access is denied" -or $_.FullyQualifiedErrorId -match "PermissionDenied") {
-                Write-Host "FAILED: Access Denied. You need to run PowerShell as Administrator to modify system-level tasks like '$($target.Name)'." -ForegroundColor Red
-            } else {
-                Write-Host "FAILED: Could not delete '$($target.Name)'. Error: $($_.Exception.Message)" -ForegroundColor Red
+            $found
+        } else {
+            if ($found.Count -gt 1) {
+                Write-Host "Collision detected! Found in multiple locations:"
+                $found | Format-Table -AutoSize | Out-Host
+                $choice = Read-Host "Select source to delete (Registry/Task/Both)"
+                if ($choice -eq "Both") {
+                    $found
+                } else {
+                    $found | Where-Object { $_.Source -eq $choice }
+                }
+            } else { $found }
+        }
+
+        if (-not $targets) {
+            Write-Host "No targets selected for deletion." -ForegroundColor Yellow
+            return
+        }
+
+        foreach ($target in $targets) {
+            try {
+                if ($target.Source -eq "Registry") {
+                    Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $target.Name -ErrorAction Stop
+                } else {
+                    Unregister-ScheduledTask -TaskName $target.Name -Confirm:$false -ErrorAction Stop
+                }
+                Write-Host "SUCCESS: Deleted '$($target.Name)' from $($target.Source)." -ForegroundColor Green
+            } catch {
+                if ($_.Exception.Message -match "Access is denied" -or $_.FullyQualifiedErrorId -match "PermissionDenied") {
+                    Write-Host "FAILED: Access Denied. You need to run PowerShell as Administrator to modify system-level tasks like '$($target.Name)'." -ForegroundColor Red
+                } else {
+                    Write-Host "FAILED: Could not delete '$($target.Name)' from $($target.Source). Error: $($_.Exception.Message)" -ForegroundColor Red
+                }
             }
         }
     }
