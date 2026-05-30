@@ -1,12 +1,8 @@
 # efectiv nu potii frate sa faci un kkt din interfata de windows sa vezi ce aplicatii ai la startup sa le inchizi
 
-# asa le vezi:
-Get-CimInstance Win32_StartupCommand | Select-Object Name, Command, Location
-
-#waitt, NICI ASS NU LE VAD PE TOATEE unde naiba e whatsauppu?  si nici nu e adv lista asta, ca nu m-i se deshcide automat Teams da aici zice ca cica da
-
-#uite astea poate merg mai bine:
-
+# Usage example: daca doar dai run dă list la toate entryurile
+# .\manage-startup-apps.ps1 -Action update -ShortName "MyScript" -Path "C:\NewPath\app.exe" -Type Registry
+# .\manage-startup-apps.ps1 -Action delete -ShortName "Claude" 
 
 param(
     # Set Mandatory to false and provide a default
@@ -55,3 +51,13 @@ switch ($Action) {
         $Action = "create"; . $MyInvocation.MyCommand.Path @PSBoundParameters
     }
 }
+
+# ce incercasem inainte:
+#
+# # asa le vezi:
+# Get-CimInstance Win32_StartupCommand | Select-Object Name, Command, Location
+#
+# #waitt, NICI ASS NU LE VAD PE TOATEE unde naiba e whatsauppu?  si nici nu e adv lista asta, ca nu m-i se deshcide automat Teams da aici zice ca cica da
+#
+# #uite asta de sus merge mai bine
+#
