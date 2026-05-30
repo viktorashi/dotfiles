@@ -1,34 +1,37 @@
 # efectiv nu potii frate sa faci un kkt din interfata de windows sa vezi ce aplicatii ai la startup sa le inchizi
 
-# Usage example: daca doar dai run dă list la toate entryurile
-# .\manage-startup-apps.ps1 -Action update -ShortName "MyScript" -Path "C:\NewPath\app.exe" -Type Registry
-# .\manage-startup-apps.ps1 -Action delete -ShortName "Claude" 
-# Usage examples:
+# Usage examples (Unix-friendly flags: -a = action, -n = name, -p = path, -t = type):
 # 1. Listing items:
-#    .\manage-startup-apps.ps1 -Action list                               # List all startup items (default)
-#    .\manage-startup-apps.ps1 -Action list -ShortName "*"                # List all startup items
-#    .\manage-startup-apps.ps1 -Action list -ShortName "Discord*"         # List items starting with "Discord"
-#    .\manage-startup-apps.ps1 -Action list -ShortName "*Sync"            # List items ending with "Sync"
-#    .\manage-startup-apps.ps1 -Action list -ShortName "App?"             # List items starting with "App" followed by 1 character (e.g. App1, AppA)
-#    .\manage-startup-apps.ps1 -Action list -ShortName "[A-C]*"           # List items starting with A, B, or C
-#    .\manage-startup-apps.ps1 -Action list -ShortName "[DT]*"            # List items starting with D or T
+#    .\manage-startup-apps.ps1                                     # List all startup items (default action is 'list')
+#    .\manage-startup-apps.ps1 -n "*"                              # List all startup items
+#    .\manage-startup-apps.ps1 -n "Discord*"                       # List items starting with "Discord"
+#    .\manage-startup-apps.ps1 -n "*Sync"                          # List items ending with "Sync"
+#    .\manage-startup-apps.ps1 -n "App?"                           # List items starting with "App" followed by 1 character
+#    .\manage-startup-apps.ps1 -n "[A-C]*"                         # List items starting with A, B, or C
+#    .\manage-startup-apps.ps1 -n "[DT]*"                          # List items starting with D or T
 #
 # 2. Deleting items:
-#    .\manage-startup-apps.ps1 -Action delete -ShortName "Claude"          # Delete a specific item named "Claude"
-#    .\manage-startup-apps.ps1 -Action delete -ShortName "Test*"          # Delete all items starting with "Test" (bulk delete, prompts for confirmation)
-#    .\manage-startup-apps.ps1 -Action delete -ShortName "*"               # Delete all items (bulk delete, prompts for confirmation)
+#    .\manage-startup-apps.ps1 -a delete -n "Claude"               # Delete a specific item named "Claude"
+#    .\manage-startup-apps.ps1 -a delete -n "Test*"                # Delete all items starting with "Test" (bulk delete)
+#    .\manage-startup-apps.ps1 -a delete -n "*"                    # Delete all items (prompts for confirmation)
 #
 # 3. Creating/Updating:
-#    .\manage-startup-apps.ps1 -Action create -ShortName "MyScript" -Path "C:\Path\app.exe" -Type Registry
-#    .\manage-startup-apps.ps1 -Action update -ShortName "MyScript" -Path "C:\NewPath\app.exe" -Type Registry 
+#    .\manage-startup-apps.ps1 -a create -n "MyScript" -p "C:\Path\app.exe" -t Registry
+#    .\manage-startup-apps.ps1 -a update -n "MyScript" -p "C:\NewPath\app.exe" -t Registry
 
 param(
     [Parameter(Position=0)]
+    [Alias("a")]
     [ValidateSet("list", "delete", "create", "update")]
     [string]$Action = "list",
 
+    [Alias("n", "name")]
     [string]$ShortName,
+
+    [Alias("p")]
     [string]$Path,
+
+    [Alias("t")]
     [ValidateSet("Registry", "Task")]
     [string]$Type
 )
