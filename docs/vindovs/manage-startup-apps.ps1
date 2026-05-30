@@ -5,52 +5,83 @@
 # .\manage-startup-apps.ps1 -Action delete -ShortName "Claude" 
 
 param(
-    # Set Mandatory to false and provide a default
-    [Parameter(Mandatory=$false)]
+    [Parameter(Position=0)] # Allows .\manage-startup-apps.ps1 list
     [ValidateSet("list", "delete", "create", "update")]
     [string]$Action = "list",
 
     [string]$ShortName,
     [string]$Path,
     [ValidateSet("Registry", "Task")]
-    [string]$Type = "Registry"
+    [string]$Type
 )
+
+function Get-StartupItem {
+    param($Name)
+    $results = @()
+    # Check Registry (Note: This checks if the property EXISTS, not the path)
+    $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+    if (Test-Path $regPath) {
+        $props = Get-ItemProperty -Path $regPath
+        if ($props.PSObject.Properties[$Name]) {
+            $results += [PSCustomObject]@{ Source = "Registry"; Name = $Name }
+        }
+    }
+    # Check Tasks
+    $task = Get-ScheduledTask | Where-Object { $_.TaskName -eq $Name }
+    if ($task) {
+        $results += [PSCustomObject]@{ Source = "Task"; Name = $Name }
+    }
+    return $results
+}
 
 switch ($Action) {
     "list" {
-        Write-Host "--- Registry (Run Keys) ---" -ForegroundColor Cyan
-        Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" | Format-List
+        Write-Host "--- Registry Startup Items ---" -ForegroundColor Cyan
+        Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" | Select-Object * -ExcludeProperty PSPath, PSParentPath, PSChildName, PSDrive, PSProvider | Format-List
         
-        Write-Host "`n--- Scheduled Tasks ---" -ForegroundColor Cyan
-        Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled'} | Select-Object TaskName, TaskPath | Format-Table -AutoSize
+        Write-Host "`n--- Scheduled Tasks (Interactive) ---" -ForegroundColor Cyan
+        Get-ScheduledTask | Where-Object {$_.State -ne 'Disabled' -and $_.Principal.LogonType -eq 'Interactive'} | Select-Object TaskName, TaskPath | Format-Table -AutoSize
+    }
+
+    "delete" {
+        $found = Get-StartupItem -Name $ShortName
+        if ($found.Count -eq 0) { Write-Host "No startup item found named '$ShortName'." -ForegroundColor Red; return }
+        
+        $target = if ($found.Count -gt 1) {
+            Write-Host "Collision detected! Found in multiple locations:"
+            $found | Format-Table
+            $choice = Read-Host "Select source to delete (Registry/Task)"
+            $found | Where-Object { $_.Source -eq $choice }
+        } else { $found[0] }
+
+        if ($target.Source -eq "Registry") {
+            Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $target.Name
+        } else {
+            Unregister-ScheduledTask -TaskName $target.Name -Confirm:$false
+        }
+        Write-Host "SUCCESS: Deleted '$($target.Name)' from $($target.Source)." -ForegroundColor Green
     }
 
     "create" {
-        if (-not $ShortName -or -not $Path) { Write-Error "Need both ShortName and Path for creation."; return }
-        if ($Type -eq "Registry") {
+        if (-not $ShortName -or -not $Path) { Write-Error "Name and Path required."; return }
+        $targetType = if ($Type) { $Type } else { "Task" }
+        
+        if ($targetType -eq "Registry") {
             New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $ShortName -Value $Path -PropertyType String
         } else {
             $action = New-ScheduledTaskAction -Execute $Path
             $trigger = New-ScheduledTaskTrigger -AtLogOn
             Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $ShortName
         }
-    }
-
-    "delete" {
-        if (-not $ShortName) { Write-Error "ShortName required for deletion."; return }
-        if ($Type -eq "Registry") {
-            Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $ShortName
-        } else {
-            Unregister-ScheduledTask -TaskName $ShortName -Confirm:$false
-        }
-    }
-
-    "update" {
-        # Update is just a delete followed by a create
-        $Action = "delete"; . $MyInvocation.MyCommand.Path @PSBoundParameters
-        $Action = "create"; . $MyInvocation.MyCommand.Path @PSBoundParameters
+        Write-Host "SUCCESS: Created '$ShortName' as a $targetType." -ForegroundColor Green
     }
 }
+
+
+
+
+
+
 
 # ce incercasem inainte:
 #
