@@ -30,7 +30,6 @@ return {
         "ruff",
         "pyrefly",
         "just-lsp",
-        "ast-grep",
         "bicep-lsp",
         "tree-sitter-cli",
         "lemminx",
