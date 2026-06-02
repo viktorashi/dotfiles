@@ -2,8 +2,8 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- Make LazyVim's Python extra use `ty` instead of defaulting to `pyright`.
-vim.g.lazyvim_python_lsp = "ty"
+-- Make LazyVim's Python extra use `pyrefly` instead of defaulting to `pyright`.
+vim.g.lazyvim_python_lsp = "pyrefly"
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr =
