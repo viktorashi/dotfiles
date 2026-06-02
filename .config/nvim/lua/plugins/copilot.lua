@@ -5,19 +5,22 @@ return {
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
+      filetypes = {
+        ["*"] = false,
+      },
     },
   },
 
   -- Ensure copilot is not loaded as an autocomplete source in blink.cmp
   {
     "saghen/blink.cmp",
-    opts = function(_, opts)
-      if opts.sources and opts.sources.default then
-        opts.sources.default = vim.tbl_filter(function(source)
-          return source ~= "copilot"
-        end, opts.sources.default)
-      end
-    end,
+    opts = {
+      sources = {
+        providers = {
+          copilot = { enabled = false },
+        },
+      },
+    },
   },
 
   -- Ensure copilot is not loaded as an autocomplete source in nvim-cmp
@@ -29,6 +32,7 @@ return {
           return source.name ~= "copilot"
         end, opts.sources)
       end
+      return opts
     end,
   },
 }
