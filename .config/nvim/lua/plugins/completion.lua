@@ -1,8 +1,24 @@
 return {
-  -- Disable buffer and snippets completion sources for blink.cmp (default in newer LazyVim versions)
+  -- Configure blink.cmp (LazyVim's default completion engine)
   {
     "saghen/blink.cmp",
     opts = {
+      fuzzy = {
+        sorts = {
+          -- Deprioritize python dunder methods (__)
+          function(a, b)
+            local a_is_dunder = a.label:sub(1, 2) == "__"
+            local b_is_dunder = b.label:sub(1, 2) == "__"
+            if a_is_dunder ~= b_is_dunder then
+              return b_is_dunder
+            end
+            return nil
+          end,
+          -- Fallback to default sorts
+          "score",
+          "sort_text",
+        },
+      },
       sources = {
         providers = {
           buffer = { enabled = false },
@@ -10,18 +26,5 @@ return {
         },
       },
     },
-  },
-
-  -- Disable buffer and snippets completion sources for nvim-cmp (if active instead)
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      if opts.sources then
-        opts.sources = vim.tbl_filter(function(source)
-          return source.name ~= "buffer" and source.name ~= "snippets"
-        end, opts.sources)
-      end
-      return opts
-    end,
   },
 }
