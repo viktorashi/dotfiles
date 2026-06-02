@@ -100,6 +100,7 @@ alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
 alias conflazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias clazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
