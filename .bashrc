@@ -47,3 +47,5 @@ function vol() {
   fi
 }
 . "$HOME/.cargo/env"
+
+source /Users/viktorashi/.config/broot/launcher/bash/br

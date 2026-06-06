@@ -207,3 +207,5 @@ export PATH=/Users/viktorashi/.opencode/bin:$PATH
 
 # Added by Antigravity
 export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
+
+source /Users/viktorashi/.config/broot/launcher/bash/br
