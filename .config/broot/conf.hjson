@@ -226,6 +226,23 @@ lines_after_match_in_preview: 1
 # Below are three examples that you may uncomment and adapt:
 #
 preview_transformers: [
+    {
+        input_extensions: [
+            "txt", "md", "markdown", "rs", "toml", "json", "hjson", "yaml", "yml",
+            "py", "sh", "zsh", "bash", "js", "ts", "jsx", "tsx", "html", "css",
+            "go", "c", "cpp", "h", "hpp", "java", "kt", "scala", "rb", "pl", "pm",
+            "php", "sql", "ini", "conf", "cfg", "dockerfile", "yml", "yaml", "lock"
+        ]
+        output_extension: txt
+        mode: text
+        command: [
+            "bat"
+            "--style=plain"
+            "--paging=never"
+            "--color=always"
+            "{input-path}"
+        ]
+    }
     // # Use mutool to render any PDF file as an image
     // # In this example we use placeholders for the input and output files
     // {
