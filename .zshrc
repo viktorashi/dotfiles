@@ -15,9 +15,6 @@ source ~/docs/shared.sh
 # Set up fzf fuzzy completion
 source <(fzf --zsh)
 
-#rezolva virtualenvwrapperu
-source /Library/Frameworks/Python.framework/Versions/3.11/bin/virtualenvwrapper.sh
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #configu de prompt
