@@ -65,50 +65,82 @@ conf() {
     if [ $exit_code -ne 0 ]; then
       local err_content
       err_content=$(cat "$tmp_err")
-      
-      # Parse the conflicting files from git output (lines starting with a tab)
-      local conflicting_files
-      conflicting_files=$(echo "$err_content" | grep -E $'^\t' | sed $'s/^\t//')
-      
-      if [ -n "$conflicting_files" ]; then
-        # Find a unique incremental backup directory name
-        local base_dir="$HOME/backup"
-        local counter=1
-        local backup_dir="${base_dir}_${counter}"
-        while [ -d "$backup_dir" ]; do
-          counter=$((counter + 1))
-          backup_dir="${base_dir}_${counter}"
-        done
-        
-        echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
-        mkdir -p "$backup_dir"
-        
-        while IFS= read -r file; do
-          [ -z "$file" ] && continue
-          local local_path="$HOME/$file"
-          if [ -e "$local_path" ]; then
-            local dest_path="$backup_dir/$file"
-            mkdir -p "$(dirname "$dest_path")"
-            echo "📦 Moving $file -> $dest_path"
-            mv "$local_path" "$dest_path"
+    
+          # Only attempt backup if it is a file overwrite conflict error
+          if [[ "$err_content" == *"would be overwritten by"* ]]; then
+            # Parse the conflicting files from git output (lines starting with a tab)
+            local conflicting_files
+            conflicting_files=(echo")err_content" | grep -E $'^\t' | sed $'s/^\t//')
+
+            if [ -n "$conflicting_files" ]; then
+              # Find a unique incremental backup directory name
+              local base_dir="HOME/backup(date +%Y-%m-%d)"
+              local counter=1
+              local backup_dir="
+
+
+  base ir
+  d
+
+
+    {counter}"
+              while [ -d "$backup_dir" ]; do
+                counter=$((counter + 1))
+                backup_dir="
+
+
+  base ir
+  d
+
+
+    {counter}"
+              done
+
+              echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
+              mkdir -p "$backup_dir"
+
+              while IFS= read -r file; do
+                [ -z "$file" ] && continue
+                local local_path="HOME/file"
+                if [ -e "$local_path" ]; then
+                  local dest_path="
+
+
+  backup ir/
+  d
+
+
+    file"
+                  mkdir -p "(dirname")dest_path")"
+                  echo "📦 Moving $file -> $dest_path"
+                  mv "localₚath""dest_path"
+                fi
+              done <<< "$conflicting_files"
+
+              rm -f "$tmp_err"
+
+              # Retry checkout/switch
+              echo "🔄 Retrying command: conf $@"
+              git --git-dir="
+
+
+  git ir" - -work - tree = "
+  d
+
+
+    HOME" "$@"
+              return $?
+            fi
           fi
-        done <<< "$conflicting_files"
-        
-        rm -f "$tmp_err"
-        
-        # Retry checkout/switch
-        echo "🔄 Retrying command: conf $@"
-        git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
-        return $?
-      else
-        cat "$tmp_err" >&2
-        rm -f "$tmp_err"
-        return $exit_code
-      fi
-    else
-      rm -f "$tmp_err"
-      return 0
-    fi
+
+          # For other errors (or if no conflicting files were parsed), print original error and exit
+          cat "$tmp_err" >&2
+          rm -f "$tmp_err"
+          return $exit_code
+        else
+          rm -f "$tmp_err"
+          return 0
+        fi
   else
     # Run the standard git command
     git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
