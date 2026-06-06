@@ -53,97 +53,91 @@ alias ghm='gh pr merge --admin -d && git remote prune origin'
 
 git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
+#!/bin/bash
+
+# ==============================================================================
+# Git Bare Repository Safe Checkout Wrapper
+# ==============================================================================
+# This function wraps 'git checkout' and 'git switch' for dotfiles bare repositories.
+# If a conflict occurs with untracked files in the home directory, it automatically
+# backs up those files to an incremental unique backup folder, then retries.
+# ==============================================================================
+
 conf() {
-  # If the command is checkout, switch, co, or sw, wrap it safely to auto-backup conflicts
+  local git_dir="${git_dir:-$HOME/.cfg/}"
+  local work_tree="$HOME"
+
+  # Intercept checkout/switch commands
   if [[ "$1" = "checkout" || "$1" = "switch" || "$1" = "co" || "$1" = "sw" ]]; then
     local tmp_err
     tmp_err=$(mktemp)
-    
-    git --git-dir="${git_dir}" --work-tree="$HOME" "$@" 2> "$tmp_err"
+
+    # Execute git command and capture standard error
+    git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@" 2> "$tmp_err"
     local exit_code=$?
-    
-    if [ $exit_code -ne 0 ]; then
+
+    if [[ "$exit_code" -ne 0 ]]; then
       local err_content
       err_content=$(cat "$tmp_err")
-    
-          # Only attempt backup if it is a file overwrite conflict error
-          if [[ "$err_content" == *"would be overwritten by"* ]]; then
-            # Parse the conflicting files from git output (lines starting with a tab)
-            local conflicting_files
-            conflicting_files=(echo")err_content" | grep -E $'^\t' | sed $'s/^\t//')
 
-            if [ -n "$conflicting_files" ]; then
-              # Find a unique incremental backup directory name
-              local base_dir="HOME/backup(date +%Y-%m-%d)"
-              local counter=1
-              local backup_dir="
+      # Only handle actual Git file-overwrite conflict errors
+      if [[ "$err_content" == *"would be overwritten by"* ]]; then
 
+        # Extract the conflicting filenames (indented by a tab in Git's output)
+        local conflicting_files
+        conflicting_files=$(echo "$err_content" | grep -E $'^\t' | sed $'s/^\t//')
 
-  base ir
-  d
+        if [[ -n "$conflicting_files" ]]; then
+          # Generate a unique, incrementally numbered backup directory name
+          local base_dir="$HOME/backup_$(date +%Y-%m-%d)"
+          local counter=1
+          local backup_dir="${base_dir}_${counter}"
 
+          while [[ -d "$backup_dir" ]]; do
+            ((counter++))
+            backup_dir="${base_dir}_${counter}"
+          done
 
-    {counter}"
-              while [ -d "$backup_dir" ]; do
-                counter=$((counter + 1))
-                backup_dir="
+          echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
+          mkdir -p "$backup_dir"
 
+          # Move each conflicting file to the backup directory, recreating subdirectories
+          while IFS= read -r file; do
+            [[ -z "$file" ]] && continue
 
-  base ir
-  d
+            local local_path="${work_tree}/${file}"
+            if [[ -e "$local_path" ]]; then
+              local dest_path="${backup_dir}/${file}"
+              mkdir -p "$(dirname "$dest_path")"
 
-
-    {counter}"
-              done
-
-              echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
-              mkdir -p "$backup_dir"
-
-              while IFS= read -r file; do
-                [ -z "$file" ] && continue
-                local local_path="HOME/file"
-                if [ -e "$local_path" ]; then
-                  local dest_path="
-
-
-  backup ir/
-  d
-
-
-    file"
-                  mkdir -p "(dirname")dest_path")"
-                  echo "📦 Moving $file -> $dest_path"
-                  mv "localₚath""dest_path"
-                fi
-              done <<< "$conflicting_files"
-
-              rm -f "$tmp_err"
-
-              # Retry checkout/switch
-              echo "🔄 Retrying command: conf $@"
-              git --git-dir="
-
-
-  git ir" - -work - tree = "
-  d
-
-
-    HOME" "$@"
-              return $?
+              echo "📦 Moving $file -> $dest_path"
+              mv "$local_path" "$dest_path"
             fi
-          fi
+          done <<< "$conflicting_files"
 
-          # For other errors (or if no conflicting files were parsed), print original error and exit
-          cat "$tmp_err" >&2
+          # Clean up the temporary error file before retrying the checkout
           rm -f "$tmp_err"
-          return $exit_code
-        else
-          rm -f "$tmp_err"
-          return 0
+
+          # Retry the original checkout or switch command
+          echo "🔄 Retrying command: conf $@"
+          git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@"
+          return $?
         fi
+      fi
+
+      # Print original Git error message if it wasn't an overwrite conflict
+      cat "$tmp_err" >&2
+      rm -f "$tmp_err"
+      return "$exit_code"
+
+    else
+      # Clean up error file on successful checkout/switch
+      rm -f "$tmp_err"
+      return 0
+    fi
   else
-    # Run the standard git command
-    git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
+    # Run all other standard git commands directly
+    git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@"
   fi
 }
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
@@ -264,15 +258,18 @@ get_brew_size() {
   total=0
 
   # Process each line
-  while IFS= read -r line; do
+  while IFS= read -r line;
+  do
     # Extract the size and unit using regex
     size=$(echo "$line" | grep -oP '\d+(\.\d+)?(?=[KM]B)')
     unit=$(echo "$line" | grep -oP '(?<=\d)([KM]B)')
 
     # Convert sizes to KB
-    if [[ $unit == "MB" ]]; then
+    if [[ $unit == "MB" ]];
+    then
       size_kb=$(echo "$size * 1024" | bc)
-    elif [[ $unit == "KB" ]]; then
+    elif [[ $unit == "KB" ]];
+    then
       size_kb=$size
     else
       size_kb=0
