@@ -14,7 +14,11 @@ command -v rustup >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -
 cargo binstall sccache
 
 #install broot with nice compiler options
+
+repo_name="Canop/broot"
+LATEST_TAG=$(gh release view --repo $repo_name --json tagName -q .tagName)
+
 if [ ! -d ~/broot ]; then
-  git clone https://github.com/Canop/broot ~/broot
+	git clone --branch $LATEST_TAG https://github.com/$repo_name.git ~/broot
 fi
 ( cd ~/broot && cargo install --locked --features clipboard --path . && rm -rf ~/broot ) || echo "Vezi ce problema e cu cargo sau sccache"
