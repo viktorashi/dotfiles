@@ -196,5 +196,23 @@ verbs: [
     #     external: "mv {file} {other-panel-directory}"
     #     leave_broot: false
     # }
+
+    # Bindings to open/focus the preview panel (right panel) and move/close it (left panel)
+    {
+        key: ctrl-right
+        internal: panel_right
+    }
+    {
+        key: ctrl-left
+        internal: panel_left
+    }
+    {
+        key: ctrl-l
+        internal: panel_right
+    }
+    {
+        key: ctrl-h
+        internal: panel_left
+    }
 ]
 
