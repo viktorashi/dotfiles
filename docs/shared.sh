@@ -13,8 +13,11 @@ alias scz='source ~/.zshrc'
 alias sour='source'
 alias sv='source .venv/bin/activate'
 alias gr='egrep -irna'
-#cuz who cares about those
-alias tree='tree --gitignore'
+function tree {
+     br -c :pt "$@"
+}
+
+
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
 #	git config --global alias.<alias-name> "<aliased-git-subcommand>"
