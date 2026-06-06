@@ -4,9 +4,9 @@ echo "Now cloning dă marfă"
 
 rm -rf ~/.cfg
 
-git clone --bare https://github.com/viktorashi/my-config "$HOME"/.cfg
+git clone --bare https://github.com/viktorashi/dotfiles "$HOME"/.cfg
 
-echo ".cfg" >>~/.gitignore #avoiding recursive weirdness
+echo ".cfg" >> ~/.gitignore #avoiding recursive weirdness
 
 # Load all aliases and functions (including the safe conf function!) directly from the cloned repo
 tmp_shared=$(mktemp)
@@ -30,5 +30,3 @@ done
 #no hackerino
 chmod +x ~/docs/git-settings.sh
 ~/docs/git-settings.sh
-
-source ~/.bashrc
