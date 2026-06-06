@@ -53,98 +53,12 @@ alias ghm='gh pr merge --admin -d && git remote prune origin'
 
 git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
-#!/bin/bash
-
-# ==============================================================================
-# Git Bare Repository Safe Checkout Wrapper
-# ==============================================================================
-# This function wraps 'git checkout' and 'git switch' for dotfiles bare repositories.
-# If a conflict occurs with untracked files in the home directory, it automatically
-# backs up those files to an incremental unique backup folder, then retries.
-# ==============================================================================
-
-conf() {
-  local git_dir="${git_dir:-$HOME/.cfg/}"
-  local work_tree="$HOME"
-
-  # Intercept checkout/switch commands
-  if [[ "$1" = "checkout" || "$1" = "switch" || "$1" = "co" || "$1" = "sw" ]]; then
-    local tmp_err
-    tmp_err=$(mktemp)
-
-    # Execute git command and capture standard error
-    git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@" 2> "$tmp_err"
-    local exit_code=$?
-
-    if [[ "$exit_code" -ne 0 ]]; then
-      local err_content
-      err_content=$(cat "$tmp_err")
-
-      # Only handle actual Git file-overwrite conflict errors
-      if [[ "$err_content" == *"would be overwritten by"* ]]; then
-
-        # Extract the conflicting filenames (indented by a tab in Git's output)
-        local conflicting_files
-        conflicting_files=$(echo "$err_content" | grep -E $'^\t' | sed $'s/^\t//')
-
-        if [[ -n "$conflicting_files" ]]; then
-          # Generate a unique, incrementally numbered backup directory name
-          local base_dir="$HOME/backup_$(date +%Y-%m-%d)"
-          local counter=1
-          local backup_dir="${base_dir}_${counter}"
-
-          while [[ -d "$backup_dir" ]]; do
-            ((counter++))
-            backup_dir="${base_dir}_${counter}"
-          done
-
-          echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
-          mkdir -p "$backup_dir"
-
-          # Move each conflicting file to the backup directory, recreating subdirectories
-          while IFS= read -r file; do
-            [[ -z "$file" ]] && continue
-
-            local local_path="${work_tree}/${file}"
-            if [[ -e "$local_path" ]]; then
-              local dest_path="${backup_dir}/${file}"
-              mkdir -p "$(dirname "$dest_path")"
-
-              echo "📦 Moving $file -> $dest_path"
-              mv "$local_path" "$dest_path"
-            fi
-          done <<< "$conflicting_files"
-
-          # Clean up the temporary error file before retrying the checkout
-          rm -f "$tmp_err"
-
-          # Retry the original checkout or switch command
-          echo "🔄 Retrying command: conf $@"
-          git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@"
-          return $?
-        fi
-      fi
-
-      # Print original Git error message if it wasn't an overwrite conflict
-      cat "$tmp_err" >&2
-      rm -f "$tmp_err"
-      return "$exit_code"
-
-    else
-      # Clean up error file on successful checkout/switch
-      rm -f "$tmp_err"
-      return 0
-    fi
-  else
-    # Run all other standard git commands directly
-    git --git-dir="${git_dir}" --work-tree="${work_tree}" "$@"
-  fi
-}
+alias conf='PATH="$HOME/docs/cfg-bin:$PATH" git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
-alias conflazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias conflazygit='PATH="$HOME/docs/cfg-bin:$PATH" lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
