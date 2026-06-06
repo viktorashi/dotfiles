@@ -8,7 +8,12 @@ git clone --bare https://github.com/viktorashi/dotfiles "$HOME"/.cfg
 
 echo ".cfg" >> ~/.gitignore #avoiding recursive weirdness
 
-# Load all aliases and functions (including the safe conf function!) directly from the cloned repo
+# Extract the git wrapper script before checkout so safe backup works
+mkdir -p "$HOME/docs/cfg-bin"
+git --git-dir="$HOME/.cfg" show HEAD:docs/cfg-bin/git > "$HOME/docs/cfg-bin/git"
+chmod +x "$HOME/docs/cfg-bin/git"
+
+# Load all aliases and functions directly from the cloned repo
 tmp_shared=$(mktemp)
 git --git-dir="$HOME/.cfg" show HEAD:docs/shared.sh > "$tmp_shared"
 . "$tmp_shared"
