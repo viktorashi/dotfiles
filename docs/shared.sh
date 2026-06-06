@@ -171,6 +171,7 @@ _rg_pick_open() {
 }
 alias gv='_rg_pick_open nvim'
 alias nv='nvim'
+alias t='tmux'
 
 ##############
 #de editoare##
