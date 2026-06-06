@@ -1,4 +1,4 @@
-#### Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs) and run them inside `bash, zsh`
+#### Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fdotfiles%2Ftree%2Fmain%2Fdocs) and run them inside `bash, zsh`
 
 ### Orr copy-paste these from below, but you'll need to get `curl` first
 
