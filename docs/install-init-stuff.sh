@@ -11,6 +11,9 @@ curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 command -v rustup >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+rustup update
+rustup component add rust-analyzer
+rustup component add rustfmt
 
 #il folosesti dupa cu cargo install-update -a
 cargo binstall cargo-update
