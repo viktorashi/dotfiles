@@ -10,7 +10,10 @@ nvm use --lts
 command -v rustup >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
-#dont worry, the required ~/.cargo/config.toml shuold already be there, from the config setup
+#il folosesti dupa cu cargo install-update -a
+cargo binstall cargo-update
+
+#nu-i bai, the required ~/.cargo/config.toml shuold already be there, from the config setup
 cargo binstall sccache
 #install broot with nice compiler options
 cargo install broot --locked --features clipboard
