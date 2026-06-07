@@ -1,5 +1,8 @@
 brew install opera-gx alt-tab ghostty bat bat-extras colima docker docker-compose docker-credential-helper raycast fzf lazygit tmux neovim gh battery git-delta zoxide cargo-binstall ripgrep fd 
 
+#cu docker compose
+mkdir -p ~/.docker/cli-plugins && ln -sfn /opt/homebrew/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
