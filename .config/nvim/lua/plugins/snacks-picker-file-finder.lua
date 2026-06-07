@@ -12,14 +12,21 @@ local picker_sources = {
 }
 local sources = {}
 for _, source in ipairs(picker_sources) do
-  sources[source] = {
-    hidden = true,
-    layout = {
-      fullscreen = true,
-    },
+  if source == "explorer" then
+    sources[source] = {
+      hidden = true,
+      ignored = false,
+    }
+  else
+    sources[source] = {
+      hidden = true,
+      layout = {
+        fullscreen = true,
+      },
 
-    ignored = false,
-  }
+      ignored = false,
+    }
+  end
 end
 
 return {
