@@ -1,4 +1,4 @@
-brew install opera-gx alt-tab ghostty bat bat-extras colima raycast fzf lazygit tmux neovim gh battery git-delta zoxide cargo-binstall ripgrep fd docker
+brew install opera-gx alt-tab ghostty bat bat-extras colima docker docker-compose docker-credential-helper raycast fzf lazygit tmux neovim gh battery git-delta zoxide cargo-binstall ripgrep fd 
 
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
