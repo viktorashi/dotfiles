@@ -217,3 +217,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+export PATH="/Users/viktorashi/go/bin:$PATH"
