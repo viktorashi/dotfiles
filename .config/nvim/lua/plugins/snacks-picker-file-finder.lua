@@ -2,8 +2,13 @@
 -- individual picker sources often override or ignore top-level defaults,
 -- requiring specific configuration per source to ensure consistent behavior.
 
-local picker_sources =
-  { "files", "grep", "smart", "explorer" }
+local picker_sources = {
+  "files",
+  "grep",
+  "smart",
+  "explorer",
+  "jumps",
+}
 local sources = {}
 for _, source in ipairs(picker_sources) do
   sources[source] = {
