@@ -8,11 +8,16 @@ local picker_sources = {
   "smart",
   "explorer",
   "jumps",
+  "lsp_references",
 }
 local sources = {}
 for _, source in ipairs(picker_sources) do
   sources[source] = {
     hidden = true,
+    layout = {
+      fullscreen = true,
+    },
+
     ignored = false,
   }
 end
