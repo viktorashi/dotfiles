@@ -207,3 +207,15 @@ export PATH=/Users/viktorashi/.opencode/bin:$PATH
 
 # Added by Antigravity
 export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
+
+source /Users/viktorashi/.config/broot/launcher/bash/br
+
+# pnpm
+export PNPM_HOME="/Users/viktorashi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+export PATH="/Users/viktorashi/go/bin:$PATH"

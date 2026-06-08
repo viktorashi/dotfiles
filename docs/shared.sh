@@ -13,8 +13,11 @@ alias scz='source ~/.zshrc'
 alias sour='source'
 alias sv='source .venv/bin/activate'
 alias gr='egrep -irna'
-#cuz who cares about those
-alias tree='tree --gitignore'
+function tree {
+     br -c :pt "$@"
+}
+
+
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
 #	git config --global alias.<alias-name> "<aliased-git-subcommand>"
@@ -51,12 +54,73 @@ alias ghm='gh pr merge --admin -d && git remote prune origin'
 
 git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
-alias conf="git --git-dir=${git_dir} --work-tree=$HOME"
+conf() {
+  # If the command is checkout, switch, co, or sw, wrap it safely to auto-backup conflicts
+  if [[ "$1" = "checkout" || "$1" = "switch" || "$1" = "co" || "$1" = "sw" ]]; then
+    local tmp_err
+    tmp_err=$(mktemp)
+    
+    git --git-dir="${git_dir}" --work-tree="$HOME" "$@" 2> "$tmp_err"
+    local exit_code=$?
+    
+    if [ $exit_code -ne 0 ]; then
+      local err_content
+      err_content=$(cat "$tmp_err")
+      
+      # Parse the conflicting files from git output (lines starting with a tab)
+      local conflicting_files
+      conflicting_files=$(echo "$err_content" | grep -E $'^\t' | sed $'s/^\t//')
+      
+      if [ -n "$conflicting_files" ]; then
+        # Find a unique incremental backup directory name
+        local base_dir="$HOME/backup"
+        local counter=1
+        local backup_dir="${base_dir}_${counter}"
+        while [ -d "$backup_dir" ]; do
+          counter=$((counter + 1))
+          backup_dir="${base_dir}_${counter}"
+        done
+        
+        echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
+        mkdir -p "$backup_dir"
+        
+        while IFS= read -r file; do
+          [ -z "$file" ] && continue
+          local local_path="$HOME/$file"
+          if [ -e "$local_path" ]; then
+            local dest_path="$backup_dir/$file"
+            mkdir -p "$(dirname "$dest_path")"
+            echo "📦 Moving $file -> $dest_path"
+            mv "$local_path" "$dest_path"
+          fi
+        done <<< "$conflicting_files"
+        
+        rm -f "$tmp_err"
+        
+        # Retry checkout/switch
+        echo "🔄 Retrying command: conf $@"
+        git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
+        return $?
+      else
+        cat "$tmp_err" >&2
+        rm -f "$tmp_err"
+        return $exit_code
+      fi
+    else
+      rm -f "$tmp_err"
+      return 0
+    fi
+  else
+    # Run the standard git command
+    git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
+  fi
+}
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
 alias confds='conf diff --staged'
 alias conflazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias clazygit="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 #probabil o sa dea doar conflict
 #daca nu merge ii dai chcekout in ala cu buba si bagi confict resolution
@@ -107,6 +171,7 @@ _rg_pick_open() {
 }
 alias gv='_rg_pick_open nvim'
 alias nv='nvim'
+alias t='tmux'
 
 ##############
 #de editoare##
