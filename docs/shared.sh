@@ -150,9 +150,9 @@ _rg_pick_open() {
   local opener="$1"
   fzf -m --disabled --prompt="rg> " \
     --bind "start:reload:rg --files" \
-    --bind "change:reload:rg --files-with-matches --smart-case --hidden -g '!.git' -- {q} 2>/dev/null || true" \
+    --bind "change:reload:rg -P --files-with-matches --smart-case --hidden -g '!.git' -- {q} 2>/dev/null || true" \
     --bind "enter:become(${opener} {+})" \
-    --preview "if [ -n \"{q}\" ]; then rg --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"
+    --preview "if [ -n \"{q}\" ]; then rg -P --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"
 }
 alias gv='_rg_pick_open nvim'
 alias gvnh='_rg_pick_open --hidden --glob "!.git/*" --glob "!.*/*" nvim'
