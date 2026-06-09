@@ -28,9 +28,12 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       if opts.sources then
-        opts.sources = vim.tbl_filter(function(source)
-          return source.name ~= "copilot"
-        end, opts.sources)
+        opts.sources = vim.tbl_filter(
+          function(source)
+            return source.name ~= "copilot"
+          end,
+          opts.sources
+        )
       end
       return opts
     end,
