@@ -4,3 +4,10 @@ git:
   overrideGpg: true
 gui:
       nerdFontsVersion: "3"
+      showCommandLog: false
+
+
+
+os:
+   # For opening a directory in an editor
+  openDirInEditor: "nvim"
