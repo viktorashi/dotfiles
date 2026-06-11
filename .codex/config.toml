@@ -1,5 +1,5 @@
-model = "gpt-5.4"
-model_reasoning_effort = "high"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 [projects."/home/istan/projects-repos/ai_core"]
 trust_level = "trusted"
@@ -52,6 +52,9 @@ trust_level = "trusted"
 [projects."/mnt/c/Users/istan/repos-projects/SHWARMA_soft"]
 trust_level = "trusted"
 
+[projects."/home/istan/projects-repos/ai_os"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
@@ -61,6 +64,9 @@ hide_full_access_warning = true
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 1
 # web_search = "disabled"
 #
 #
