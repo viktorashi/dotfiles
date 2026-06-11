@@ -1,4 +1,4 @@
-brew install opera-gx alt-tab ghostty bat bat-extras colima docker docker-compose docker-credential-helper raycast fzf lazygit tmux neovim gh battery git-delta zoxide cargo-binstall ripgrep fd just
+brew install opera-gx alt-tab ghostty bat bat-extras colima docker docker-compose docker-credential-helper raycast fzf tmux neovim gh battery git-delta zoxide cargo-binstall ripgrep fd just
 
 #cu docker compose
 mkdir -p ~/.docker/cli-plugins && ln -sfn /opt/homebrew/bin/docker-compose ~/.docker/cli-plugins/docker-compose
