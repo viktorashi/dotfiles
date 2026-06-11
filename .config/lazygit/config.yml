@@ -5,9 +5,8 @@ git:
 gui:
       nerdFontsVersion: "3"
       showCommandLog: false
-
-
+      expandFocusedSidePanel: true
+      expandedSidePanelWeight: 4
 
 os:
-   # For opening a directory in an editor
   openDirInEditor: "nvim"
