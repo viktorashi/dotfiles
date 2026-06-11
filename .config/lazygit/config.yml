@@ -3,3 +3,9 @@ git:
     - pager: delta --dark --paging=never --line-numbers
 gui:
       nerdFontsVersion: "3"
+      showCommandLog: false
+      expandFocusedSidePanel: true
+      expandedSidePanelWeight: 4
+
+os:
+  openDirInEditor: "nvim"
