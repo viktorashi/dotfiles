@@ -92,9 +92,10 @@ alias gw='git worktree'
 alias grp='git remote prune origin && git pull --prune'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
-git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
-alias conf="git --git-dir=${git_dir} --work-tree=$HOME"
+
+source ~/docs/conf.sh
+
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
