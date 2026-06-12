@@ -1,5 +1,5 @@
 model = "gpt-5.4-mini"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "low"
 personality = "pragmatic"
 [projects."/home/istan/projects-repos/ai_core"]
 trust_level = "trusted"
