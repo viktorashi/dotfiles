@@ -3,6 +3,7 @@ set -euo pipefail
 
 bash ~/docs/startup-scripts/git-settings.sh
 source ~/docs/conf.sh
+chmod +x "$HOME/docs/startup-scripts/restore-nvim-session.sh" "$HOME/docs/startup-scripts/restore-vim-session.sh"
 mkdir -p "$HOME/.local/share/editor-packages" "$HOME/.local/share/nvim/site/pack/codex/start" "$HOME/.vim/pack/codex/start" "$HOME/.config/nvim/plugin" "$HOME/.vim/plugin"
 
 if [ ! -d "$HOME/.local/share/editor-packages/vim-obsession/.git" ]; then
