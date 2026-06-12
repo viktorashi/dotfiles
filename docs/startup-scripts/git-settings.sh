@@ -41,3 +41,5 @@ git config --global http.postBuffer 524288000
 # [mergetool "vimdiff"]
 #     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED \
 #           -c '$wincmd w' -c 'wincmd J'
+
+git config --global core.excludesfile "$HOME/.config/git/ignore"
