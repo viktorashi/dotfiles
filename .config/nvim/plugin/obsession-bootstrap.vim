@@ -1,0 +1,1 @@
+/home/istan/docs/startup-scripts/obsession-bootstrap.vim
