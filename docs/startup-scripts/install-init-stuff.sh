@@ -19,10 +19,8 @@ rustup component add rust-analyzer
 rustup component add rustfmt
 
 #il folosesti dupa cu cargo install-update -a
-cargo binstall cargo-update
-cargo binstall just-lsp
+#pt sccache: #nu-i bai, the required ~/.cargo/config.toml shuold already be there, from the config setup
+cargo binstall cargo-update just-lsp prek sccache
 
-#nu-i bai, the required ~/.cargo/config.toml shuold already be there, from the config setup
-cargo binstall sccache
 #install broot with nice compiler options
 cargo install broot --locked --features clipboard
