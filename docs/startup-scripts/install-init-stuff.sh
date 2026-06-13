@@ -20,6 +20,7 @@ rustup component add rustfmt
 
 #il folosesti dupa cu cargo install-update -a
 cargo binstall cargo-update
+cargo binstall just-lsp
 
 #nu-i bai, the required ~/.cargo/config.toml shuold already be there, from the config setup
 cargo binstall sccache
