@@ -41,7 +41,7 @@ export PATH="$PATH:/mnt/c/Program Files/Integrity/ILMClient13/bin/"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="HOME/.fly/bin:PATH"
+export PATH="$HOME/.fly/bin:$PATH"
 
 # =======================
 #                        |
