@@ -1,5 +1,22 @@
 # s-au mutat aici toate sa fie frumix
 
+# Let the shell prompt decide how virtual environments are displayed.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Fresh tmux panes can inherit a stale Python venv from the tmux server
+# environment. Strip that implicit state so project venvs are only entered
+# explicitly (for example via `sv`).
+if [ -n "${VIRTUAL_ENV-}" ]; then
+  case ":$PATH:" in
+    *":$VIRTUAL_ENV/bin:"*)
+      PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
+      export PATH
+      ;;
+  esac
+  unset VIRTUAL_ENV
+  unset VIRTUAL_ENV_PROMPT
+fi
+
 alias cls='clear'
 alias clc='clear'
 alias cl='clear'

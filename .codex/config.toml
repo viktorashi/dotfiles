@@ -1,5 +1,5 @@
 model = "gpt-5.4"
-model_reasoning_effort = "low"
+model_reasoning_effort = "high"
 personality = "pragmatic"
 approvals_reviewer = "user"
 [projects."/home/istan/projects-repos/ai_core"]

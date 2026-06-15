@@ -32,12 +32,20 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
 }
+active_env_prompt() {
+    if [ -n "${VIRTUAL_ENV-}" ]; then
+        printf '(%s) ' "${VIRTUAL_ENV:t}"
+    elif [ -n "${CONDA_DEFAULT_ENV-}" ] && [ "${CONDA_DEFAULT_ENV}" != "base" ]; then
+        printf '(%s) ' "${CONDA_DEFAULT_ENV}"
+    fi
+}
 COLOR_DEF='%f'
 COLOR_USR='%F{243}'
 COLOR_DIR='%F{197}'
 COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
+PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 
 # New tabs inherit the terminal app environment, not necessarily ~/.profile.
 # Point interactive zsh shells at the live gpg-agent SSH socket every time.
