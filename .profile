@@ -41,6 +41,13 @@ export PATH="$PATH:/mnt/c/Program Files/Integrity/ILMClient13/bin/"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="HOME/.fly/bin:PATH"
+
+# =======================
+#                        |
+# Restu de exporturi care nu sunt $PATH |
+#                        |
+# ======================|
 
 . "$HOME/.cargo/env"
 export EDITOR="nvim"
