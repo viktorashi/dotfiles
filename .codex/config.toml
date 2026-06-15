@@ -1,6 +1,7 @@
-model = "gpt-5.4-mini"
-model_reasoning_effort = "high"
+model = "gpt-5.4"
+model_reasoning_effort = "low"
 personality = "pragmatic"
+approvals_reviewer = "user"
 [projects."/home/istan/projects-repos/ai_core"]
 trust_level = "trusted"
 
@@ -61,12 +62,13 @@ hide_full_access_warning = true
 [notice.model_migrations]
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.5"
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining"]
 
 [tui.model_availability_nux]
-"gpt-5.5" = 3
+"gpt-5.5" = 4
 # web_search = "disabled"
 #
 #
