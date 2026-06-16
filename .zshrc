@@ -13,6 +13,40 @@ add-zsh-hook precmd _fix_terminal
 
 source ~/docs/shared.sh
 
+# Persist command history across tmux resurrect restores by giving each
+# logical pane position its own history file.
+HISTSIZE=50000
+SAVEHIST=50000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_FIND_NO_DUPS
+setopt EXTENDED_HISTORY
+
+_configure_history_file() {
+    local hist_root pane_key
+    hist_root="$HOME/.zsh_history.d"
+    mkdir -p "$hist_root"
+
+    if [[ -n "${TMUX_PANE-}" ]]; then
+        pane_key="$(tmux display-message -p -t "${TMUX_PANE}" '#{session_name}:#{window_index}.#{pane_index}' 2>/dev/null)"
+        pane_key="${pane_key//[^A-Za-z0-9_.:-]/_}"
+        [[ -n "$pane_key" ]] || pane_key="tmux_unknown"
+        export HISTFILE="${hist_root}/history_${pane_key}.zsh"
+    else
+        export HISTFILE="$HOME/.zsh_history"
+    fi
+
+    if [[ "${__ZSH_HISTORY_LOADED_FOR-}" != "$HISTFILE" && -r "$HISTFILE" ]]; then
+        fc -R "$HISTFILE"
+    fi
+    export __ZSH_HISTORY_LOADED_FOR="$HISTFILE"
+}
+_configure_history_file
+
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
 #######################################################################
