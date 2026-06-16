@@ -8,14 +8,30 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # explicitly (for example via `sv`).
 if [ -n "${VIRTUAL_ENV-}" ]; then
   case ":$PATH:" in
-    *":$VIRTUAL_ENV/bin:"*)
-      PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
-      export PATH
-      ;;
+  *":$VIRTUAL_ENV/bin:"*)
+    PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
+    export PATH
+    ;;
   esac
   unset VIRTUAL_ENV
   unset VIRTUAL_ENV_PROMPT
 fi
+
+tmux_see_sockets_statuses() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    printf '%s: ' "$s"
+    tmux -S "$s" ls >/dev/null 2>&1 && echo live || echo dead
+  done
+}
+
+tmux_kill_dead_sockets() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    base=$(basename "$s")
+    [ "$base" = default ] && continue
+    tmux -S "$s" ls >/dev/null 2>&1 || rm -f -- "$s"
+  done
+
+}
 
 alias cls='clear'
 alias clc='clear'
