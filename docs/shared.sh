@@ -93,24 +93,26 @@ alias gb='git branch -a'
 #foloseste sa dai stash cu un nume sa stii ce are stashul in el (pui "mesaj" dupa)
 alias gsp='git stash push -m' #<mesaj> dupa
 alias gsl='git stash list'
-alias gcl='git clone'
 
 #pe astea de jos le-am pus cum leam pus fiindca stash pop == apply && drop, si dupa daca ii dai drop e prea tarziu daca ai vreun conflict si ai facut vreo prostie
 alias gsa='git stash apply' #mai intai asta ca e mai safe decat pop
 alias gsd='git stash drop'  #asta face practic pop
 
 alias gw='git worktree'
+alias ghm='gh pr merge --admin -d && git remote prune origin'
+
 #store in stash fara sa le scoata din worktree, si doar la staged changes
 gss() {
   local msg="${1:-Stashed staged changes}"
 
-alias grp='git remote prune origin'
-alias ghm='gh pr merge --admin -d && git remote prune origin'
   # 1. Check if there are actually staged changes
   if git diff --cached --quiet; then
     echo "No staged changes to stash."
     return 0
   fi
+
+  git stash push --staged -m "$msg" && git stash apply --index
+}
 
 git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
@@ -330,7 +332,7 @@ alias brew-size="brew list | xargs -n1 -P8 -I {} sh -c \"brew info {} | egrep '[
 alias brew-clean='brew cleanup --prune=all'
 
 ##kkturi random gen literally
-alias getrandom='cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c50'
+alias getrandom="cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c50"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
