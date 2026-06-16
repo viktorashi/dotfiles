@@ -1,7 +1,7 @@
 model = "gpt-5.4"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
-approvals_reviewer = "user"
+approvals_reviewer = "guardian_subagent"
 [projects."/home/istan/projects-repos/ai_core"]
 trust_level = "trusted"
 
