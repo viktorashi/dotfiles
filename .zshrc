@@ -2,7 +2,50 @@
 ## ALIASES ####
 ###############
 
+# Restore terminal to a sane state before each prompt.
+# Fixes jumbled output after exiting fullscreen programs (nvim, htop, less, etc.)
+autoload -Uz add-zsh-hook
+_fix_terminal() {
+    # Resets text, character set, re-enables line wrap, and forces block cursor
+    printf '\e[0m\e(B\e[?7h\e[2 q'
+}
+add-zsh-hook precmd _fix_terminal
+
 source ~/docs/shared.sh
+
+# Persist command history across tmux resurrect restores by giving each
+# logical pane position its own history file.
+HISTSIZE=50000
+SAVEHIST=50000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_FIND_NO_DUPS
+setopt EXTENDED_HISTORY
+
+_configure_history_file() {
+    local hist_root pane_key
+    hist_root="$HOME/.zsh_history.d"
+    mkdir -p "$hist_root"
+
+    if [[ -n "${TMUX_PANE-}" ]]; then
+        pane_key="$(tmux display-message -p -t "${TMUX_PANE}" '#{session_name}:#{window_index}.#{pane_index}' 2>/dev/null)"
+        pane_key="${pane_key//[^A-Za-z0-9_.:-]/_}"
+        [[ -n "$pane_key" ]] || pane_key="tmux_unknown"
+        export HISTFILE="${hist_root}/history_${pane_key}.zsh"
+    else
+        export HISTFILE="$HOME/.zsh_history"
+    fi
+
+    if [[ "${__ZSH_HISTORY_LOADED_FOR-}" != "$HISTFILE" && -r "$HISTFILE" ]]; then
+        fc -R "$HISTFILE"
+    fi
+    export __ZSH_HISTORY_LOADED_FOR="$HISTFILE"
+}
+_configure_history_file
 
 #######################################################################
 ## EXPORTS (sectiune mutata in ~/.zprofile lmao ####
@@ -16,10 +59,19 @@ source ~/docs/shared.sh
 source <(fzf --zsh)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+. "$HOME/.cargo/env"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "/home/istan/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
 
 #configu de prompt
 parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+active_env_prompt() {
+    if [ -n "${VIRTUAL_ENV-}" ]; then
+        printf '(%s) ' "${VIRTUAL_ENV:t}"
+    elif [ -n "${CONDA_DEFAULT_ENV-}" ] && [ "${CONDA_DEFAULT_ENV}" != "base" ]; then
+        printf '(%s) ' "${CONDA_DEFAULT_ENV}"
+    fi
 }
 COLOR_DEF='%f'
 COLOR_USR='%F{243}'
@@ -27,22 +79,17 @@ COLOR_DIR='%F{197}'
 COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
-export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
+PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 
-# Start ssh-agent if not already running
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    eval "$(ssh-agent -s)"
-fi
+# New tabs inherit the terminal app environment, not necessarily ~/.profile.
+# Point interactive zsh shells at the live gpg-agent SSH socket every time.
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+export GPG_TTY="$(tty)"
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
-# Load key into agent from keychain
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add --apple-use-keychain ~/.ssh/id_rsa_backup > /dev/null 2>&1
-
-
+fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit -u
-
-# shellcheck shell=bash
 
 # =============================================================================
 #
@@ -193,29 +240,53 @@ fi
 eval "$(zoxide init zsh)"
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+# fnm
+FNM_PATH="/home/istan/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(codex completion zsh)"
 eval "$(batman --export-env)"
+eval "$(register-python-argcomplete pipx)"
 
-# Added by Antigravity
-export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
+# bun completions
+[ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
 
-# opencode
-export PATH=/Users/viktorashi/.opencode/bin:$PATH
+eval "$(COMPLETE=zsh prek)"
 
-# Added by Antigravity
-export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
+# Fix vi-mode backspace: allow deleting past the insert-mode entry point
+# (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
+bindkey -M viins '^?' backward-delete-char
 
-source /Users/viktorashi/.config/broot/launcher/bash/br
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/istan/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/istan/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/istan/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/istan/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/viktorashi/Library/pnpm"
+export PNPM_HOME="/home/istan/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
-
-export PATH="/Users/viktorashi/go/bin:$PATH"
