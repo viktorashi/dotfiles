@@ -12,6 +12,8 @@ declare -A PANE_ID
 declare -A PANE_TITLE
 declare -A PANE_CWD
 declare -A RESTORE_CMD
+declare -A PID_FOR_TTY
+declare -A KIND_FOR_TTY
 
 normalize_tty() {
     printf '%s\n' "${1#/dev/}"
@@ -31,47 +33,33 @@ load_tmux_panes() {
     done < <(tmux list-panes -a -F '#{session_name}'"$tab"'#{window_index}'"$tab"'#{pane_index}'"$tab"'#{pane_id}'"$tab"'#{pane_tty}'"$tab"'#{pane_current_command}'"$tab"'#{pane_title}'"$tab"'#{pane_current_path}')
 }
 
-ps_rows() {
-    ps -eo pid=,tty=,args=
-}
-
-latest_pid_for_tty() {
-    local tty="$1"
-    local kind="$2"
-    local pid ps_tty args
-    local latest=""
-    while read -r pid ps_tty args; do
-        [ "$ps_tty" = "$tty" ] || continue
+load_ai_processes() {
+    local pid tty args kind
+    while read -r pid tty args; do
         case "$args" in
             *resurrect-ai-cli-save.sh*|*pgrep*|*grep*)
                 continue
                 ;;
         esac
-        case "$kind" in
-            codex)
-                case "$args" in
-                    *codex*)
-                        latest="$pid"
-                        ;;
-                esac
+
+        kind=""
+        case "$args" in
+            copilot*|*/copilot*)
+                kind="copilot"
                 ;;
-            copilot)
-                case "$args" in
-                    copilot*|*/copilot*)
-                        latest="$pid"
-                        ;;
-                esac
+            agy*|*/agy*)
+                kind="agy"
                 ;;
-            agy)
-                case "$args" in
-                    agy*|*/agy*)
-                        latest="$pid"
-                        ;;
-                esac
+            *codex*)
+                kind="codex"
                 ;;
         esac
-    done < <(ps_rows)
-    [ -n "$latest" ] && printf '%s\n' "$latest"
+
+        if [ -n "$kind" ] && [ -n "$tty" ] && [ "$tty" != "?" ]; then
+            PID_FOR_TTY["$tty"]="$pid"
+            KIND_FOR_TTY["$tty"]="$kind"
+        fi
+    done < <(ps -eo pid=,tty=,args=)
 }
 
 cmdline_for_pid() {
@@ -197,12 +185,11 @@ infer_restore_command() {
 
     [ -n "$tty" ] || return 1
 
-    local copilot_pid agy_pid codex_pid
-    copilot_pid="$(latest_pid_for_tty "$tty" copilot || true)"
-    agy_pid="$(latest_pid_for_tty "$tty" agy || true)"
-    codex_pid="$(latest_pid_for_tty "$tty" codex || true)"
+    local kind="${KIND_FOR_TTY[$tty]:-}"
+    local pid="${PID_FOR_TTY[$tty]:-}"
+    [ -n "$kind" ] || return 1
 
-    if [ -n "$copilot_pid" ]; then
+    if [ "$kind" = "copilot" ] && [ -n "$pid" ]; then
         local sid=""
         sid="$(copilot_session_from_db "$title" "$cwd" || true)"
         if [ -n "$sid" ]; then
@@ -213,14 +200,14 @@ infer_restore_command() {
         return 0
     fi
 
-    if [ -n "$agy_pid" ]; then
+    if [ "$kind" = "agy" ] && [ -n "$pid" ]; then
         local log_file="" sid="" argv=""
-        log_file="$(agy_log_for_pid "$agy_pid" || true)"
+        log_file="$(agy_log_for_pid "$pid" || true)"
         if [ -n "$log_file" ]; then
             sid="$(agy_conversation_from_log "$log_file" || true)"
         fi
         if [ -z "$sid" ]; then
-            argv="$(cmdline_for_pid "$agy_pid")"
+            argv="$(cmdline_for_pid "$pid")"
             sid="$(printf '%s\n' "$argv" | extract_uuid || true)"
         fi
         if [ -n "$sid" ]; then
@@ -231,11 +218,11 @@ infer_restore_command() {
         return 0
     fi
 
-    if [ -n "$codex_pid" ]; then
+    if [ "$kind" = "codex" ] && [ -n "$pid" ]; then
         local sid="" argv=""
         sid="$(codex_session_from_state "$pane_id" "$cwd" || true)"
         if [ -z "$sid" ]; then
-            argv="$(cmdline_for_pid "$codex_pid")"
+            argv="$(cmdline_for_pid "$pid")"
             case "$argv" in
                 *" resume "*)
                     sid="$(printf '%s\n' "$argv" | extract_uuid || true)"
@@ -280,6 +267,7 @@ rewrite_state_file() {
 }
 
 load_tmux_panes
+load_ai_processes
 
 for key in "${!PANE_TTY[@]}"; do
     restore="$(infer_restore_command "$key" || true)"
