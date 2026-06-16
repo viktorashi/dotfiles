@@ -59,8 +59,6 @@ _configure_history_file
 source <(fzf --zsh)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-. "$HOME/.cargo/env"
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "/home/istan/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
 
 #configu de prompt
 parse_git_branch() {
@@ -79,13 +77,21 @@ COLOR_DIR='%F{197}'
 COLOR_GIT='%F{39}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
+# Start ssh-agent if not already running
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    eval "$(ssh-agent -s)"
+fi
+
+# Load key into agent from keychain
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519 > /dev/null 2>&1
+ssh-add --apple-use-keychain ~/.ssh/id_rsa_backup > /dev/null 2>&1
 PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 
-# New tabs inherit the terminal app environment, not necessarily ~/.profile.
-# Point interactive zsh shells at the live gpg-agent SSH socket every time.
-fpath=(~/.zsh/completions $fpath)
+
 autoload -Uz compinit
 compinit -u
+
+# shellcheck shell=bash
 
 # =============================================================================
 #
@@ -236,51 +242,35 @@ fi
 eval "$(zoxide init zsh)"
 
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# fnm
-FNM_PATH="/home/istan/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
 
 eval "$(codex completion zsh)"
 eval "$(batman --export-env)"
 
-# bun completions
-[ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
+# Added by Antigravity
+export PATH="/Users/viktorashi/.antigravity/antigravity/bin:$PATH"
 
+# opencode
+export PATH=/Users/viktorashi/.opencode/bin:$PATH
 eval "$(COMPLETE=zsh prek)"
 
 # Fix vi-mode backspace: allow deleting past the insert-mode entry point
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
 bindkey -M viins '^?' backward-delete-char
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/istan/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/istan/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/istan/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/istan/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
+source /Users/viktorashi/.config/broot/launcher/bash/br
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/home/istan/.local/share/pnpm"
+export PNPM_HOME="/Users/viktorashi/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+
+export PATH="/Users/viktorashi/go/bin:$PATH"
