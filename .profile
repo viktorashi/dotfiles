@@ -41,11 +41,17 @@ export PATH="$PATH:/mnt/c/Program Files/Integrity/ILMClient13/bin/"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.fly/bin:$PATH"
+
+# =======================
+#                        |
+# Restu de exporturi care nu sunt $PATH |
+#                        |
+# ======================|
 
 . "$HOME/.cargo/env"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 export ACR_NAME="stratecai"
 export SERVICE_PRINCIPAL_NAME="ca04454e-62bc-4787-a26e-62469f8b5187"
 export MC_KEYMAP=/etc/mc/mc.vim.keymap

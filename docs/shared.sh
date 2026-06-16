@@ -1,5 +1,38 @@
 # s-au mutat aici toate sa fie frumix
 
+# Let the shell prompt decide how virtual environments are displayed.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Fresh tmux panes can inherit a stale Python venv from the tmux server
+# environment. Strip that implicit state so project venvs are only entered
+# explicitly (for example via `sv`).
+if [ -n "${VIRTUAL_ENV-}" ]; then
+  case ":$PATH:" in
+  *":$VIRTUAL_ENV/bin:"*)
+    PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
+    export PATH
+    ;;
+  esac
+  unset VIRTUAL_ENV
+  unset VIRTUAL_ENV_PROMPT
+fi
+
+tmux_see_sockets_statuses() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    printf '%s: ' "$s"
+    tmux -S "$s" ls >/dev/null 2>&1 && echo live || echo dead
+  done
+}
+
+tmux_kill_dead_sockets() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    base=$(basename "$s")
+    [ "$base" = default ] && continue
+    tmux -S "$s" ls >/dev/null 2>&1 || rm -f -- "$s"
+  done
+
+}
+
 alias cls='clear'
 alias clc='clear'
 alias cl='clear'
@@ -92,9 +125,10 @@ alias gw='git worktree'
 alias grp='git remote prune origin && git pull --prune'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
 
-git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
-alias conf="git --git-dir=${git_dir} --work-tree=$HOME"
+
+source ~/docs/conf.sh
+
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
