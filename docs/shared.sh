@@ -1,5 +1,38 @@
 # s-au mutat aici toate sa fie frumix
 
+# Let the shell prompt decide how virtual environments are displayed.
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Fresh tmux panes can inherit a stale Python venv from the tmux server
+# environment. Strip that implicit state so project venvs are only entered
+# explicitly (for example via `sv`).
+if [ -n "${VIRTUAL_ENV-}" ]; then
+  case ":$PATH:" in
+  *":$VIRTUAL_ENV/bin:"*)
+    PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
+    export PATH
+    ;;
+  esac
+  unset VIRTUAL_ENV
+  unset VIRTUAL_ENV_PROMPT
+fi
+
+tmux_see_sockets_statuses() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    printf '%s: ' "$s"
+    tmux -S "$s" ls >/dev/null 2>&1 && echo live || echo dead
+  done
+}
+
+tmux_kill_dead_sockets() {
+  for s in /tmp/tmux-$(id -u)/*; do
+    base=$(basename "$s")
+    [ "$base" = default ] && continue
+    tmux -S "$s" ls >/dev/null 2>&1 || rm -f -- "$s"
+  done
+
+}
+
 alias cls='clear'
 alias clc='clear'
 alias cl='clear'
@@ -25,13 +58,31 @@ function tree {
 
 alias gs='git status'
 alias gp='git push'
-alias gc='git commit -a && git push'
+alias gc='git commit -S -a && git push'
+alias gt='git tag -S'
 alias gcl='git clone'
 alias gpl='git pull'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias ga='git add .'
 alias gl='git log --graph --all --show-signature --format="%C(yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(reset)%an <%ae>%n%C(bold)Date:   %C(reset)%C(green)%ad%C(reset) [Orig: %ai]%n%n    %s%n" --date=local'
+# iti face semnatura la toate commiturile (inclusiv cel dat ca argument) in sus non-interactiv
+git-sign-from-commit() {
+  git rebase --exec "git commit --amend --no-edit -n -S" "$1~1"
+}
+
+# Signs ONLY the specific commit provided as an argument, non-interactively
+git-sign-single-commit() {
+  if [ -z "$1" ]; then
+    echo "Error: Please provide a commit hash."
+    return 1
+  fi
+
+  # Temporarily override the editor to inject the 'exec' command ONLY after the very first line (the target commit)
+  GIT_SEQUENCE_EDITOR='f() { awk "NR==1{print; print \"exec git commit --amend --no-edit -n -S\"; next} 1" "$1" > "$1.tmp" && mv "$1.tmp" "$1"; }; f' \
+    git rebase -i "$1~1"
+}
+
 alias grso='git remote show origin'
 #BAI sa faci asta numa daca n-ai dat inca pushh baa ca e bataie de cap dupa
 alias gca='git commit -a --amend'
@@ -42,15 +93,24 @@ alias gb='git branch -a'
 #foloseste sa dai stash cu un nume sa stii ce are stashul in el (pui "mesaj" dupa)
 alias gsp='git stash push -m' #<mesaj> dupa
 alias gsl='git stash list'
+alias gcl='git clone'
 
 #pe astea de jos le-am pus cum leam pus fiindca stash pop == apply && drop, si dupa daca ii dai drop e prea tarziu daca ai vreun conflict si ai facut vreo prostie
 alias gsa='git stash apply' #mai intai asta ca e mai safe decat pop
 alias gsd='git stash drop'  #asta face practic pop
 
 alias gw='git worktree'
+#store in stash fara sa le scoata din worktree, si doar la staged changes
+gss() {
+  local msg="${1:-Stashed staged changes}"
 
 alias grp='git remote prune origin'
 alias ghm='gh pr merge --admin -d && git remote prune origin'
+  # 1. Check if there are actually staged changes
+  if git diff --cached --quiet; then
+    echo "No staged changes to stash."
+    return 0
+  fi
 
 git_dir="$HOME/.cfg/"
 alias confgotofolder="cd $HOME"
@@ -115,6 +175,7 @@ conf() {
     git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
   fi
 }
+alias grp='git remote prune origin && git pull --prune'
 alias confad="conf add $HOME/.config/nvim && conf add $HOME/docs && conf status"
 alias confs='conf status'
 alias confd='conf diff'
