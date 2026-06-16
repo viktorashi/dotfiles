@@ -83,10 +83,6 @@ PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} 
 
 # New tabs inherit the terminal app environment, not necessarily ~/.profile.
 # Point interactive zsh shells at the live gpg-agent SSH socket every time.
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export GPG_TTY="$(tty)"
-gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
-
 fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit -u
@@ -249,10 +245,8 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env --shell zsh)"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(codex completion zsh)"
 eval "$(batman --export-env)"
-eval "$(register-python-argcomplete pipx)"
 
 # bun completions
 [ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
