@@ -84,8 +84,14 @@ fi
 
 # Load key into agent from keychain
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519 > /dev/null 2>&1
-ssh-add --apple-use-keychain ~/.ssh/id_rsa_backup > /dev/null 2>&1
 PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
+
+# GPG-agent configuration if installed
+if command -v gpgconf >/dev/null 2>&1; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    export GPG_TTY="$(tty)"
+    gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
 
 
 autoload -Uz compinit
