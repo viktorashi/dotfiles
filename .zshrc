@@ -290,3 +290,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
+eval "$(/home/istan/.local/bin/mise activate zsh)"
