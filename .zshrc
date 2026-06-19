@@ -291,3 +291,5 @@ case ":$PATH:" in
 esac
 # pnpm end
 eval "$(/home/istan/.local/bin/mise activate zsh)"
+eval "$(/home/istan/.local/bin/mise completion zsh)"
+source <(usage g completion-init zsh)
