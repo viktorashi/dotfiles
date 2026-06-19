@@ -170,7 +170,8 @@ alias ct='clear && cargo test'
 alias cb='clear && cargo build'
 alias cbc='clear && cargo build && ./copy_binaries.sh'
 
-alias r='clear && radian  --ask-save --save --restore-data --debug'
+# alias r='clear && radian  --ask-save --save --restore-data --debug'
+alias r='mise run'
 alias python="python3"
 
 #alias fr='flutter run'
