@@ -123,7 +123,7 @@ gss() {
 
 alias gw='git worktree'
 alias grp='git remote prune origin && git pull --prune'
-alias ghm='gh pr merge --admin -d && git remote prune origin'
+alias ghm='gh pr merge -d && git remote prune origin'
 
 alias confgotofolder="cd $HOME"
 
