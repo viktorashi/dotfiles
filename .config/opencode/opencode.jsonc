@@ -3,9 +3,4 @@
   "model": "github-copilot/claude-haiku-4.5",
   "snapshot": false,
   "permission": "allow",
-  "agent": {
-    "build": {
-      "steps": 8
-    }
-  }
 }
