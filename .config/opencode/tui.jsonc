@@ -22,4 +22,5 @@
   "keybinds": {
     "editor_open": "ctrl+g"
   },
+  "theme": "cursor"
 }
