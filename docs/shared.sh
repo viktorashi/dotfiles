@@ -197,6 +197,7 @@ alias ic='fzf -m --preview="bat --color=always {}" --bind "enter:become(code {+}
 alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})"'
 
 alias nv='nvim'
+alias oc='opencode'
 
 ##############
 #de editoare##
