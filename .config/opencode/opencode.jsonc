@@ -16,5 +16,6 @@
   "$schema": "https://opencode.ai/config.json",
   "snapshot": false,
   "permission": "allow",
-  "formatter": true
+  "formatter": {},
+  "lsp": {}
 }
