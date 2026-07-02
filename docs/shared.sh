@@ -57,7 +57,7 @@ alias tree='tree --gitignore'
 
 alias gs='git status'
 alias gp='git push'
-alias gc='git commit -S -a && git push'
+alias gc='git commit -S -a'
 alias gt='git tag -S'
 alias gcl='git clone'
 alias gpl='git pull'
