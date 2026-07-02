@@ -7,7 +7,6 @@ gui:
   showCommandLog: false
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 4
-  expandedFocusedSidePanelFitsContent: true
-  #fitAllSidePanelsHeightToContent: true
+  shrinkSidePanelsToContent: true
 os:
   openDirInEditor: "nvim"
