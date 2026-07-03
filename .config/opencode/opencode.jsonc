@@ -26,5 +26,8 @@
         "resource": "opencode"
       }
     ]
-  }
+  },
+  "disabled_providers": [
+    "opencode"
+  ]
 }
