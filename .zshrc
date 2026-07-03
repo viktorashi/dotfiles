@@ -13,6 +13,17 @@ add-zsh-hook precmd _fix_terminal
 
 source ~/docs/shared.sh
 
+_configure_opencode_project_config() {
+    if [[ "$PWD" == "$HOME" ]]; then
+        export OPENCODE_DISABLE_PROJECT_CONFIG=1
+    else
+        unset OPENCODE_DISABLE_PROJECT_CONFIG
+    fi
+}
+add-zsh-hook precmd _configure_opencode_project_config
+add-zsh-hook chpwd _configure_opencode_project_config
+_configure_opencode_project_config
+
 # Persist command history across tmux resurrect restores by giving each
 # logical pane position its own history file.
 HISTSIZE=50000
