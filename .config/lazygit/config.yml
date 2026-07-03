@@ -1,13 +1,12 @@
 git:
-  overrideGpg: true
   pagers:
     - pager: delta --dark --paging=never --line-numbers
+  # overrideGpg: true
 gui:
   nerdFontsVersion: "3"
   showCommandLog: false
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 4
-  expandedFocusedSidePanelFitsContent: true
-  #fitAllSidePanelsHeightToContent: true
+  shrinkSidePanelsToContent: true
 os:
   openDirInEditor: "nvim"
