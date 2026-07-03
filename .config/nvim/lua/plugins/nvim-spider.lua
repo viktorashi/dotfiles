@@ -7,19 +7,19 @@ return {
   keys = {
     {
       "w",
-      "<cmd>lua require('spider').motion('w')<CR>",
+      function() require("spider").motion("w") end,
       mode = { "n", "o", "x" },
       desc = "Move to start of next of word",
     },
     {
       "e",
-      "<cmd>lua require('spider').motion('e')<CR>",
+      function() require("spider").motion("e") end,
       mode = { "n", "o", "x" },
       desc = "Move to end of word",
     },
     {
       "b",
-      "<cmd>lua require('spider').motion('b')<CR>",
+      function() require("spider").motion("b") end,
       mode = { "n", "o", "x" },
       desc = "Move to start of previous word",
     },

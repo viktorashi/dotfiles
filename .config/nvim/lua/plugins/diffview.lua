@@ -4,8 +4,7 @@ return {
     keys = {
       {
         "<leader>gd",
-        "<cmd>:DiffviewOpen<CR>",
-        mode = { "n" },
+        "<cmd>DiffviewOpen<cr>",
         desc = "Diffview",
       },
     },
