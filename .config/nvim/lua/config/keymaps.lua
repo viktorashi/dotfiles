@@ -3,7 +3,8 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
-local opts_astea_default = { noremap = true, silent = true }
+local opts_astea_default =
+  { noremap = true, silent = true }
 
 -- map(
 --   -- vezi ca tre sa apesi gen frt repede ca sa mearga ca altfel se deschide UI menu
@@ -42,7 +43,12 @@ map(
 )
 
 for _, lhs in ipairs({ "<D-w>", "<A-w>", "<A-W>" }) do
-  map({ "n", "v", "i" }, lhs, sterge_buffer, opts_astea_default)
+  map(
+    { "n", "v", "i" },
+    lhs,
+    sterge_buffer,
+    opts_astea_default
+  )
 end
 
 map(
@@ -160,7 +166,12 @@ term_map("<C-k>", [[<C-\><C-n><C-w>k]])
 term_map("<C-l>", [[<C-\><C-n><C-w>l]])
 
 for _, key in ipairs({ "h", "j", "k", "l" }) do
-  map("i", "<C-" .. key .. ">", "<Esc><C-w>" .. key, opts_astea_default)
+  map(
+    "i",
+    "<C-" .. key .. ">",
+    "<Esc><C-w>" .. key,
+    opts_astea_default
+  )
 end
 
 local function compile_cpp()
