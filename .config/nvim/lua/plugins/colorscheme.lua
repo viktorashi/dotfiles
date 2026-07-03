@@ -5,7 +5,7 @@ return {
     name = "catppuccin",
     priority = 1500,
     opts = {
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      flavour = "mocha",
       transparent_background = false,
       term_colors = true,
       integrations = {
@@ -45,8 +45,6 @@ return {
       },
     },
   },
-
-  -- Configure LazyVim to load catppuccin
   {
     "LazyVim/LazyVim",
     opts = {
