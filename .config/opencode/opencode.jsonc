@@ -17,5 +17,14 @@
   "snapshot": false,
   "permission": "allow",
   "formatter": {},
-  "lsp": {}
+  "lsp": {},
+  "experimental": {
+    "policies": [
+      {
+        "effect": "deny",
+        "action": "provider.use",
+        "resource": "opencode"
+      }
+    ]
+  }
 }
