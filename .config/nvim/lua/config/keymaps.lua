@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local opts_astea_default = { noremap = true, silent = true }
 
 -- map(
 --   -- vezi ca tre sa apesi gen frt repede ca sa mearga ca altfel se deschide UI menu
@@ -19,7 +20,7 @@ local map = vim.keymap.set
 --   { desc = "Inchide bufferu asta ca omu" }
 -- )
 
-function sterge_buffer()
+local function sterge_buffer()
   -- vim.bo.buflisted = false
   -- vim.api.nvim_buf_delete(0, { unload = true })
   Snacks.bufdelete()
@@ -40,26 +41,9 @@ map(
   { desc = "Inchide bufferu asta ca omu" }
 )
 
-map(
-  { "n", "v", "i" },
-  "<D-w>",
-  sterge_buffer,
-  { noremap = true, silent = true }
-)
-
-map(
-  { "n", "v", "i" },
-  "<A-w>",
-  sterge_buffer,
-  { noremap = true, silent = true }
-)
-
-map(
-  { "n", "v", "i" },
-  "<A-W>",
-  sterge_buffer,
-  { noremap = true, silent = true }
-)
+for _, lhs in ipairs({ "<D-w>", "<A-w>", "<A-W>" }) do
+  map({ "n", "v", "i" }, lhs, sterge_buffer, opts_astea_default)
+end
 
 map(
   { "n", "v", "i" },
@@ -119,34 +103,6 @@ end, {
   desc = "DAP: Set Conditional Breakpoint",
 })
 
---sami scroleze furmusel
-require("neoscroll").setup({
-  mappings = { -- Keys to be mapped to their corresponding default scrolling animation
-    "<C-u>",
-    "<C-d>",
-    "<C-b>",
-    "<C-f>",
-    "<C-y>",
-    "<C-e>",
-    "zt",
-    "zz",
-    "zb",
-  },
-  hide_cursor = true, -- Hide cursor while scrolling
-  stop_eof = true, -- Stop at <EOF> when scrolling downwards
-  respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-  cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-  duration_multiplier = 0.7, -- Global duration multiplier
-  easing = "linear", -- Default easing function
-  pre_hook = nil, -- Function to run before the scrolling animation starts
-  post_hook = nil, -- Function to run after the scrolling animation ends
-  performance_mode = false, -- Disable "Performance Mode" on all buffers.
-  ignored_events = { -- Events ignored while scrolling
-    "WinScrolled",
-    "CursorMoved",
-  },
-})
-
 -- "aliasuri pt toate greselile pe care poti sa le faci"
 map("ca", "Wa", "wa")
 map("ca", "WA", "wa")
@@ -191,8 +147,6 @@ map("n", "<leader>rr", function()
 end)
 
 -- bindurile pt terminal mode
-local opts_astea_default =
-  { noremap = true, silent = true }
 local term_map = function(lhs, rhs)
   map("t", lhs, rhs, opts_astea_default)
 end
@@ -205,57 +159,11 @@ term_map("<C-j>", [[<C-\><C-n><C-w>j]])
 term_map("<C-k>", [[<C-\><C-n><C-w>k]])
 term_map("<C-l>", [[<C-\><C-n><C-w>l]])
 
-map(
-  "i",
-  "<C-h>",
-  "<Esc><C-w>h",
-  opts_astea_default
-)
-map(
-  "i",
-  "<C-j>",
-  "<Esc><C-w>j",
-  opts_astea_default
-)
-map(
-  "i",
-  "<C-k>",
-  "<Esc><C-w>k",
-  opts_astea_default
-)
-map(
-  "i",
-  "<C-l>",
-  "<Esc><C-w>l",
-  opts_astea_default
-)
+for _, key in ipairs({ "h", "j", "k", "l" }) do
+  map("i", "<C-" .. key .. ">", "<Esc><C-w>" .. key, opts_astea_default)
+end
 
-vim.keymap.set(
-  "i",
-  "<C-h>",
-  "<Esc><C-w>h",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-j>",
-  "<Esc><C-w>j",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-k>",
-  "<Esc><C-w>k",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-l>",
-  "<Esc><C-w>l",
-  opts_astea_default
-)
-
-function compile_cpp()
+local function compile_cpp()
   vim.cmd("w") -- save file
   vim.cmd(
     "split | terminal g++ -std=c++17 % -o %:r.out && ./%:r.out"
@@ -277,49 +185,6 @@ vim.keymap.set(
   compile_cpp,
   { desc = desc }
 )
-
-vim.keymap.set(
-  "i",
-  "<C-h>",
-  "<Esc><C-w>h",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-j>",
-  "<Esc><C-w>j",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-k>",
-  "<Esc><C-w>k",
-  opts_astea_default
-)
-vim.keymap.set(
-  "i",
-  "<C-l>",
-  "<Esc><C-w>l",
-  opts_astea_default
-)
-
-vim.keymap.set("n", "<leader>ff", function()
-  require("telescope.builtin").live_grep({
-    additional_args = { "--hidden" },
-  })
-end, {
-  desc = "Find Text (Grep including hidden files)",
-})
-
--- Add this to your keymaps or init.lua
-vim.keymap.set("n", "<leader>sf", function()
-  require("telescope.builtin").grep_string({
-    short_path = true,
-    word_match = "-w",
-    only_sort_text = true,
-    search = "",
-  })
-end, { desc = "Fuzzy Grep (Content)" })
 
 vim.keymap.set(
   { "n", "i", "v" },
