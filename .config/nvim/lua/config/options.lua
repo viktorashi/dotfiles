@@ -12,6 +12,8 @@ vim.opt.foldexpr =
 vim.o.exrc = true
 vim.o.secure = true
 
+vim.g.root_spec = { { ".git" }, "lsp", "cwd" }
+
 -- Neovide font configuration
 if vim.g.neovide then
   -- UI scaling
