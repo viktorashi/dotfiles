@@ -13,9 +13,6 @@ add-zsh-hook precmd _fix_terminal
 
 source ~/docs/shared.sh
 
-# Prevent inherited shell environments from re-enabling Exa websearch.
-unset OPENCODE_ENABLE_EXA
-
 _configure_opencode_project_config() {
     if [[ "$PWD" == "$HOME" ]]; then
         export OPENCODE_DISABLE_PROJECT_CONFIG=1
