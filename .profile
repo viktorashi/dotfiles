@@ -65,5 +65,5 @@ export BUN_INSTALL="$HOME/.bun"
 export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
 
 export PASTEL_COLOR_MODE=24bit
-unset OPENCODE_ENABLE_EXA
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
+export OPENCODE_ENABLE_EXA=1
