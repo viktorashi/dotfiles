@@ -2,6 +2,8 @@ git:
   pagers:
     - pager: delta --dark --paging=never --line-numbers
   # overrideGpg: true
+commit:
+  gpgsign: true
 gui:
   nerdFontsVersion: "3"
   showCommandLog: false
