@@ -304,3 +304,6 @@ esac
 eval "$(/home/istan/.local/bin/mise activate zsh)"
 eval "$(/home/istan/.local/bin/mise completion zsh)"
 source <(usage g completion-init zsh)
+
+[[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
+
