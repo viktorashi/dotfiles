@@ -13,6 +13,17 @@ add-zsh-hook precmd _fix_terminal
 
 source ~/docs/shared.sh
 
+sqlite3() {
+    command sqlite3 \
+        -cmd '.headers on' \
+        -cmd '.mode column' \
+        -cmd '.nullvalue NULL' \
+        -cmd '.timer on' \
+        -cmd '.explain on' \
+        -cmd '.separator " | "' \
+        "$@"
+}
+
 _configure_opencode_project_config() {
     if [[ "$PWD" == "$HOME" ]]; then
         export OPENCODE_DISABLE_PROJECT_CONFIG=1
@@ -306,4 +317,3 @@ eval "$(/home/istan/.local/bin/mise completion zsh)"
 source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
-
