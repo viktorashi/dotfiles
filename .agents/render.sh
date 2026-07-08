@@ -36,7 +36,10 @@ render() {
 			cat "$body"
 		fi
 	} >"$tmp"
-	mv "$tmp" "$target"
+	if ! cmp -s "$tmp" "$target"; then
+		mv "$tmp" "$target"
+	fi
+	rm -f "$tmp"
 	rm -f "$body" "$prefix"
 }
 
