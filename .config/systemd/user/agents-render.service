@@ -1,0 +1,6 @@
+[Unit]
+Description=Render per-tool AGENTS.md files
+
+[Service]
+Type=oneshot
+ExecStart=%h/.agents/render.sh
