@@ -59,6 +59,12 @@ trust_level = "trusted"
 [projects."/home/istan/projects-repos/tmux-resurrect"]
 trust_level = "trusted"
 
+[projects."/home/istan/projects-repos/nerding-out/skills-presentation-for-devs/appropriate-repo-for-demo/react-tetris-worktrees/react-tetris"]
+trust_level = "trusted"
+
+[projects."/tmp"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 
