@@ -2,6 +2,8 @@
 set -eu
 
 base="$HOME/.agents/AGENTS.md"
+start="<!-- agents-render:shared-start -->"
+end="<!-- agents-render:shared-end -->"
 
 render() {
 	target=$1
@@ -10,19 +12,25 @@ render() {
 	prefix=$(mktemp)
 
 	if [ -f "$target" ]; then
-		lines=$(wc -l <"$base")
-		sed -n "1,${lines}p" "$target" >"$prefix"
-		if cmp -s "$base" "$prefix"; then
-			tail -n +$((lines + 1)) "$target" | sed '/./,$!d' >"$body"
+		if grep -Fxq "$end" "$target"; then
+			awk -v end="$end" 'found { print } $0 == end { found = 1 }' "$target" | sed '/./,$!d' >"$body"
 		else
-			cp "$target" "$body"
+			lines=$(wc -l <"$base")
+			sed -n "1,${lines}p" "$target" >"$prefix"
+			if cmp -s "$base" "$prefix"; then
+				tail -n +$((lines + 1)) "$target" | sed '/./,$!d' >"$body"
+			else
+				cp "$target" "$body"
+			fi
 		fi
 	else
 		: >"$body"
 	fi
 
 	{
+		printf '%s\n' "$start"
 		cat "$base"
+		printf '%s\n' "$end"
 		if [ -s "$body" ]; then
 			printf '\n\n'
 			cat "$body"
