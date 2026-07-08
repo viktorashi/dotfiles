@@ -20,3 +20,10 @@ if [ ! -d "$HOME/.vim/pack/codex/start/vim-obsession/.git" ]; then
 fi
 
 ln -sfn "$HOME/docs/startup-scripts/obsession-bootstrap.vim" "$HOME/.vim/plugin/obsession-bootstrap.vim"
+
+systemctl --user daemon-reload
+for unit in "$HOME"/.config/systemd/user/*.{path,service,socket,timer}; do
+	[ -f "$unit" ] || continue
+	grep -q '^\[Install\]' "$unit" || continue
+	systemctl --user enable --now "$(basename "$unit")"
+done
