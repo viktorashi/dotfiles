@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "installedAt": "2026-05-15T14:14:30.691Z",
+      "updatedAt": "2026-05-15T14:14:30.691Z"
+    },
+    "prek": {
+      "source": "j178/prek",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/j178/prek.git",
+      "skillPath": "skills/prek/SKILL.md",
+      "skillFolderHash": "ad6f23a5ef14918c719d64d84ff17e62721a0249",
+      "installedAt": "2026-05-21T16:08:36.604Z",
+      "updatedAt": "2026-05-21T16:08:36.604Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "0d5b74a14bdf3ebcd64f352d06376a2ef05ed296",
+      "pluginName": "example-skills",
+      "installedAt": "2026-06-15T16:43:36.050Z",
+      "updatedAt": "2026-06-15T16:43:36.050Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}
