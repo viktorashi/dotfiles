@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch shared AGENTS.md for render
+
+[Path]
+PathChanged=%h/.agents/AGENTS.md
+
+[Install]
+WantedBy=default.target
