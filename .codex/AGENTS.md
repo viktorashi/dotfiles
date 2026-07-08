@@ -9,14 +9,3 @@ Try to find it on github, make a fork of the original tool from my personal acco
 If it's on some other git forge except github, then that's fine too, first clone the original repo, then tell me to go ahead and manually fork it.
 
 Don't just make the change in-place where it's gonna be forgotten about.
-
-
-If you are unsure how to do something, use `gh_grep` to search code examples from GitHub.
-
-For web lookups:
-
-- Prefer `websearch` for obscure usernames, handles, domains, profiles, and discovery-style searches.
-- Prefer `websearch_cited` for topic summaries when grounded citations matter.
-- Do not use `gh_grep_searchGitHub` for usernames or profile discovery; it is for literal code search.
-
-I have a local `opencode` clone, patched with some things that I want / like at `~/projects-repos/opencode/`.
