@@ -1,6 +1,6 @@
 Everything changed in my config should be trackable through my dotfiles repo, accessible with the `conf` command. Its main config-specfic dir with root notes and (setup or otherwise) scripts is in `~/docs`
 
-Any fix you make for some tool that i use to work (in case it dosnt), should be first to my config, in a place that's nicely trackable by my dotfiles, being careful of leaking secrets and whatnot. They should be KISS, DRY, ponytail, as portable as possible and all that nice stuff. Never make config changes without tracking them.
+Any fix you make for some tool that i use to work (in case it dosnt), should be first to my config, in a place that's nicely trackable by my dotfiles, being careful of leaking secrets and whatnot. They should be KISS, DRY, ponytail and all that nice stuff. Never make config changes without tracking them.
 
 THEN, only then AFTER config changes have shown that they are not fixing the problem, and the tools themselves are truly the problem, in case you wanna go ahead and patch them, go through the entire dev lifecycle of said tool:
 
