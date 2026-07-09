@@ -14,6 +14,8 @@ Try to find it on GitHub, make a fork of the original tool from my personal acco
 If it's on some other git forge except github, then that's fine too, first clone the original repo, then tell me to go ahead and manually fork it.
 
 Don't just make the change in-place where it's gonna be forgotten about.
+
+Don't be afraid to use LSP tools in case you have them, go to definition and stuffs.
 <!-- agents-render:shared-end -->
 
 
