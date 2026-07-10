@@ -15,3 +15,9 @@ If it's on some other git forge except github, then that's fine too, first clone
 Don't just make the change in-place where it's gonna be forgotten about.
 
 Don't be afraid to use LSP tools in case you have them, go to definition and stuffs.
+
+Im usually running everything in `tmux`, so if something is up, you can actually read my buffers with
+
+```bash
+tmux capture-pane -p -t target_session:target_window.target_pane
+```
