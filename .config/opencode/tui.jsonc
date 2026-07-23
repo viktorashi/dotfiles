@@ -1,0 +1,26 @@
+// nativ, opencode nu scrie direct aici cand schimbi configu live *din* el, asa ca sunt unele fisiere live care tin configu pe care chiar il are in momentu ala, si aici sunt doar niste override-uri care sunt trackable. Cam astea sunt mappingurile de la live -> dotfiles
+//
+// `~/.local/state/opencode/kv.json` 
+//
+//~/.local/share/opencode/project/<project-slug>/storage/ -> .opencode/ project config lives separately, but sessions/messages are not config
+//~/.local/share/opencode/kv.json (c) -> ~/.config/opencode/tui.json (c) 
+// ~/.local/state/opencode/kv.json (c) -> ~/.config/opencode/tui.json (c)
+// ~/.local/state/opencode/tui/ -> ~/.config/opencode/tui.json or ~/.config/opencode/tui.jsonc
+// ~/.local/share/opencode/opencode.json (c) -> ~/.config/opencode/opencode.json (c)
+//
+// restu project-specific mai poate fi overloadut si din 
+//
+// <project>/.opencode/(opencode.json | tui.json) # or whatever
+//
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "attention": {
+    "enabled": true,
+    "notifications": true,
+    "sound": true
+  },
+  "keybinds": {
+    "editor_open": "ctrl+g"
+  },
+  "theme": "cursor"
+}
