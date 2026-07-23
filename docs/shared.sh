@@ -249,6 +249,7 @@ alias o='open .'
 
 alias c='code .'
 alias idea='idea .'
+alias oc='opencode'
 #sa dea follow la redirecturi
 alias curl='curl -L'
 #vezi ce programe folosesc un anumit port
