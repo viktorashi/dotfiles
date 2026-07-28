@@ -317,3 +317,7 @@ eval "$(/home/istan/.local/bin/mise completion zsh)"
 source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# opencode
+export PATH=/home/istan/.opencode/bin:$PATH
