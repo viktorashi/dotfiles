@@ -82,7 +82,7 @@ source <(fzf --zsh)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 . "$HOME/.cargo/env"
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "/home/istan/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$HOME/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
 
 #configu de prompt
 parse_git_branch() {
@@ -265,21 +265,20 @@ eval "$(zoxide init zsh)"
 
 
 # fnm
-FNM_PATH="/home/istan/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env --shell zsh)"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(codex completion zsh)"
-eval "$(batman --export-env)"
-eval "$(register-python-argcomplete pipx)"
+command -v codex >/dev/null 2>&1 && eval "$(codex completion zsh)"
+command -v batman >/dev/null 2>&1 && eval "$(batman --export-env)"
+command -v register-python-argcomplete >/dev/null 2>&1 && eval "$(register-python-argcomplete pipx)"
 
 # bun completions
-[ -s "/home/istan/.bun/_bun" ] && source "/home/istan/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-eval "$(COMPLETE=zsh prek)"
+command -v prek >/dev/null 2>&1 && eval "$(COMPLETE=zsh prek)"
 
 # Fix vi-mode backspace: allow deleting past the insert-mode entry point
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
@@ -287,14 +286,14 @@ bindkey -M viins '^?' backward-delete-char
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/istan/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/istan/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/istan/miniforge3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/istan/miniforge3/bin:$PATH"
+        export PATH="$HOME/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -306,18 +305,25 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/home/istan/.local/share/pnpm"
+export PNPM_HOME="${PNPM_HOME:-$HOME/.local/share/pnpm}"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
-eval "$(/home/istan/.local/bin/mise activate zsh)"
-eval "$(/home/istan/.local/bin/mise completion zsh)"
-source <(usage g completion-init zsh)
+if [ -x "$HOME/.local/bin/mise" ]; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+  eval "$($HOME/.local/bin/mise completion zsh)"
+fi
+command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # opencode
-export PATH=/home/istan/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
+
+# ==========================================================================
+# Everything that is true of THIS machine only. Deployed by dotter from     |
+# .config/shell/machines/<machine>.zsh — absent on a machine that needs none.|
+# ==========================================================================
+[ -f "$HOME/.config/shell/machine.zsh" ] && . "$HOME/.config/shell/machine.zsh"

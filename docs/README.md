@@ -18,19 +18,31 @@ C:\msys64\mingw64\bin
 ```
 to your path 
 
+
+then just GET THE config.
+```bash
+curl -fsSL https://raw.githubusercontent.com/viktorashi/dotfiles/main/docs/backup-remove-and-clone.sh | sh
+```
+
 > [!IMPORTANT]
-> If on Windows you need to hard-link *a lot of stuff* that's tracked, so run this 
+> If on Windows, you need to hard-link *a lot of stuff* that's tracked, so run this 
 ```
 ~/docs/vindovs/link-windows-thangs.bat
 ```
 
-Which allows you to:
-Back up, remove your old, dusty config and clone + set up the repo for your brand-new one
+Restart your `shell`. _Voila!_
+
+Now checkout into whichever OS you have
 ```bash
-curl -fsSL https://raw.githubusercontent.com/viktorashi/my-config/main/docs/backup-remove-and-clone.sh | sh
+conf sw windows10 #this works for 11 as well
 ```
 
-Restart your `shell`. _Voila!_
+then run the specific
+```bash
+~/docs/install-init-stuff.sh
+```
+for that OS
+
 
 Now you'll be able to run the following commands:
 ##### You should have my lazy-aah aliases so you can use things like
@@ -40,14 +52,14 @@ conf status
 #or ,even more lazily:
 conf s
 
-cons sw windows10 # if you're one of those
+cons sw mac # if you're one of those
 
 conf pull #after you've bothered me
 
 #whenever you add a new file and want it to be tracked:
 conf add <filename>
 
-#or shortcut if you've added new plugin files in neovim
+#or shortcut if you've added new plugin files in neovim / docs
 confad
 
 #even view it nicely if you have lazygit:
@@ -56,7 +68,8 @@ configlazygit
 
 You can check them out in `~/docs/aliases.sh`
 
-## Other dependecies
+# Don't worry about these if you're on mac, just run `~/docs/install-init-stuff.sh`. Simmilar ones will be coming for other branches as well at some point.
+## Other dependecies 
 
 - [git Delta](https://dandavison.github.io/delta/installation.html)
 - [node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
