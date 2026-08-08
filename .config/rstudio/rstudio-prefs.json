@@ -9,5 +9,5 @@
     "editor_theme": "Ambiance",
     "show_terminal_tab": false,
     "editor_keybindings": "vim",
-    "jobs_tab_visibility": "closed"
+    "jobs_tab_visibility": "shown"
 }

@@ -51,14 +51,14 @@ function vol() {
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/istan/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/istan/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/istan/miniforge3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/istan/miniforge3/bin:$PATH"
+        export PATH="$HOME/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -66,3 +66,6 @@ unset __conda_setup
 
 autoload -U bashcompinit
 bashcompinit
+
+# machine-specific, deployed by dotter (see .config/shell/machines/)
+[ -f "$HOME/.config/shell/machine.sh" ] && . "$HOME/.config/shell/machine.sh"
