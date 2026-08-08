@@ -1,0 +1,9 @@
+{
+  "application.telemetry.userId": "93ebe2e8-fce1-4589-b733-f56bcf802ecc",
+  "application.proxy.source": "systemProxy",
+  "dataExplorers.general.openOperation": "preview",
+  "dataExplorers.general.preserveTabSession": true,
+  "transfers.azCopy.preserveSymlinks": true,
+  "transfers.azCopy.autoDeleteLogs": true,
+  "services.general.showResourceGroups": true
+}

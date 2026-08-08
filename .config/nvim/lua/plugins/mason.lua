@@ -4,7 +4,6 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       local custom_tools = {
-        "mason-org/mason.nvim",
         "bash-language-server",
         "beautysh",
         "codelldb",
@@ -37,6 +36,9 @@ return {
         "lemminx",
         "xmlformatter",
         "r-languageserver",
+        -- from windows10; black/pyright deliberately not re-added, ruff/pyrefly replace them
+        "eslint-lsp",
+        "markdownlint-cli2",
       }
 
       -- Merge lists while avoiding duplicates

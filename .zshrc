@@ -81,8 +81,12 @@ _configure_history_file
 source <(fzf --zsh)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export EDITOR="nvim"
+
 . "$HOME/.cargo/env"
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$HOME/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"
+# ask code where its shell integration lives instead of hardcoding a build hash
+[[ "$TERM_PROGRAM" == "vscode" ]] && command -v code >/dev/null 2>&1 &&
+  . "$(code --locate-shell-integration-path zsh)"
 
 #configu de prompt
 parse_git_branch() {
@@ -273,6 +277,8 @@ fi
 
 command -v codex >/dev/null 2>&1 && eval "$(codex completion zsh)"
 command -v batman >/dev/null 2>&1 && eval "$(batman --export-env)"
+autoload -U bashcompinit && bashcompinit
+
 command -v register-python-argcomplete >/dev/null 2>&1 && eval "$(register-python-argcomplete pipx)"
 
 # bun completions
