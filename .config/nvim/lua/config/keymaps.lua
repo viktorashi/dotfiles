@@ -174,6 +174,14 @@ for _, key in ipairs({ "h", "j", "k", "l" }) do
   )
 end
 
+-- backward search: pdf -> code (requires nvr / remote)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>lb",
+  ":!nvr --remote +%l '%f'<CR>",
+  { noremap = true, silent = true }
+)
+
 local function compile_cpp()
   vim.cmd("w") -- save file
   vim.cmd(
@@ -181,15 +189,8 @@ local function compile_cpp()
   )
   vim.cmd("startinsert")
 end
+
 local desc = "Compile & Run C++"
-
-vim.keymap.set(
-  "n",
-  "<F1>",
-  compile_cpp,
-  { desc = desc }
-)
-
 vim.keymap.set(
   "i",
   "<F1>",
@@ -222,3 +223,25 @@ vim.keymap.set(
   end,
   opts_astea_default
 )
+
+vim.keymap.set(
+  "n",
+  "<F1>",
+  compile_cpp,
+  { desc = desc }
+)
+
+-- vim.keymap.set(
+--   "n",
+--   "<leader>lt",
+--   M.toggle_ltex,
+--   { desc = "Toggle LTEX" }
+-- )
+
+vim.keymap.set("n", "<leader>ff", function()
+  require("telescope.builtin").live_grep({
+    additional_args = { "--hidden" },
+  })
+end, {
+  desc = "Find Text (Grep including hidden files)",
+})

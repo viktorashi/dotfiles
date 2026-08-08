@@ -50,30 +50,23 @@ if vim.g.neovide then
     set_scale(default_scale)
   end
 
-  -- map in normal/insert/visual so it works anywhere
-  -- note: Cmd+Plus is usually Cmd+Shift+= so we bind both variants
-  vim.keymap.set(
-    { "n", "i", "v" },
-    "<D-=>",
-    inc_scale,
-    { noremap = true, silent = true }
-  )
-  vim.keymap.set(
-    { "n", "i", "v" },
-    "<D-+>",
-    inc_scale,
-    { noremap = true, silent = true }
-  )
-  vim.keymap.set(
-    { "n", "i", "v" },
-    "<D-->",
-    dec_scale,
-    { noremap = true, silent = true }
-  )
-  vim.keymap.set(
-    { "n", "i", "v" },
-    "<D-0>",
-    reset_scale,
-    { noremap = true, silent = true }
-  )
+  -- map in normal/insert/visual so it works anywhere.
+  -- <D-…> is Cmd (macOS), <C-…> is Ctrl (everywhere else); the unused one is
+  -- simply never pressed, so both are bound unconditionally.
+  -- note: Cmd/Ctrl+Plus is usually Shift+= so both variants are bound.
+  for _, prefix in ipairs({ "D", "C" }) do
+    for keys, fn in pairs({
+      ["="] = inc_scale,
+      ["+"] = inc_scale,
+      ["-"] = dec_scale,
+      ["0"] = reset_scale,
+    }) do
+      vim.keymap.set(
+        { "n", "i", "v" },
+        "<" .. prefix .. "-" .. keys .. ">",
+        fn,
+        { noremap = true, silent = true }
+      )
+    end
+  end
 end
