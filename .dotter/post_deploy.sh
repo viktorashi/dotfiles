@@ -1,7 +1,8 @@
 #!/bin/sh
 # Runs every scripts/<package>/*.sh for the packages this machine selected.
-# The {{#each}} below is rendered by dotter before this file is executed, so the list is
-# fixed at deploy time and a package that is not selected leaves no trace here at all.
+# The loop at the bottom is rendered by dotter before this file is executed, so the list
+# is fixed at deploy time and an unselected package leaves no trace here at all.
+# Do not write handlebars syntax in these comments: it is parsed, not ignored.
 #
 # CWD is the repo root. Do NOT use $0-relative paths: only this file is copied into
 # .dotter/cache/, so its siblings do not exist next to it at run time.

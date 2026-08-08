@@ -34,7 +34,7 @@ default_target_type = "symbolic"
 # ---------------------------------------------------------------- editors
 
 [nvim.files]
-"files/nvim" = { target = "~/.config/nvim", recurse = false }
+"files/nvim" = { target = "~/.config/nvim", type = "symbolic", recurse = false }
 
 [vim.files]
 "files/vimrc" = "~/.vimrc"
@@ -65,9 +65,9 @@ default_target_type = "symbolic"
 # All three are app-managed: they rewrite lockfiles and settings in place.
 
 [agents.files]
-"files/agents"   = { target = "~/.agents",          recurse = false }
-"files/codex"    = { target = "~/.codex",           recurse = false }
-"files/opencode" = { target = "~/.config/opencode", recurse = false }
+"files/agents"   = { target = "~/.agents",          type = "symbolic", recurse = false }
+"files/codex"    = { target = "~/.codex",           type = "symbolic", recurse = false }
+"files/opencode" = { target = "~/.config/opencode", type = "symbolic", recurse = false }
 
 # ---------------------------------------------------------------- assorted cli tools
 
@@ -84,7 +84,7 @@ default_target_type = "symbolic"
 # them is outside $HOME.
 [mc.files]
 "files/mc/mc.keymap"     = "~/.config/mc/mc.keymap"
-"files/mc/mc.vim.keymap" = { target = "/etc/mc/mc.vim.keymap", owner = "root" }
+"files/mc/mc.vim.keymap" = { target = "/etc/mc/mc.vim.keymap", type = "symbolic", owner = "root" }
 
 # ---------------------------------------------------------------- linux only
 
