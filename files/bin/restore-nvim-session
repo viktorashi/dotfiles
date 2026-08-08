@@ -1,0 +1,3 @@
+#!/bin/sh
+# Referenced by tmux-resurrect (@resurrect-processes) to bring a pane's nvim back.
+exec nvim "+lua require('persistence').load()"
