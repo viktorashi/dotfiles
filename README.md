@@ -1,135 +1,65 @@
-#### Download all scripts from [here](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fviktorashi%2Fmy-config%2Ftree%2Fmain%2Fdocs) and run them inside `bash, zsh`
+# my-config
 
-### Orr copy-paste these from below, but you'll need to get `curl` first
+One tree, all machines.
 
-> [!IMPORTANT]
-> Beforehand for Windows users!
-> Follow [The MSYS2 tutorial](https://www.msys2.org) for installing it.
-> It automatically adds `bash`, which can later be accessed directly through the Windows Terminal via the command `sh`.
-> Inside the `MSYS2` terminal run
+There are no per-machine branches. Every machine checks out the same commit and picks a
+*machine file* that says which packages it wants and where anything unusual goes. Whatever
+differs between two machines is visible in one diff, in one place.
+
+Managed with [dotter](https://github.com/SuperCuber/dotter).
+
+## Layout
 
 ```
-pacman -S curl zsh
+.dotter/
+  global.toml          every package, and where each of its files goes
+  machines/<name>.toml which packages this machine takes, and its overrides
+  post_deploy.sh       runs scripts/<pkg>/ for the selected packages
+  local.toml           generated, not tracked: names this machine
+files/                 anything that gets placed somewhere
+scripts/<pkg>/         anything that gets run on deploy, if <pkg> is selected
 ```
 
-Add
-```
-C:\msys64\mingw64\bin
-```
-to your path 
+If something under `files/` is not claimed by an entry in `global.toml`, it is dead. If
+something is meant to be run rather than linked, it belongs in `scripts/`, not `files/`.
 
+## Install
 
-then just GET THE config.
-```bash
-curl -fsSL https://raw.githubusercontent.com/viktorashi/dotfiles/main/docs/backup-remove-and-clone.sh | sh
-```
-
-> [!IMPORTANT]
-> If on Windows, you need to hard-link *a lot of stuff* that's tracked, so run this 
-```
-~/docs/vindovs/link-windows-thangs.bat
-```
-
-Restart your `shell`. _Voila!_
-
-Now checkout into whichever OS you have
-```bash
-conf sw windows10 #this works for 11 as well
-```
-
-then run the specific
-```bash
-~/docs/install-init-stuff.sh
-```
-for that OS
-
-
-Now you'll be able to run the following commands:
-##### You should have my lazy-aah aliases so you can use things like
-
-```bash
-conf status
-#or ,even more lazily:
-conf s
-
-cons sw mac # if you're one of those
-
-conf pull #after you've bothered me
-
-#whenever you add a new file and want it to be tracked:
-conf add <filename>
-
-#or shortcut if you've added new plugin files in neovim / docs
-confad
-
-#even view it nicely if you have lazygit:
-configlazygit
-```
-
-You can check them out in `~/docs/aliases.sh`
-
-# Don't worry about these if you're on mac, just run `~/docs/install-init-stuff.sh`. Simmilar ones will be coming for other branches as well at some point.
-## Other dependecies 
-
-- [git Delta](https://dandavison.github.io/delta/installation.html)
-- [node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [neovim](https://neovim.io)
-
-Installing these on Windows:
-Get [Scoop](https://scoop.sh).
-and do
+Nothing but a shell is required. The bootstrap installs `git` and `dotter`, clones this
+repo to `~/.dotfiles`, and asks which machine this is.
 
 ```sh
-scoop install neovim delta zoxide fd
+curl -fsSL https://dot.viktorashi.dev | sh
 ```
 
-For `node` install [fnm](https://github.com/Schniz/fnm) and do:
+PowerShell:
+
+```powershell
+irm https://dot.viktorashi.dev | iex
+```
+
+## Day to day
 
 ```sh
-fnm install 22
-fnm default 22
+conf status          # git, against ~/.dotfiles
+conflazygit          # lazygit, same
+dot deploy           # apply the config
+dot undeploy         # take it back off
+dot watch            # redeploy on every change
 ```
 
-For [Rust](https://www.rust-lang.org) development:
-On Windows you need Visual Studio C/C++ Windows Development Toolchain before even installing `rustup`. After you get it:
+Configs are linked, not copied, so editing `~/.zshrc` edits the file in the repo. Whole
+directories that an app rewrites itself — `nvim`, `codex`, `opencode`, `agents` — are
+linked as one unit on purpose: it is the only mode where a file the app creates lands back
+in the repo without being asked.
 
-```
-rustup update
-rustup component add rust-analyzer
-rustup component add rustfmt
-```
-Now just make sure you on the `Private` Wifi network (if you know you know) and run the all-lazily:
+## Adding a machine
 
-```sh
-nv
-```
+1. Write `.dotter/machines/<name>.toml` — the package list, plus a `[files]` block for
+   anything that lives somewhere else here.
+2. Add `files/shell/machines/<name>.sh` and `.zsh` for `PATH` entries and anything else
+   that is only true on that box. They are sourced at the end of `.profile` and `.zshrc`.
+3. Deploy.
 
-#### Different neovim notes for binds and stuffs
-
-Starting a command with `":term"` takes the output of the command and spits it into a buffer
-FINALLYyY found da issue
-
-✅✅✅✅ one more _Voila!_ ✅✅✅✅
-
-#### Contributing (u wont, dont lie)
-
-To generate these docs I've used [pandoc](https://pandoc.org) with THIS
-HIGHLY RECOMMENDED FILTER FOR `pandoc`:
-[py-pandoc-include-code](https://github.com/veneres/py-pandoc-include-code)
-
-and you can simply run:
-
-```bash
-make
-```
-
-if your machine has [GNU Make](https://www.gnu.org/software/make)
-
-else just do
-
-```bash
-pandoc --filter=py-pandoc-include-code ~/docs/read-me.md -o ~/docs/README.md
-```
-
-before commiting orrr put it into that into the file go into
-`~/.cfg/hooks/pre-commit` to make it a pre-commmit hook like ya boi
+Machine-specific settings go in an include the app already understands, not in a template.
+Only a format with no include mechanism gets templated.
