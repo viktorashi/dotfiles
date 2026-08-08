@@ -1,0 +1,9 @@
+# leanoox — personal Arch laptop.
+packages = [
+  "shell", "nvim", "vim", "git", "tmux", "ghostty",
+  "ssh", "gnupg", "agents", "cli-tools", "bin", "mc", "systemd",
+]
+
+[files]
+"files/shell/machines/leanoox.sh"  = "~/.config/shell/machine.sh"
+"files/shell/machines/leanoox.zsh" = "~/.config/shell/machine.zsh"

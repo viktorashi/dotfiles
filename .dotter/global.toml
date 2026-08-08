@@ -1,0 +1,116 @@
+##
+## One tree, all machines.
+##
+## Two roots:
+##   files/            anything that gets placed somewhere. Every entry below claims one.
+##   scripts/<pkg>/    anything that gets *run* on deploy, if <pkg> is selected.
+##
+## A machine is a composition of packages, declared in .dotter/machines/<name>.toml.
+## What differs per machine lives in that file, not here.
+##
+## Directories are linked WHOLE (recurse = false) on purpose: it is the only mode where a
+## file an app writes into the target lands back in this repo unaided. Never add a separate
+## entry for a file inside a whole-linked directory — that path deletes the source.
+##
+
+[settings]
+default_target_type = "symbolic"
+
+# ---------------------------------------------------------------- shell
+
+[shell.files]
+"files/shell/profile"      = "~/.profile"
+"files/shell/zprofile"     = "~/.zprofile"
+"files/shell/bashrc"       = "~/.bashrc"
+"files/shell/zshrc"        = "~/.zshrc"
+"files/shell/bash_profile" = "~/.bash_profile"
+"files/shell/shared.sh"    = "~/.config/shell/shared.sh"
+"files/zsh/completions"    = "~/.zsh/completions"
+
+# The per-machine shell fragment. Every machine file overrides these two to point at its
+# own pair under files/shell/machines/. Sourced at the end of .profile / .bashrc / .zshrc.
+# This is the include, not a template — see DESIGN.md, "Include vs. template".
+
+# ---------------------------------------------------------------- editors
+
+[nvim.files]
+"files/nvim" = { target = "~/.config/nvim", recurse = false }
+
+[vim.files]
+"files/vimrc" = "~/.vimrc"
+
+# ---------------------------------------------------------------- vcs
+
+[git.files]
+"files/git" = "~/.config/git"
+
+# ---------------------------------------------------------------- terminal
+
+[tmux.files]
+"files/tmux" = "~/.config/tmux"
+
+[ghostty.files]
+"files/ghostty" = "~/.config/ghostty"
+
+# ---------------------------------------------------------------- secrets-adjacent
+
+[ssh.files]
+"files/ssh/config" = "~/.ssh/config"
+
+[gnupg.files]
+"files/gnupg/gpg-agent.conf"     = "~/.gnupg/gpg-agent.conf"
+"files/gnupg/gpg-public-key.asc" = "~/.gnupg/gpg-public-key.asc"
+
+# ---------------------------------------------------------------- ai agents
+# All three are app-managed: they rewrite lockfiles and settings in place.
+
+[agents.files]
+"files/agents"   = { target = "~/.agents",          recurse = false }
+"files/codex"    = { target = "~/.codex",           recurse = false }
+"files/opencode" = { target = "~/.config/opencode", recurse = false }
+
+# ---------------------------------------------------------------- assorted cli tools
+
+[cli-tools.files]
+"files/broot"    = "~/.config/broot"
+"files/lazygit"  = "~/.config/lazygit"
+"files/radian"   = "~/.config/radian"
+"files/rstudio"  = "~/.config/rstudio"
+"files/cargo"    = "~/.cargo"
+"files/docker"   = "~/.docker"
+"files/sqliterc" = "~/.sqliterc"
+
+# mc is split rather than whole-linked: its two files go to different places, and one of
+# them is outside $HOME.
+[mc.files]
+"files/mc/mc.keymap"     = "~/.config/mc/mc.keymap"
+"files/mc/mc.vim.keymap" = { target = "/etc/mc/mc.vim.keymap", owner = "root" }
+
+# ---------------------------------------------------------------- linux only
+
+[systemd.files]
+"files/systemd" = "~/.config/systemd"
+
+# ---------------------------------------------------------------- windows only
+# Targets that are not $HOME-relative are resolved live from the environment so that GPO
+# folder redirection and OneDrive known-folder move stay correct. The :- fallback is
+# mandatory: an unset variable aborts config loading on every *other* OS.
+
+[windows.files]
+"files/windows/auto-hotkey"     = "~/auto-hotkey"
+"files/windows/security-crypto" = "~/security-crypto"
+"files/windows/msys-profile"    = "~/.msys-profile"
+"files/windows/msys2.conf"      = "~/.msys2.conf"
+"files/windows/nsswitch.conf"   = "~/.nsswitch.conf"
+"files/windows/windowsterm-settings.json" = "${LOCALAPPDATA:-/nonexistent}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+"files/windows/azurestorage-explorer-settings.json" = "${APPDATA:-/nonexistent}/StorageExplorer/settings.json"
+
+# ---------------------------------------------------------------- script-only packages
+# A package with no files is legal: `files` is #[serde(default)]. These exist purely so a
+# machine can select the matching scripts/<name>/ directory.
+
+[certs.files]
+[mac.files]
+
+[bin.files]
+"files/bin" = "~/.local/bin"

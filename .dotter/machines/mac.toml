@@ -1,0 +1,9 @@
+# mac — macOS. No systemd, no /etc/mc.
+packages = [
+  "shell", "nvim", "vim", "git", "tmux", "ghostty",
+  "ssh", "gnupg", "agents", "cli-tools", "bin", "mac",
+]
+
+[files]
+"files/shell/machines/mac.sh"  = "~/.config/shell/machine.sh"
+"files/shell/machines/mac.zsh" = "~/.config/shell/machine.zsh"

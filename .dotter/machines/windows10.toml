@@ -1,0 +1,9 @@
+# windows10 — native Windows, shell config consumed through MSYS2 / Git Bash.
+packages = [
+  "shell", "nvim", "vim", "git", "tmux",
+  "ssh", "gnupg", "agents", "cli-tools", "bin", "windows",
+]
+
+[files]
+"files/shell/machines/windows10.sh"  = "~/.config/shell/machine.sh"
+"files/shell/machines/windows10.zsh" = "~/.config/shell/machine.zsh"
