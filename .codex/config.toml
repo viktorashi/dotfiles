@@ -65,10 +65,12 @@ trust_level = "trusted"
 
 [notice]
 hide_full_access_warning = true
+hide_rate_limit_model_nudge = true
 
 [notice.model_migrations]
 "gpt-5.2-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.5"
+"gpt-5.4-mini" = "gpt-5.6-luna"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
@@ -117,8 +119,8 @@ source_type = "local"
 source = "/Users/viktorashi/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.ponytail]
-last_updated = "2026-06-27T09:51:48Z"
-last_revision = "c4d1925ae9b76a1b641877328209ad25cfeb5ef2"
+last_updated = "2026-07-24T11:52:16Z"
+last_revision = "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 
@@ -168,14 +170,14 @@ use_memories = true
 [hooks.state]
 
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
-trusted_hash = "sha256:35ad4fd900da217d98e6eb60198465bd10d55e21eacd72758621dc385145cc05"
+trusted_hash = "sha256:5f81d38f47448a1581c08ec877e044d9e04dd6f814dce3f2671f7a8edadd719b"
 enabled = true
 
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
-trusted_hash = "sha256:22db2f951755c593f9deba5e69cd1be1c87e0c9b2f5538a13b5dd9911141793f"
+trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0bfefca4"
 
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
-trusted_hash = "sha256:28c43eada804ad00a4e651d6af6320c01e763b1df060af0ab74865a55bc1c9a9"
+trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
 enabled = true
 # web_search = "disabled"
 
