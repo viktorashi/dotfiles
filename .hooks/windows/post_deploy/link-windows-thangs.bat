@@ -71,4 +71,3 @@ for /L %%i in (0,1,%pair_count%) do (
 
 echo.
 echo Done!
-pause
