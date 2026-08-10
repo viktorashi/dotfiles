@@ -3,7 +3,7 @@
 ##
 ## Two roots:
 ##   files/            anything that gets placed somewhere. Every entry below claims one.
-##   scripts/<pkg>/    anything that gets *run* on deploy, if <pkg> is selected.
+##   .hooks/<pkg>/     anything that gets *run* on deploy, if <pkg> is selected.
 ##
 ## A machine is a composition of packages, declared in .dotter/machines/<name>.toml.
 ## What differs per machine lives in that file, not here.
@@ -107,7 +107,7 @@ default_target_type = "symbolic"
 
 # ---------------------------------------------------------------- script-only packages
 # A package with no files is legal: `files` is #[serde(default)]. These exist purely so a
-# machine can select the matching scripts/<name>/ directory.
+# machine can select the matching .hooks/<name>/ directory.
 
 [certs.files]
 [mac.files]
