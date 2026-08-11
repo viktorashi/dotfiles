@@ -79,6 +79,7 @@ default_target_type = "symbolic"
 "files/cargo" = "~/.cargo"
 "files/docker" = "~/.docker"
 "files/sqliterc" = "~/.sqliterc"
+"files/mise" = "~/.config/mise/config.toml"
 
 # mc is split rather than whole-linked: its two files go to different places, and one of
 # them is outside $HOME.
