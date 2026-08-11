@@ -1,9 +1,19 @@
-# arch-wsl — WSL2 on the work Windows box.
 packages = [
-  "shell", "nvim", "vim", "git", "tmux", 
-  "ssh", "gnupg", "agents", "cli-tools", "bin", "mc", "systemd",
-]
+  "shell",
+  "nvim",
+  "vim",
+  "git",
+  "tmux",
+  "pacman",
+  "ssh",
+  "gnupg",
+  "agents",
+  "cli-tools",
+  "bin",
+  "mc",
+  "systemd",
+] # arch-wsl — WSL2 on the work Windows box.
 
 [files]
-"files/shell/machines/arch-wsl.sh"  = "~/.config/shell/machine.sh"
+"files/shell/machines/arch-wsl.sh" = "~/.config/shell/machine.sh"
 "files/shell/machines/arch-wsl.zsh" = "~/.config/shell/machine.zsh"
