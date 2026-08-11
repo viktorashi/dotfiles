@@ -44,6 +44,8 @@ alias ls='eza -a --classify --color=always --icons=always'
 alias l=ls
 alias ll="ls -l --sort=size --reverse --git --git-repos --total-size"
 
+alias cat="bat"
+
 #i always mess this up so ye
 alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
@@ -296,6 +298,6 @@ alias brew-clean='brew cleanup --prune=all'
 ##kkturi random gen literally
 alias getrandom='cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c50'
 
-alias sudo='sudo '
+# alias sudo='sudo '
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
