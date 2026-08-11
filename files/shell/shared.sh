@@ -202,6 +202,7 @@ alias ib='fzf -m --preview="bat --color=always {}" --bind "enter:become(bat {+})
 
 alias nv='nvim'
 alias oc='opencode'
+alias agy='agy --dangerously-skip-permissions'
 
 ##############
 #de editoare##
