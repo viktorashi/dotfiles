@@ -22,3 +22,6 @@ alias yayS=yay-install
 #cica avoid, refreshing the lists without updating.
 alias pacman-update='sudo pacman -Syu'
 alias yay-update='yay -Syu'
+
+eval "$(/usr/bin/wsl2-ssh-agent)"
+
