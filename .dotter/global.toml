@@ -105,6 +105,9 @@ default_target_type = "symbolic"
 "files/windows/windowsterm-settings.json" = "${LOCALAPPDATA:-/nonexistent}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 "files/windows/azurestorage-explorer-settings.json" = "${APPDATA:-/nonexistent}/StorageExplorer/settings.json"
 
+[arch.files]
+"files/arch/yay/config.json" = "~/.config/yay/config.json"
+
 # ---------------------------------------------------------------- script-only packages
 # A package with no files is legal: `files` is #[serde(default)]. These exist purely so a
 # machine can select the matching .hooks/<name>/ directory.
