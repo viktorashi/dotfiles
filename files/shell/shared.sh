@@ -2,6 +2,7 @@
 
 # Let the shell prompt decide how virtual environments are displayed.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export GIT_SSL_NO_VERIFY=true
 
 # Fresh tmux panes can inherit a stale Python venv from the tmux server
 # environment. Strip that implicit state so project venvs are only entered
