@@ -16,6 +16,7 @@ export LIBVA_DRIVER_NAME=d3d12
 
 alias pacman-install='sudo pacman -S --noconfirm'
 alias pacmanS=pacman-install
+alias pacS=pacman-install
 alias yay-install='yay -S --noconfirm'
 alias yayS=yay-install
 
