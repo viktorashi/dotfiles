@@ -1,5 +1,4 @@
 git:
-  autoFetch: false
   diffRenderers:
     - command: delta --dark --paging=never --line-numbers
       # overrideGpg: true
