@@ -39,7 +39,11 @@ alias clc='clear'
 alias cl='clear'
 alias ..='cd ..'
 alias ...='cd ../../'
-alias l='ls'
+
+alias ls='eza -a --classify --color=always --icons=always'
+alias l=ls
+alias ll="ls -l --sort=size --reverse --git --git-repos --total-size"
+
 #i always mess this up so ye
 alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
@@ -161,8 +165,6 @@ alias docker-clean='docker system prune -a --volumes'
 #
 alias t='tmux'
 
-alias ls='ls -a'
-alias ll='ls -l'
 #FRFRFF fr for reals
 alias fr='clear && flask --app . --debug run' # dupa pui --app <numele la ce package ii zice la aplicatie> run
 #muult prea des dau acum frfr
