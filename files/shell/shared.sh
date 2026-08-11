@@ -8,29 +8,29 @@ export GIT_SSL_NO_VERIFY=true
 # environment. Strip that implicit state so project venvs are only entered
 # explicitly (for example via `sv`).
 if [ -n "${VIRTUAL_ENV-}" ]; then
-	case ":$PATH:" in
-	*":$VIRTUAL_ENV/bin:"*)
-		PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
-		export PATH
-		;;
-	esac
-	unset VIRTUAL_ENV
-	unset VIRTUAL_ENV_PROMPT
+  case ":$PATH:" in
+  *":$VIRTUAL_ENV/bin:"*)
+    PATH=$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: -v drop="$VIRTUAL_ENV/bin" '$0 != drop { print }' | sed 's/:$//')
+    export PATH
+    ;;
+  esac
+  unset VIRTUAL_ENV
+  unset VIRTUAL_ENV_PROMPT
 fi
 
 tmux_see_sockets_statuses() {
-	for s in /tmp/tmux-$(id -u)/*; do
-		printf '%s: ' "$s"
-		tmux -S "$s" ls >/dev/null 2>&1 && echo live || echo dead
-	done
+  for s in /tmp/tmux-$(id -u)/*; do
+    printf '%s: ' "$s"
+    tmux -S "$s" ls >/dev/null 2>&1 && echo live || echo dead
+  done
 }
 
 tmux_kill_dead_sockets() {
-	for s in /tmp/tmux-$(id -u)/*; do
-		base=$(basename "$s")
-		[ "$base" = default ] && continue
-		tmux -S "$s" ls >/dev/null 2>&1 || rm -f -- "$s"
-	done
+  for s in /tmp/tmux-$(id -u)/*; do
+    base=$(basename "$s")
+    [ "$base" = default ] && continue
+    tmux -S "$s" ls >/dev/null 2>&1 || rm -f -- "$s"
+  done
 
 }
 
@@ -73,19 +73,19 @@ alias gl='git log --graph --all --show-signature --format="%C(yellow)commit %H%C
 
 # iti face semnatura la toate commiturile (inclusiv cel dat ca argument) in sus non-interactiv
 git-sign-from-commit() {
-	git rebase --exec "git commit --amend --no-edit -n -S" "$1~1"
+  git rebase --exec "git commit --amend --no-edit -n -S" "$1~1"
 }
 
 # Signs ONLY the specific commit provided as an argument, non-interactively
 git-sign-single-commit() {
-	if [ -z "$1" ]; then
-		echo "Error: Please provide a commit hash."
-		return 1
-	fi
+  if [ -z "$1" ]; then
+    echo "Error: Please provide a commit hash."
+    return 1
+  fi
 
-	# Temporarily override the editor to inject the 'exec' command ONLY after the very first line (the target commit)
-	GIT_SEQUENCE_EDITOR='f() { awk "NR==1{print; print \"exec git commit --amend --no-edit -n -S\"; next} 1" "$1" > "$1.tmp" && mv "$1.tmp" "$1"; }; f' \
-		git rebase -i "$1~1"
+  # Temporarily override the editor to inject the 'exec' command ONLY after the very first line (the target commit)
+  GIT_SEQUENCE_EDITOR='f() { awk "NR==1{print; print \"exec git commit --amend --no-edit -n -S\"; next} 1" "$1" > "$1.tmp" && mv "$1.tmp" "$1"; }; f' \
+    git rebase -i "$1~1"
 }
 
 alias grso='git remote show origin'
@@ -106,24 +106,24 @@ alias gsd='git stash drop'  #asta face practic pop
 
 #store in stash fara sa le scoata din worktree, si doar la staged changes
 gss() {
-	local msg="${1:-Stashed staged changes}"
+  local msg="${1:-Stashed staged changes}"
 
-	# 1. Check if there are actually staged changes
-	if git diff --cached --quiet; then
-		echo "No staged changes to stash."
-		return 0
-	fi
+  # 1. Check if there are actually staged changes
+  if git diff --cached --quiet; then
+    echo "No staged changes to stash."
+    return 0
+  fi
 
-	local rev=$(git stash create "$msg")
+  local rev=$(git stash create "$msg")
 
-	if [ -n "$rev" ]; then
-		# 3. Store it properly in the stash reflog
-		git stash store -m "$msg" "$rev"
-		echo "Staged changes stashed as: $msg"
-		echo "Worktree and Index remain UNTOUCHED."
-	else
-		echo "Failed to create stash snapshot."
-	fi
+  if [ -n "$rev" ]; then
+    # 3. Store it properly in the stash reflog
+    git stash store -m "$msg" "$rev"
+    echo "Staged changes stashed as: $msg"
+    echo "Worktree and Index remain UNTOUCHED."
+  else
+    echo "Failed to create stash snapshot."
+  fi
 }
 
 alias gw='git worktree'
@@ -145,7 +145,6 @@ alias lg=lazygit
 conflazygit() { lazygit --path "$DOTFILES" "$@"; }
 alias conflg="conflazygit"
 alias clazygit="conflazygit"
-
 
 #sunt prea putoare
 alias m='make'
@@ -185,12 +184,12 @@ alias python="python3"
 alias iv='(git ls-files --cached --others --exclude-standard 2>/dev/null || find . -type f; [ -f .env ] && echo .env) | sort -u | fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
 
 _rg_pick_open() {
-	local opener="$1"
-	fzf -m --disabled --prompt="rg> " \
-		--bind "start:reload:rg --files" \
-		--bind "change:reload:rg -P --files-with-matches --smart-case --hidden -g '!.git' -- {q} 2>/dev/null || true" \
-		--bind "enter:become(${opener} {+})" \
-		--preview "if [ -n \"{q}\" ]; then rg -P --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"
+  local opener="$1"
+  fzf -m --disabled --prompt="rg> " \
+    --bind "start:reload:rg --files" \
+    --bind "change:reload:rg -P --files-with-matches --smart-case --hidden -g '!.git' -- {q} 2>/dev/null || true" \
+    --bind "enter:become(${opener} {+})" \
+    --preview "if [ -n \"{q}\" ]; then rg -P --smart-case --line-number --color=always -C 2 -- {q} {} 2>/dev/null || bat --color=always {}; else bat --color=always {}; fi"
 }
 alias gv='_rg_pick_open nvim'
 alias gvnh='_rg_pick_open --hidden --glob "!.git/*" --glob "!.*/*" nvim'
@@ -223,7 +222,6 @@ alias sshacas='ssh victor@viktorashi.home.ro'
 #alias sshcs='ssh cs.obscure-fishstick-w9rjqqv46x9c9975.develop'
 #alias sshraspi='ssh pi@10.5.202.61'
 
-
 #sa vezi ma merge netu
 alias pg='ping google.com'
 
@@ -254,37 +252,37 @@ alias copilot-history='cd ~/.copilot/session-state'
 #da deocamdata nu e folositan nicaieri ca nu-mi dau eu seama
 get_brew_size() {
 
-	data=$(brew list | xargs -n1 -P8 -I {} sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | sort -h -r -k2 - | column -t)
+  data=$(brew list | xargs -n1 -P8 -I {} sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | sort -h -r -k2 - | column -t)
 
-	echo "Datele de la formule caske:"
-	echo "$data"
+  echo "Datele de la formule caske:"
+  echo "$data"
 
-	total=0
+  total=0
 
-	# Process each line
-	while IFS= read -r line; do
-		# Extract the size and unit using regex
-		size=$(echo "$line" | grep -oP '\d+(\.\d+)?(?=[KM]B)')
-		unit=$(echo "$line" | grep -oP '(?<=\d)([KM]B)')
+  # Process each line
+  while IFS= read -r line; do
+    # Extract the size and unit using regex
+    size=$(echo "$line" | grep -oP '\d+(\.\d+)?(?=[KM]B)')
+    unit=$(echo "$line" | grep -oP '(?<=\d)([KM]B)')
 
-		# Convert sizes to KB
-		if [[ $unit == "MB" ]]; then
-			size_kb=$(echo "$size * 1024" | bc)
-		elif [[ $unit == "KB" ]]; then
-			size_kb=$size
-		else
-			size_kb=0
-		fi
+    # Convert sizes to KB
+    if [[ $unit == "MB" ]]; then
+      size_kb=$(echo "$size * 1024" | bc)
+    elif [[ $unit == "KB" ]]; then
+      size_kb=$size
+    else
+      size_kb=0
+    fi
 
-		# Add to the total
-		total=$(echo "$total + $size_kb" | bc)
-	done <<<"$data"
+    # Add to the total
+    total=$(echo "$total + $size_kb" | bc)
+  done <<<"$data"
 
-	# Convert total to MB for better readability
-	total_mb=$(echo "scale=2; $total / 1024" | bc)
+  # Convert total to MB for better readability
+  total_mb=$(echo "scale=2; $total / 1024" | bc)
 
-	echo "Total size: $total KB"
-	echo "Total size: $total_mb MB"
+  echo "Total size: $total KB"
+  echo "Total size: $total_mb MB"
 }
 
 #deocamdata nu prea merge astsa deci functia de sus nu-i folosita
