@@ -19,13 +19,13 @@ default_target_type = "symbolic"
 # ---------------------------------------------------------------- shell
 
 [shell.files]
-"files/shell/profile"      = "~/.profile"
-"files/shell/zprofile"     = "~/.zprofile"
-"files/shell/bashrc"       = "~/.bashrc"
-"files/shell/zshrc"        = "~/.zshrc"
+"files/shell/profile" = "~/.profile"
+"files/shell/zprofile" = "~/.zprofile"
+"files/shell/bashrc" = "~/.bashrc"
+"files/shell/zshrc" = "~/.zshrc"
 "files/shell/bash_profile" = "~/.bash_profile"
-"files/shell/shared.sh"    = "~/.config/shell/shared.sh"
-"files/zsh/completions"    = "~/.zsh/completions"
+"files/shell/shared.sh" = "~/.config/shell/shared.sh"
+"files/zsh/completions" = "~/.zsh/completions"
 
 # The per-machine shell fragment. Every machine file overrides these two to point at its
 # own pair under files/shell/machines/. Sourced at the end of .profile / .bashrc / .zshrc.
@@ -58,32 +58,32 @@ default_target_type = "symbolic"
 "files/ssh/config" = "~/.ssh/config"
 
 [gnupg.files]
-"files/gnupg/gpg-agent.conf"     = "~/.gnupg/gpg-agent.conf"
+"files/gnupg/gpg-agent.conf" = "~/.gnupg/gpg-agent.conf"
 "files/gnupg/gpg-public-key.asc" = "~/.gnupg/gpg-public-key.asc"
 
 # ---------------------------------------------------------------- ai agents
 # All three are app-managed: they rewrite lockfiles and settings in place.
 
 [agents.files]
-"files/agents"   = { target = "~/.agents",          type = "symbolic", recurse = false }
-"files/codex"    = { target = "~/.codex",           type = "symbolic", recurse = false }
+"files/agents" = { target = "~/.agents", type = "symbolic", recurse = false }
+"files/codex" = { target = "~/.codex", type = "symbolic", recurse = false }
 "files/opencode" = { target = "~/.config/opencode", type = "symbolic", recurse = false }
 
 # ---------------------------------------------------------------- assorted cli tools
 
 [cli-tools.files]
-"files/broot"    = "~/.config/broot"
-"files/lazygit"  = "~/.config/lazygit"
-"files/radian"   = "~/.config/radian"
-"files/rstudio"  = "~/.config/rstudio"
-"files/cargo"    = "~/.cargo"
-"files/docker"   = "~/.docker"
+"files/broot" = "~/.config/broot"
+"files/lazygit" = "~/.config/lazygit"
+"files/radian" = "~/.config/radian"
+"files/rstudio" = "~/.config/rstudio"
+"files/cargo" = "~/.cargo"
+"files/docker" = "~/.docker"
 "files/sqliterc" = "~/.sqliterc"
 
 # mc is split rather than whole-linked: its two files go to different places, and one of
 # them is outside $HOME.
 [mc.files]
-"files/mc/mc.keymap"     = "~/.config/mc/mc.keymap"
+"files/mc/mc.keymap" = "~/.config/mc/mc.keymap"
 "files/mc/mc.vim.keymap" = { target = "/etc/mc/mc.vim.keymap", type = "symbolic", owner = "root" }
 
 # ---------------------------------------------------------------- linux only
@@ -97,11 +97,11 @@ default_target_type = "symbolic"
 # mandatory: an unset variable aborts config loading on every *other* OS.
 
 [windows.files]
-"files/windows/auto-hotkey"     = "~/auto-hotkey"
+"files/windows/auto-hotkey" = "~/auto-hotkey"
 "files/windows/security-crypto" = "~/security-crypto"
-"files/windows/msys-profile"    = "~/.msys-profile"
-"files/windows/msys2.conf"      = "~/.msys2.conf"
-"files/windows/nsswitch.conf"   = "~/.nsswitch.conf"
+"files/windows/msys-profile" = "~/.msys-profile"
+"files/windows/msys2.conf" = "~/.msys2.conf"
+"files/windows/nsswitch.conf" = "~/.nsswitch.conf"
 "files/windows/windowsterm-settings.json" = "${LOCALAPPDATA:-/nonexistent}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 "files/windows/azurestorage-explorer-settings.json" = "${APPDATA:-/nonexistent}/StorageExplorer/settings.json"
 
