@@ -2,3 +2,6 @@
 node = "latest"
 npm = "latest"
 pnpm = "latest"
+
+[bootstrap.mise_shell_activate]
+zshrc = true

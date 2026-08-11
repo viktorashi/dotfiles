@@ -317,10 +317,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
-if [ -x "$HOME/.local/bin/mise" ]; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-  eval "$($HOME/.local/bin/mise completion zsh)"
-fi
+eval "$(mise activate zsh)"
+eval "$(mise completion zsh)"
 command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
