@@ -10,6 +10,10 @@ export MC_KEYMAP=/etc/mc/mc.vim.keymap
 export ACR_NAME="stratecai"
 export SERVICE_PRINCIPAL_NAME="ca04454e-62bc-4787-a26e-62469f8b5187"
 
+#cv de video
+export GALLIUM_DRIVER=d3d12
+export LIBVA_DRIVER_NAME=d3d12
+
 alias pacman-install='sudo pacman -S --noconfirm'
 alias pacmanS=pacman-install
 alias yay-install='yay -S --noconfirm'
