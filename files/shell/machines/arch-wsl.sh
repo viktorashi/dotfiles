@@ -14,3 +14,7 @@ alias pacman-install='sudo pacman -S --noconfirm'
 alias pacmanS=pacman-install
 alias yay-install='yay -S --noconfirm'
 alias yayS=yay-install
+
+#cica avoid, refreshing the lists without updating.
+alias pacman-update='sudo pacman -Syu'
+alias yay-update='yay -Syu'
