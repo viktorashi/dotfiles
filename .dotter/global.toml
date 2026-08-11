@@ -109,7 +109,6 @@ default_target_type = "symbolic"
 "files/wsl/wsl.conf" = "/etc/wsl.conf"
 
 
-
 [arch.files]
 "files/arch/yay/config.json" = "~/.config/yay/config.json"
 
@@ -119,6 +118,7 @@ default_target_type = "symbolic"
 
 [certs.files]
 [mac.files]
+"files/mac-docker" = "~/.docker"
 
 [bin.files]
 "files/bin" = "~/.local/bin"
