@@ -1,7 +1,9 @@
 [tools]
+github-cli = "latest"
 node = "latest"
 npm = "latest"
 pnpm = "latest"
+uv = "latest"
 
 [bootstrap.mise_shell_activate]
 zshrc = true
