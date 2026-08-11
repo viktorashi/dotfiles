@@ -1,10 +1,10 @@
 packages = [
+  "arch",
   "shell",
   "nvim",
   "vim",
   "git",
   "tmux",
-  "pacman",
   "ssh",
   "gnupg",
   "agents",
