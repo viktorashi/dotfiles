@@ -2,10 +2,13 @@ return {
   -- Configure copilot.lua to disable ghost text suggestions and the panel completely
   {
     "zbirenbaum/copilot.lua",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
+    lazy = false,
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
   },
 
   -- Ensure copilot is not loaded as an autocomplete source in blink.cmp
