@@ -5,6 +5,9 @@ return {
     or "make",
   event = "VeryLazy",
   version = false,
+  dependencies = {
+    "zbirenbaum/copilot.lua",
+  },
   opts = {
     instructions_file = "avante.md",
     provider = "copilot",

@@ -25,7 +25,7 @@ default_target_type = "symbolic"
 "files/shell/zshrc" = "~/.zshrc"
 "files/shell/bash_profile" = "~/.bash_profile"
 "files/shell/shared.sh" = "~/.config/shell/shared.sh"
-"files/zsh/completions" = "~/.zsh/completions"
+"files/zsh/completions" = { target = "~/.zsh/completions", type = "symbolic", recurse = false }
 
 # The per-machine shell fragment. Every machine file overrides these two to point at its
 # own pair under files/shell/machines/. Sourced at the end of .profile / .bashrc / .zshrc.
@@ -42,7 +42,7 @@ default_target_type = "symbolic"
 # ---------------------------------------------------------------- vcs
 
 [git.files]
-"files/git" = "~/.config/git"
+"files/git" = { target = "~/.config/git", type = "symbolic", recurse = false }
 
 # ---------------------------------------------------------------- terminal
 
@@ -50,7 +50,7 @@ default_target_type = "symbolic"
 "files/tmux" = "~/.config/tmux"
 
 [ghostty.files]
-"files/ghostty" = "~/.config/ghostty"
+"files/ghostty" = { target = "~/.config/ghostty", type = "symbolic", recurse = false }
 
 # ---------------------------------------------------------------- secrets-adjacent
 
@@ -67,18 +67,17 @@ default_target_type = "symbolic"
 [agents.files]
 "files/agents" = { target = "~/.agents", type = "symbolic", recurse = false }
 "files/codex" = { target = "~/.codex", type = "symbolic", recurse = false }
-"files/opencode" = { target = "~/.config/opencode", type = "symbolic", recurse = false }
+"files/opencode" = "~/.config/opencode"
 
 # ---------------------------------------------------------------- assorted cli tools
 
 [cli-tools.files]
-"files/broot" = "~/.config/broot"
-"files/lazygit" = "~/.config/lazygit"
-"files/radian" = "~/.config/radian"
-"files/rstudio" = "~/.config/rstudio"
+"files/broot" = { target = "~/.config/broot", type = "symbolic", recurse = false }
+"files/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }
+"files/radian" = { target = "~/.config/radian", type = "symbolic", recurse = false }
+"files/rstudio" = { target = "~/.config/rstudio", type = "symbolic", recurse = false }
 "files/cargo/config.toml" = "~/.cargo/config.toml"
 "files/cargo/binstall.toml" = "~/.cargo/binstall.toml"
-"files/docker" = "~/.docker"
 "files/sqliterc" = "~/.sqliterc"
 "files/mise/config.toml" = "~/.config/mise/config.toml"
 "files/prettyping" = "/usr/bin/prettyping"
@@ -92,7 +91,7 @@ default_target_type = "symbolic"
 # ---------------------------------------------------------------- linux only
 
 [systemd.files]
-"files/systemd" = "~/.config/systemd"
+"files/systemd" = { target = "~/.config/systemd", type = "symbolic", recurse = false }
 
 # ---------------------------------------------------------------- windows only
 # Targets that are not $HOME-relative are resolved live from the environment so that GPO
@@ -100,8 +99,8 @@ default_target_type = "symbolic"
 # mandatory: an unset variable aborts config loading on every *other* OS.
 
 [windows.files]
-"files/windows/auto-hotkey" = "~/auto-hotkey"
-"files/windows/security-crypto" = "~/security-crypto"
+"files/windows/auto-hotkey" = { target = "~/auto-hotkey", type = "symbolic", recurse = false }
+"files/windows/security-crypto" = { target = "~/security-crypto", type = "symbolic", recurse = false }
 "files/windows/msys-profile" = "~/.msys-profile"
 "files/windows/msys2.conf" = "~/.msys2.conf"
 "files/windows/nsswitch.conf" = "~/.nsswitch.conf"
@@ -121,7 +120,6 @@ default_target_type = "symbolic"
 
 [certs.files]
 [mac.files]
-"files/mac-docker" = "~/.docker"
 
 [bin.files]
-"files/bin" = "~/.local/bin"
+"files/bin" = { target = "~/.local/bin", type = "symbolic", recurse = false }
