@@ -81,6 +81,7 @@ default_target_type = "symbolic"
 "files/docker" = "~/.docker"
 "files/sqliterc" = "~/.sqliterc"
 "files/mise/config.toml" = "~/.config/mise/config.toml"
+"files/prettyping" = "/usr/bin/prettyping"
 
 # mc is split rather than whole-linked: its two files go to different places, and one of
 # them is outside $HOME.
