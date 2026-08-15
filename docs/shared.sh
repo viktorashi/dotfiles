@@ -45,11 +45,12 @@ alias scb='source ~/.bashrc'
 alias scz='source ~/.zshrc'
 alias sour='source'
 alias sv='source .venv/bin/activate'
-alias gr='egrep -irna'
-function tree {
-     br -c :pt "$@"
-}
+alias rg='rg -a "ADMIN_PASSWORD" --no-ignore --hidden'
+alias gr=g
 
+function tree {
+  br -c :pt "$@"
+}
 
 #ai numa grija dupa n-o sa-ti mai mearga ghostcript daca ai nevoie de el, da nu afecteaza ce chestii foloesti TeX si asa, nu cred
 #pot sa fac asta sau sa dau la unele
@@ -121,18 +122,18 @@ conf() {
   if [[ "$1" = "checkout" || "$1" = "switch" || "$1" = "co" || "$1" = "sw" ]]; then
     local tmp_err
     tmp_err=$(mktemp)
-    
-    git --git-dir="${git_dir}" --work-tree="$HOME" "$@" 2> "$tmp_err"
+
+    git --git-dir="${git_dir}" --work-tree="$HOME" "$@" 2>"$tmp_err"
     local exit_code=$?
-    
+
     if [ $exit_code -ne 0 ]; then
       local err_content
       err_content=$(cat "$tmp_err")
-      
+
       # Parse the conflicting files from git output (lines starting with a tab)
       local conflicting_files
       conflicting_files=$(echo "$err_content" | grep -E $'^\t' | sed $'s/^\t//')
-      
+
       if [ -n "$conflicting_files" ]; then
         # Find a unique incremental backup directory name
         local base_dir="$HOME/backup"
@@ -142,10 +143,10 @@ conf() {
           counter=$((counter + 1))
           backup_dir="${base_dir}_${counter}"
         done
-        
+
         echo "⚠️  Conflicting files detected. Backing up to: $backup_dir"
         mkdir -p "$backup_dir"
-        
+
         while IFS= read -r file; do
           [ -z "$file" ] && continue
           local local_path="$HOME/$file"
@@ -155,10 +156,10 @@ conf() {
             echo "📦 Moving $file -> $dest_path"
             mv "$local_path" "$dest_path"
           fi
-        done <<< "$conflicting_files"
-        
+        done <<<"$conflicting_files"
+
         rm -f "$tmp_err"
-        
+
         # Retry checkout/switch
         echo "🔄 Retrying command: conf $@"
         git --git-dir="${git_dir}" --work-tree="$HOME" "$@"
