@@ -1,5 +1,6 @@
 return {
-  "yetone/avante.nvim",
+  "viktorashi/avante.nvim",
+  branch = "viktorashi",
   build = vim.fn.has("win32") ~= 0
       and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
     or "make",
