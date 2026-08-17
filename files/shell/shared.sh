@@ -315,3 +315,6 @@ alias getrandom='cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c50'
 # alias sudo='sudo '
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+
+# Set Lua paths for Lua 5.1 (Neovim/LuaJIT defaults) dynamically via luarocks
+eval "$(luarocks path)"
