@@ -10,9 +10,9 @@ if [ -f "/etc/ssl/certs/ca-certificates.crt" ]; then
   export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
 elif [ -n "$WINDIR" ] || [[ "$(uname -r)" == *"microsoft"* ]]; then
   # Fallback to the raw Stratec chain file directly from dotfiles on Windows/WSL if needed
-  export REQUESTS_CA_BUNDLE="$DOTFILES/files/certs/STRATEC-Chain.pem"
-  export SSL_CERT_FILE="$DOTFILES/files/certs/STRATEC-Chain.pem"
-  export NODE_EXTRA_CA_CERTS="$DOTFILES/files/certs/STRATEC-Chain.pem"
+  export REQUESTS_CA_BUNDLE="$DOTFILES/files/certs/STRATEC-Chain.crt"
+  export SSL_CERT_FILE="$DOTFILES/files/certs/STRATEC-Chain.crt"
+  export NODE_EXTRA_CA_CERTS="$DOTFILES/files/certs/STRATEC-Chain.crt"
 fi
 
 # Fresh tmux panes can inherit a stale Python venv from the tmux server
