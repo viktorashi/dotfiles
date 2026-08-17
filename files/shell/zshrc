@@ -318,6 +318,10 @@ case ":$PATH:" in
 esac
 # pnpm end
 eval "$(mise activate zsh)"
+# Presence of the mise shell hook = dev machine (CI has mise but no hook,
+# runtime containers have no mise at all). Lets per-repo mise.<env>.toml
+# files gate dev-only tools behind MISE_ENV=dev automatically.
+[[ -n "$MISE_SHELL" ]] && export MISE_ENV=dev
 eval "$(mise completion zsh)"
 command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 
