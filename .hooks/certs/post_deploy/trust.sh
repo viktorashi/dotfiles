@@ -4,7 +4,13 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-CERTS_DIR="$HOME/.dotfiles/files/certs"
+if [ -n "$SUDO_USER" ]; then
+    USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+else
+    USER_HOME=$HOME
+fi
+
+CERTS_DIR="$USER_HOME/.dotfiles/files/certs"
 echo "Installing custom certificates from $CERTS_DIR..."
 
 # Check if there are any certs to install
