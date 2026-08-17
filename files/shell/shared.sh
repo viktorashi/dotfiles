@@ -43,7 +43,8 @@ alias ...='cd ../../'
 alias sl='sl -e'
 alias ls='eza -a --classify --color=always --icons=always'
 alias l=ls
-alias ll="ls -l --sort=size --reverse --git --git-repos --total-size"
+alias ls-l="ls -l --sort=size --reverse --git --git-repos --total-size"
+alias ll="ls -l --sort=size --reverse --git --git-repos"
 
 alias cat="bat"
 
