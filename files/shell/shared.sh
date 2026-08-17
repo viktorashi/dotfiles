@@ -2,7 +2,6 @@
 
 # Let the shell prompt decide how virtual environments are displayed.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export GIT_SSL_NO_VERIFY=true
 
 # Set global CA certificates for tools like Python (requests), Node.js, and general SSL
 if [ -f "/etc/ssl/certs/ca-certificates.crt" ]; then
