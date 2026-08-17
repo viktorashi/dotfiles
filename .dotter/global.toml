@@ -80,7 +80,7 @@ default_target_type = "symbolic"
 "files/cargo/binstall.toml" = "~/.cargo/binstall.toml"
 "files/sqliterc" = "~/.sqliterc"
 "files/mise/config.toml" = "~/.config/mise/config.toml"
-"files/prettyping" = "/usr/bin/prettyping"
+"files/prettyping" = { target = "/usr/bin/prettyping", type = "symbolic", owner = "root" }
 
 # mc is split rather than whole-linked: its two files go to different places, and one of
 # them is outside $HOME.
