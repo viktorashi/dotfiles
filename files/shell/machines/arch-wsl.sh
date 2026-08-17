@@ -28,3 +28,5 @@ eval "$(/usr/bin/wsl2-ssh-agent)"
 
 # zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
 export PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')
+
+sudo -S ip link set dev eth0 mtu 1300
