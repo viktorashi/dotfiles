@@ -8,18 +8,30 @@ CERTS_DIR="$HOME/.dotfiles/files/certs"
 echo "Installing custom certificates from $CERTS_DIR..."
 
 # Check if there are any certs to install
-if ! ls "$CERTS_DIR"/*.crt 1> /dev/null 2>&1; then
-    echo "No .crt files found in $CERTS_DIR. Skipping."
+shopt -s nullglob
+cert_files=("$CERTS_DIR"/*.crt "$CERTS_DIR"/*.pem)
+shopt -u nullglob
+
+if [ ${#cert_files[@]} -eq 0 ]; then
+    echo "No .crt or .pem files found in $CERTS_DIR. Skipping."
     exit 0
 fi
 
 if [ -d /etc/ca-certificates/trust-source/anchors ]; then
     # Arch Linux / Manjaro
-    cp "$CERTS_DIR"/*.crt /etc/ca-certificates/trust-source/anchors/
+    for cert in "${cert_files[@]}"; do
+        base_name=$(basename "$cert")
+        name_no_ext="${base_name%.*}"
+        cp "$cert" "/etc/ca-certificates/trust-source/anchors/${name_no_ext}.crt"
+    done
     update-ca-trust
 elif [ -d /usr/local/share/ca-certificates ]; then
     # Ubuntu / Debian
-    cp "$CERTS_DIR"/*.crt /usr/local/share/ca-certificates/
+    for cert in "${cert_files[@]}"; do
+        base_name=$(basename "$cert")
+        name_no_ext="${base_name%.*}"
+        cp "$cert" "/usr/local/share/ca-certificates/${name_no_ext}.crt"
+    done
     update-ca-certificates
 else
     echo "Unsupported OS for automatic certificate installation."
