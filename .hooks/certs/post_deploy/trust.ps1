@@ -1,5 +1,5 @@
 param (
-    [string]$CertsDir = $PSScriptRoot
+    [string]$CertsDir = "$env:USERPROFILE\.dotfiles\files\certs"
 )
 
 # Requires Admin privileges to write to LocalMachine Root store
