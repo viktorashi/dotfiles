@@ -110,6 +110,7 @@ default_target_type = "symbolic"
 
 [wsl.files]
 "files/wsl/wsl.conf" = "/etc/wsl.conf"
+"files/wsl/WSLInterop.conf" = { target = "/etc/binfmt.d/WSLInterop.conf", type = "symbolic", owner = "root" }
 
 
 [arch.files]
