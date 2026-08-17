@@ -106,6 +106,7 @@ default_target_type = "symbolic"
 "files/windows/nsswitch.conf" = "~/.nsswitch.conf"
 "files/windows/windowsterm-settings.json" = "${LOCALAPPDATA:-/nonexistent}/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 "files/windows/azurestorage-explorer-settings.json" = "${APPDATA:-/nonexistent}/StorageExplorer/settings.json"
+"files/windows/wslconfig" = "~/.wslconfig"
 
 [wsl.files]
 "files/wsl/wsl.conf" = "/etc/wsl.conf"
