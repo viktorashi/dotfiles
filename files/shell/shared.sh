@@ -4,6 +4,18 @@
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export GIT_SSL_NO_VERIFY=true
 
+# Set global CA certificates for tools like Python (requests), Node.js, and general SSL
+if [ -f "/etc/ssl/certs/ca-certificates.crt" ]; then
+  export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
+  export SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt"
+  export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+elif [ -n "$WINDIR" ] || [[ "$(uname -r)" == *"microsoft"* ]]; then
+  # Fallback to the raw Stratec chain file directly from dotfiles on Windows/WSL if needed
+  export REQUESTS_CA_BUNDLE="$DOTFILES/files/certs/STRATEC-Chain.pem"
+  export SSL_CERT_FILE="$DOTFILES/files/certs/STRATEC-Chain.pem"
+  export NODE_EXTRA_CA_CERTS="$DOTFILES/files/certs/STRATEC-Chain.pem"
+fi
+
 # Fresh tmux panes can inherit a stale Python venv from the tmux server
 # environment. Strip that implicit state so project venvs are only entered
 # explicitly (for example via `sv`).
