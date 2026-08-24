@@ -5,8 +5,8 @@
 # [tui.model_availability_nux]. Those are per-machine by construction and are
 # deliberately not tracked here — let codex re-create them locally.
 
-model = "gpt-5.4"
-model_reasoning_effort = "high"
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 approvals_reviewer = "user"
 fast_default_opt_out = true
@@ -62,6 +62,12 @@ enabled = true
 
 [plugins."codex-security@openai-curated"]
 enabled = true
+
+[projects."/home/istan"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.4" = "gpt-5.6-terra"
 
 
 
