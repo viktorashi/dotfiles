@@ -66,7 +66,7 @@ default_target_type = "symbolic"
 
 [agents.files]
 "files/agents" = "~/.agents"
-"files/codex" = "~/.codex"
+"files/codex/config.toml" = "~/.codex/config.toml"
 "files/opencode" = "~/.config/opencode"
 
 # ---------------------------------------------------------------- assorted cli tools
