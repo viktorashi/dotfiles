@@ -72,6 +72,7 @@ default_target_type = "symbolic"
 # ---------------------------------------------------------------- assorted cli tools
 
 [cli-tools.files]
+"files/bun/bunfig.toml" = "~/.bunfig.toml"
 "files/broot" = { target = "~/.config/broot", type = "symbolic", recurse = false }
 "files/lazygit" = { target = "~/.config/lazygit", type = "symbolic", recurse = false }
 "files/radian" = { target = "~/.config/radian", type = "symbolic", recurse = false }
