@@ -103,6 +103,13 @@
         "action": "newTab"
       },
       "keys": "alt+t"
+    },
+    {
+      "command": {
+        "action": "newTab",
+        "profile": "Windows PowerShell"
+      },
+      "keys": "alt+shift+t"
     }
   ],
   "copyFormatting": "none",
@@ -133,10 +140,6 @@
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "name": "Windows PowerShell"
-      },
-      {
-        "commandline": "%SystemRoot%\\System32\\cmd.exe",
-        "name": "Command Prompt"
       },
       {
         //TODO: distro-id-u ăsta chiar nu știu dacă e reprod.
