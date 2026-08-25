@@ -1,5 +1,6 @@
 [tools]
 github-cli = "latest"
+flyctl = "latest"
 node = "latest"
 npm = "latest"
 pnpm = "latest"
@@ -10,9 +11,9 @@ go = "latest"
 "npm:@types/bun" = "latest"
 
 # Editor language servers. LazyVim configures these and resolves them from PATH.
-"aqua:LuaLS/lua-language-server" = "latest"
-"aqua:artempyanykh/marksman" = "latest"
-"aqua:tamasfe/taplo" = "latest"
+lua-language-server = "latest"
+marksman = "latest"
+taplo = "latest"
 "github:latex-lsp/texlab" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "npm:@vtsls/language-server" = "latest"
@@ -22,19 +23,20 @@ go = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 "npm:yaml-language-server" = "latest"
 "pipx:pyrefly" = "latest"
-"pipx:ruff" = "latest"
-"pipx:ty" = "latest"
+ruff = "latest"
+ty = "latest"
 
 # Editor formatters, linters, and parser tooling.
 rumdl = "latest"
-"aqua:JohnnyMorganz/StyLua" = "latest"
-"aqua:golangci/golangci-lint" = "latest"
-"aqua:koalaman/shellcheck" = "latest"
-"aqua:mvdan/gofumpt" = "latest"
-"aqua:mvdan/sh" = "latest"
-"aqua:tree-sitter/tree-sitter" = "latest"
+stylua = "latest"
+golangci-lint = "latest"
+shellcheck = "latest"
+gofumpt = "latest"
+shfmt = "latest"
+tree-sitter = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
-"npm:@biomejs/biome" = "latest"
+biome = "latest"
+prek = "latest"
 
 # Keep rustup's Cargo bin directory after standalone Mise tools on PATH.
 rust = { version = "latest", profile = "default", components = ["rust-analyzer"] }
@@ -42,7 +44,7 @@ rust = { version = "latest", profile = "default", components = ["rust-analyzer"]
 [settings]
 lockfile = true
 minimum_release_age = "3d"
-idiomatic_version_file_enable_tools = ["node", "go", "rust", "python"]
+idiomatic_version_file_enable_tools = ["node", "rust", "python"]
 
 [settings.npm]
 package_manager = "bun"

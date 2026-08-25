@@ -268,21 +268,11 @@ eval "$(zoxide init zsh)"
 
 
 
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
-
 command -v codex >/dev/null 2>&1 && eval "$(codex completion zsh)"
 command -v batman >/dev/null 2>&1 && eval "$(batman --export-env)"
 autoload -U bashcompinit && bashcompinit
 
 command -v register-python-argcomplete >/dev/null 2>&1 && eval "$(register-python-argcomplete pipx)"
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 command -v prek >/dev/null 2>&1 && eval "$(COMPLETE=zsh prek)"
 
@@ -305,18 +295,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Remove paths owned by superseded per-tool installers before Mise computes
+# the active toolchain. This also cleans them from inherited long-lived shells.
+path=(${path:#$HOME/.bun/bin})
+path=(${path:#$HOME/.local/share/pnpm/bin})
+path=(${path:#$HOME/.opencode/bin})
+typeset -U path PATH
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="${PNPM_HOME:-$HOME/.local/share/pnpm}"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
 eval "$(mise activate zsh)"
 # Presence of the mise shell hook = dev machine (CI has mise but no hook,
 # runtime containers have no mise at all). Lets per-repo mise.<env>.toml
@@ -326,8 +311,6 @@ eval "$(mise completion zsh)"
 command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
-
-# opencode
 
 # ==========================================================================
 # Everything that is true of THIS machine only. Deployed by dotter from     |

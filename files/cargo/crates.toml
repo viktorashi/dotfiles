@@ -1,0 +1,3 @@
+[v1]
+"dotter 0.13.5 (path+file:///home/istan/dotter)" = ["dotter"]
+"cargo-binstall 1.22.0 (registry+https://github.com/rust-lang/crates.io-index)" = ["cargo-binstall"]
