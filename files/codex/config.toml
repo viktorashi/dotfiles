@@ -69,6 +69,9 @@ trust_level = "trusted"
 [projects."/home/istan/repos-projects/follow-pro-fm"]
 trust_level = "trusted"
 
+[projects."/home/istan/.dotfiles"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.4" = "gpt-5.6-terra"
 
