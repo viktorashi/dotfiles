@@ -71,36 +71,4 @@ return {
       opts.linters_by_ft.sh = { "shellcheck" }
     end,
   },
-
-  -- LazyVim's Svelte extra points vtsls at Mason's package layout. Resolve
-  -- the separately managed plugin from the active Mise environment instead.
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      local output = vim.fn.system({
-        "mise",
-        "where",
-        "npm:typescript-svelte-plugin",
-      })
-      if vim.v.shell_error ~= 0 then
-        return
-      end
-
-      local location = vim.fs.joinpath(
-        vim.trim(output),
-        "node_modules",
-        "typescript-svelte-plugin"
-      )
-      local plugins =
-        opts.servers.vtsls.settings.vtsls.tsserver.globalPlugins
-      for _, plugin in ipairs(plugins) do
-        if
-          plugin.name
-          == "typescript-svelte-plugin"
-        then
-          plugin.location = location
-        end
-      end
-    end,
-  },
 }
