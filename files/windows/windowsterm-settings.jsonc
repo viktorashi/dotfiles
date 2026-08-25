@@ -94,66 +94,50 @@
   "keybindings": [
     {
       "id": "Terminal.SwitchToTab0",
-      "keys": "ctrl+alt+1"
-    },
-    {
-      "id": "Terminal.SwitchToTab0",
-      "keys": "ctrl+1"
+      "keys": "alt+1"
     },
     {
       "id": "User.switchToTab.2A0DA8E0",
-      "keys": "ctrl+2"
+      "keys": "alt+2"
     },
     {
       "id": "User.switchToTab.87C324ED",
-      "keys": "ctrl+3"
+      "keys": "alt+3"
     },
     {
       "id": "User.switchToTab.6CD791B",
-      "keys": "ctrl+alt+4"
+      "keys": "alt+4"
     },
     {
       "id": "User.switchToTab.F747588A",
-      "keys": "ctrl+alt+5"
+      "keys": "alt+5"
     },
     {
       "id": "User.switchToTab.75247157",
-      "keys": "ctrl+6"
+      "keys": "alt+6"
     },
     {
       "id": "User.switchToTab.787314EB",
-      "keys": "ctrl+7"
+      "keys": "alt+7"
     },
     {
       "id": "User.switchToTab.D7681B66",
-      "keys": "ctrl+alt+8"
+      "keys": "alt+8"
     },
     {
       "id": "User.switchToTab.ED268D78",
-      "keys": "ctrl+9"
+      "keys": "alt+9"
     },
     {
       "id": "User.copy.644BA8F2",
-      "keys": "ctrl+c"
-    },
-    {
-      "id": "User.splitPane.A6751878",
-      "keys": "alt+shift+d"
-    },
-    {
-      "id": null,
-      "keys": "alt+shift+plus"
-    },
-    {
-      "id": null,
-      "keys": "alt+shift+minus"
+      "keys": "alt+c"
     },
     {
       "id": "User.find",
       "keys": "ctrl+shift+f"
     },
     {
-      "id": null,
+      "id": "User.newTab.5DEADB41",
       "keys": "ctrl+shift+t"
     },
     {
@@ -163,17 +147,19 @@
     {
       "id": "User.paste",
       "keys": "alt+v"
-    },
-    {
-      "id": "User.find",
-      "keys": "alt+f"
     }
+    // TODO: asta ar trebui pusă in tmux direct.
+    // {
+    //   "id": "User.find",
+    //   "keys": "alt+f"
+    // }
   ],
   "newTabMenu": [
     {
       "type": "remainingProfiles"
     }
   ],
+  //TODO: și background image ar trebui per-machine
   "profiles": {
     "defaults": {
       "backgroundImage": "C:/Users/Victor/Pictures/iCloud Photos/Photos/87247FC3-1833-4A08-9EE9-7300CF15D27A_1_105_c.jpeg",
@@ -181,25 +167,14 @@
       "backgroundImageOpacity": 0.1,
       "backgroundImageStretchMode": "fill",
       "colorScheme": "Tango Dark",
+      //TODO: cumva templateuit peste tot cu dotter
       "font": {
         "face": "JetBrainsMono Nerd Font",
         "size": 11.5
       }
     },
+    //TODO: tot per-machine, n-am nevoie de toate peste tot, și nu la fel
     "list": [
-      {
-        "commandline": "wsl",
-        "guid": "{18da3cac-b319-430e-7a3e-5fcdefe6d115}",
-        "name": "WSL zsh",
-        "startingDirectory": "%USERPROFILE%"
-      },
-      {
-        "commandline": "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -use-full-path -shell zsh",
-        "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
-        "icon": "C:\\msys64\\msys2.ico",
-        "name": "MSYS2 Zsh",
-        "startingDirectory": "%USERPROFILE%"
-      },
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -213,22 +188,12 @@
         "name": "Command Prompt"
       },
       {
-        "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+        //TODO: distro-id-u ăsta chiar nu știu dacă e reprod.
+        "commandline": "C:\\WINDOWS\\system32\\wsl.exe --distribution-id {efd213f5-f59d-4f63-86bc-47eaa3dcc65f} ",
+        "guid": "{41df0b74-b280-5547-911d-5bc299d3ea41}",
         "hidden": false,
-        "name": "Ubuntu",
-        "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
-      },
-      {
-        "guid": "{2c437a2f-8901-5c16-962c-0a4c3afdbe06}",
-        "hidden": false,
-        "name": "Developer Command Prompt for VS 18",
-        "source": "Windows.Terminal.VisualStudio"
-      },
-      {
-        "guid": "{88be1976-797f-586b-b8b0-0336ddca8aa0}",
-        "hidden": false,
-        "name": "Developer PowerShell for VS 18",
-        "source": "Windows.Terminal.VisualStudio"
+        "name": "archlinux",
+        "source": "Microsoft.WSL"
       }
     ]
   },
