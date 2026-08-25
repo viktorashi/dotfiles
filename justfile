@@ -4,4 +4,4 @@ default:
 
 # Validate Windows Terminal JSONC and discover the live settings file when available.
 validate-windowsterm:
-    @bun run scripts/validate-windowsterm.ts
+    @mise exec -- bun run scripts/validate-windowsterm.ts

@@ -4,6 +4,7 @@ node = "latest"
 npm = "latest"
 pnpm = "latest"
 uv = "latest"
+bun = "latest"
 
 [bootstrap.mise_shell_activate]
-zshrc = true
+zshrc = false
