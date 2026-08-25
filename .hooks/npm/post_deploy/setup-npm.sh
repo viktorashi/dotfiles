@@ -12,7 +12,7 @@ if [ -f /etc/ssl/certs/ca-certificates.crt ]; then
 elif [ -n "$WINDIR" ] || [[ "$(uname -r)" == *"microsoft"* ]]; then
   # Windows or WSL fallback (pointing to the raw file in the repo)
   # Using relative path from home directory or an absolute Windows path
-  npm config set cafile "$HOME/.dotfiles/files/certs/STRATEC-Chain.pem" --global
+  npm config set cafile "$HOME/.dotfiles/files/certs/STRATEC-Chain.crt" --global
 fi
 
 # PNPM automatically reads ~/.npmrc and global npmrc, so it will inherit these settings!
