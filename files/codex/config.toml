@@ -5,8 +5,8 @@
 # [tui.model_availability_nux]. Those are per-machine by construction and are
 # deliberately not tracked here — let codex re-create them locally.
 
-model = "gpt-5.6-luna"
-model_reasoning_effort = "medium"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "low"
 personality = "pragmatic"
 approvals_reviewer = "user"
 fast_default_opt_out = true
