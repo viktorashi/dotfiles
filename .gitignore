@@ -3,5 +3,8 @@
 .dotter/cache/
 .dotter/cache.toml
 
+# JavaScript/TypeScript project dependencies
+node_modules/
+
 # vim-obsession session files
 Session.vim

@@ -1,0 +1,4 @@
+[install]
+globalDir = "~/.bun/install/global"
+globalBinDir = "~/.bun/bin"
+

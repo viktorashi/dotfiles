@@ -29,6 +29,12 @@ export VISUAL="nvim"
 export BUN_INSTALL="$HOME/.bun"
 [ -d "$BUN_INSTALL/bin" ] && export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Make scripts launched through `bun run` use Bun for Node shebangs/subprocesses too.
+case " ${BUN_OPTIONS:-} " in
+  *" --bun "*) ;;
+  *) export BUN_OPTIONS="${BUN_OPTIONS:+$BUN_OPTIONS }--bun" ;;
+esac
+
 # rust
 [ -x "$HOME/.cargo/bin/sccache" ] && export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
 
