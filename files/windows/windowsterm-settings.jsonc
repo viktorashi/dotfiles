@@ -145,6 +145,7 @@
         //TODO: distro-id-u ăsta chiar nu știu dacă e reprod.
         "commandline": "C:\\WINDOWS\\system32\\wsl.exe --distribution archlinux",
         "hidden": false,
+        "icon": "archlinux.ico",
         "name": "archlinux",
         "source": "Microsoft.WSL"
       }
