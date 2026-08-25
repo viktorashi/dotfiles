@@ -328,7 +328,6 @@ command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
 
 # opencode
-export PATH=$HOME/.opencode/bin:$PATH
 
 # ==========================================================================
 # Everything that is true of THIS machine only. Deployed by dotter from     |

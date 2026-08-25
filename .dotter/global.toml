@@ -81,6 +81,7 @@ default_target_type = "symbolic"
 "files/cargo/binstall.toml" = "~/.cargo/binstall.toml"
 "files/sqliterc" = "~/.sqliterc"
 "files/mise/config.toml" = "~/.config/mise/config.toml"
+"files/mise/mise.lock" = "~/.config/mise/mise.lock"
 "files/prettyping" = { target = "/usr/bin/prettyping", type = "symbolic", owner = "root" }
 
 # mc is split rather than whole-linked: its two files go to different places, and one of
@@ -127,4 +128,5 @@ default_target_type = "symbolic"
 [mac.files]
 
 [bin.files]
-"files/bin" = { target = "~/.local/bin", type = "symbolic", recurse = false }
+"files/bin/restore-nvim-session" = "~/.local/bin/restore-nvim-session"
+"files/bin/restore-vim-session" = "~/.local/bin/restore-vim-session"
