@@ -59,6 +59,9 @@ alias ll="ls -l --sort=size --reverse --git --git-repos"
 
 alias cat="bat"
 
+alias fd='fd --hidden --glob --follow --hyperlink'
+alias find='fd'
+
 #i always mess this up so ye
 alias sc='source ~/.zshrc'
 alias scb='source ~/.bashrc'
