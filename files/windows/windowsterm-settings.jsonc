@@ -124,10 +124,9 @@
       // "backgroundImageStretchMode": "fill",
       // "colorScheme": "Tango Dark",
       //TODO: cumva templateuit peste tot cu dotter
-      // "font": {
-      //   "face": "JetBrainsMono Nerd Font",
-      //   "size": 11.5
-      // }
+      "font": {
+        "face": "MesloLGL Nerd Font",
+      }
     },
     //TODO: tot per-machine, n-am nevoie de toate peste tot, și nu la fel
     "list": [
