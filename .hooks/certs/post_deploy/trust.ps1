@@ -10,10 +10,10 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 
 Write-Host "Installing certificates from $CertsDir to Windows Trusted Root Store..."
 
-$certs = Get-ChildItem -Path $CertsDir -Include *.crt, *.pem -File -Recurse
+$certs = Get-ChildItem -Path $CertsDir -Include *.crt -File -Recurse
 
 if ($certs.Count -eq 0) {
-    Write-Host "No .crt or .pem files found in $CertsDir. Skipping."
+    Write-Host "No .crt files found in $CertsDir. Skipping."
     return
 }
 

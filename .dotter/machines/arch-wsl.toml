@@ -1,6 +1,7 @@
 packages = [
   "wsl",
   "arch",
+  "npm",
   "shell",
   "nvim",
   "vim",

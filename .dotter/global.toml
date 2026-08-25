@@ -122,6 +122,7 @@ default_target_type = "symbolic"
 # machine can select the matching .hooks/<name>/ directory.
 
 [certs.files]
+[npm.files]
 [mac.files]
 
 [bin.files]

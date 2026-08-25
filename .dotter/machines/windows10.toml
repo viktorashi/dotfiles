@@ -1,6 +1,6 @@
 # windows10 — native Windows, shell config consumed through MSYS2 / Git Bash.
 packages = [
-  "shell", "nvim", "vim", "git", "tmux",
+  "shell", "nvim", "vim", "git", "tmux", "npm",
   "ssh", "gnupg", "agents", "cli-tools", "bin", "windows",
 ]
 

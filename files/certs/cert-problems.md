@@ -18,7 +18,7 @@ You need to download the corporate Root CA certificate (likely from Confluence o
 Once your system natively trusts the `STRATECProxy` Root CA, everything (`yay`, `curl`, Python, Node) will magically start working again without any complaints!
 
 ### How to install the cert (Arch Linux / Manjaro)
-1. Download the `.crt` or `.pem` file from Confluence (e.g., `stratec-root-ca.crt`).
+1. Download the `.crt` file from Confluence (e.g., `stratec-root-ca.crt`).
 2. Copy it to the trust store directory:
    `sudo cp stratec-root-ca.crt /etc/ca-certificates/trust-source/anchors/`
 3. Update the system trust store:
