@@ -1,6 +1,6 @@
 # leanoox — personal Arch laptop.
 packages = [
-  "shell", "nvim", "vim", "git", "tmux", "ghostty",
+  "shell", "nvim", "vim", "git", "tmux", "ghostty", "npm",
   "ssh", "gnupg", "agents", "cli-tools", "bin", "mc", "systemd",
 ]
 

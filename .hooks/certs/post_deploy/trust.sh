@@ -15,7 +15,7 @@ echo "Installing custom certificates from $CERTS_DIR..."
 
 # Check if there are any certs to install
 shopt -s nullglob
-cert_files=("$CERTS_DIR"/*.crt "$CERTS_DIR"/*.pem)
+cert_files=("$CERTS_DIR"/*.crt)
 shopt -u nullglob
 
 if [ ${#cert_files[@]} -eq 0 ]; then
