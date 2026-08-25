@@ -1,62 +1,33 @@
 return {
+  -- LazyVim's extras still define and configure every LSP. Without
+  -- mason-lspconfig, LazyVim enables those servers directly from PATH.
+  {
+    "mason-org/mason-lspconfig.nvim",
+    enabled = false,
+  },
+
+  -- Mason is retained only as the package store used by mason-nvim-dap.
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      local custom_tools = {
-        "bash-language-server",
-        "beautysh",
-        "codelldb",
-        "json-lsp",
-        "lua-language-server",
-        "markdown-toc",
-        "marksman",
-        "rumdl",
-        "prettier",
-        "shellcheck",
-        "shfmt",
-        "stylua",
-        "taplo",
-        "typescript-language-server",
-        "biome",
-        "yaml-language-server",
-        "arduino-language-server",
-        "cpplint",
-        "docker-language-server",
-        "dockerfile-language-server",
-        "docker-compose-language-service",
-        "clang-format",
-        "jinja-lsp",
-        "curlylint",
-        "ruff",
-        "pyrefly",
-        "just-lsp",
-        "bicep-lsp",
-        "tree-sitter-cli",
-        "lemminx",
-        "xmlformatter",
-        "r-languageserver",
-        -- from windows10; black/pyright deliberately not re-added, ruff/pyrefly replace them
-        "eslint-lsp",
-        "markdownlint-cli2",
-      }
+      -- LazyVim extras add formatters and LSPs here; Mise owns all of them.
+      opts.ensure_installed = {}
 
-      -- Merge lists while avoiding duplicates
-      local seen = {}
-      local merged = {}
-      for _, tool in ipairs(opts.ensure_installed) do
-        if not seen[tool] then
-          seen[tool] = true
-          table.insert(merged, tool)
-        end
-      end
-      for _, tool in ipairs(custom_tools) do
-        if not seen[tool] then
-          seen[tool] = true
-          table.insert(merged, tool)
-        end
-      end
-      opts.ensure_installed = merged
+      -- System/Mise commands win. Mason's bin directory remains available
+      -- afterward for the debugger adapter launch commands.
+      opts.PATH = "append"
     end,
+  },
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      ensure_installed = {
+        "codelldb",
+        "delve",
+        "python",
+        "js",
+      },
+    },
   },
 }
