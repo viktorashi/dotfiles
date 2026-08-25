@@ -5,6 +5,15 @@ npm = "latest"
 pnpm = "latest"
 uv = "latest"
 bun = "latest"
+"npm:@biomejs/biome" = "latest"
+"npm:typescript" = "latest"
+"npm:@types/bun" = "latest"
+
+[settings.npm]
+package_manager = "bun"
+
+[env]
+BUN_OPTIONS = "--bun"
 
 [bootstrap.mise_shell_activate]
 zshrc = false

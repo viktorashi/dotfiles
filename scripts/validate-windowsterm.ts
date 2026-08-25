@@ -22,7 +22,13 @@ function findLiveSettings() {
   const wslUsers = "/mnt/c/Users";
   if (existsSync(wslUsers)) {
     for (const user of readdirSync(wslUsers)) {
-      const wslPath = join(wslUsers, user, "AppData", "Local", settingsRelativePath);
+      const wslPath = join(
+        wslUsers,
+        user,
+        "AppData",
+        "Local",
+        settingsRelativePath,
+      );
       if (existsSync(wslPath)) return wslPath;
     }
   }
@@ -47,5 +53,7 @@ await validate(source);
 if (live && existsSync(live)) {
   await validate(live);
 
-  console.log("live settings parsed successfully (Windows Terminal may normalize formatting and generate IDs by itself)");
+  console.log(
+    "live settings parsed successfully (Windows Terminal may normalize formatting and generate IDs by itself)",
+  );
 }
