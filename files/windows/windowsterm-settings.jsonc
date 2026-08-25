@@ -133,18 +133,15 @@
     "list": [
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-        "hidden": false,
         "name": "Windows PowerShell"
       },
       {
         "commandline": "%SystemRoot%\\System32\\cmd.exe",
-        "hidden": false,
         "name": "Command Prompt"
       },
       {
         //TODO: distro-id-u ăsta chiar nu știu dacă e reprod.
         "commandline": "C:\\WINDOWS\\system32\\wsl.exe --distribution archlinux",
-        "hidden": false,
         "icon": "archlinux.ico",
         "name": "archlinux",
         "source": "Microsoft.WSL"
