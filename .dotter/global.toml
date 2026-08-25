@@ -79,6 +79,7 @@ default_target_type = "symbolic"
 "files/rstudio" = { target = "~/.config/rstudio", type = "symbolic", recurse = false }
 "files/cargo/config.toml" = "~/.cargo/config.toml"
 "files/cargo/binstall.toml" = "~/.cargo/binstall.toml"
+"files/cargo/crates.toml" = "~/.cargo/.crates.toml"
 "files/sqliterc" = "~/.sqliterc"
 "files/mise/config.toml" = "~/.config/mise/config.toml"
 "files/mise/mise.lock" = "~/.config/mise/mise.lock"
