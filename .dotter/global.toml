@@ -65,7 +65,7 @@ default_target_type = "symbolic"
 # All three are app-managed: they rewrite lockfiles and settings in place.
 
 [agents.files]
-"files/agents" = "~/.agents"
+"files/agents" = { target = "~/.agents", type = "symbolic", recurse = false }
 "files/codex/config.toml" = "~/.codex/config.toml"
 "files/opencode" = "~/.config/opencode"
 
