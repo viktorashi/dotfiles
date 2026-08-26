@@ -238,10 +238,11 @@ vim.keymap.set(
 --   { desc = "Toggle LTEX" }
 -- )
 
-vim.keymap.set("n", "<leader>ff", function()
-  require("telescope.builtin").live_grep({
-    additional_args = { "--hidden" },
-  })
-end, {
-  desc = "Find Text (Grep including hidden files)",
-})
+map(
+  "n",
+  "<leader>sf",
+  LazyVim.pick("live_grep"),
+  {
+    desc = "Find Text (Root Dir)",
+  }
+)
