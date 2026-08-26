@@ -1,21 +1,20 @@
+local tex_filetypes =
+  { "tex", "plaintex", "latex" }
+
 return {
+  -- LazyVim's TeX extra owns the base VimTeX, Texlab, and Tree-sitter setup.
+  -- These are the local Windows/WSL viewer and compiler preferences.
   {
     "lervag/vimtex",
-    lazy = false,
-    config = function()
-      -- TeX flavor
+    init = function()
       vim.g.tex_flavor = "latex"
 
-      -- Viewer setup (SumatraPDF)
       vim.g.vimtex_view_method = "general"
       vim.g.vimtex_view_general_viewer =
         "SumatraPDF.exe"
       vim.g.vimtex_view_general_options =
         "-reuse-instance -forward-search @tex @line @pdf"
-      vim.g.vimtex_view_general_options_latexmk =
-        vim.g.vimtex_view_general_options
 
-      -- Compiler setup
       vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_compiler_latexmk = {
         executable = "latexmk",
@@ -28,52 +27,21 @@ return {
         },
       }
 
-      -- Quickfix / diagnostics
       vim.g.vimtex_quickfix_mode = 0
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_quickfix_autoclose_after_success =
         1
 
-      -- User commands
       vim.api.nvim_create_user_command(
         "BuildLatex",
-        function()
-          vim.cmd("VimtexCompile")
-        end,
+        "VimtexCompile",
         {}
       )
-
       vim.api.nvim_create_user_command(
         "CleanLatex",
-        function()
-          vim.cmd("VimtexClean")
-        end,
+        "VimtexClean",
         {}
       )
-    end,
-  },
-
-  -- Optional: LaTeX symbols completion
-  {
-    "kdheepak/cmp-latex-symbols",
-    ft = { "tex", "plaintex", "latex" },
-    dependencies = { "hrsh7th/nvim-cmp" },
-    init = function()
-      require("lazy.core.loader").disable_rtp_plugin(
-        "cmp-latex-symbols"
-      )
-    end,
-  },
-
-  -- BibTeX support
-  {
-    "latex-lsp/tree-sitter-bibtex",
-    ft = "bib",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
-        ensure_installed = { "bibtex" },
-      })
     end,
   },
 
@@ -96,16 +64,13 @@ return {
                 forwardSearchAfter = true,
               },
               forwardSearch = {
-                executable = "SumatraPDF.exe", -- adjust: skim/zathura/sumatrapdf
+                executable = "SumatraPDF.exe",
                 args = {
                   "-reuse-instance",
                   "-forward-search",
                   "%f",
                   "%l",
                   "%p",
-                  "@pdf",
-                  "@line",
-                  "@tex",
                 },
               },
               chktex = {
@@ -122,30 +87,45 @@ return {
       },
     },
   },
-  -- {
-  --   "ltex-plus/ltex-ls-plus",
-  --   ft = { "tex", "bib" },
-  --   config = function()
-  --     local lspconfig = require("lspconfig")
-  --
-  --     -- TEMPORARILY DISABLE LTEX/Languagetool
-  --     local enable_ltex = false -- change to true to enable again
-  --
-  --     if enable_ltex then
-  --       lspconfig.ltex.setup({
-  --         cmd = { "ltex-ls-plus.cmd" },
-  --         filetypes = { "tex", "bib" },
-  --         settings = {
-  --           ltex = {
-  --             ignoreEnvironments = {
-  --               "lstlisting",
-  --               "verbatim",
-  --               "minted",
-  --             },
-  --           },
-  --         },
-  --       })
-  --     end
-  --   end,
-  -- },
+
+  -- Use the existing LuaSnip collection through LazyVim's active completion
+  -- engine (blink.cmp), instead of maintaining a second nvim-cmp stack.
+  {
+    "L3MON4D3/LuaSnip",
+    optional = true,
+    init = function()
+      LazyVim.on_load("LuaSnip", function()
+        require("luasnip.loaders.from_lua").lazy_load({
+          paths = vim.fn.stdpath("config")
+            .. "/LuaSnip",
+        })
+      end)
+    end,
+  },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = {
+      "kdheepak/cmp-latex-symbols",
+      "saghen/blink.compat",
+    },
+    opts = {
+      sources = {
+        compat = { "latex_symbols" },
+        providers = {
+          latex_symbols = {
+            kind = "LatexSymbols",
+            async = true,
+            enabled = function()
+              return vim.tbl_contains(
+                tex_filetypes,
+                vim.bo.filetype
+              )
+            end,
+            opts = { strategy = 0 },
+          },
+        },
+      },
+    },
+  },
 }
