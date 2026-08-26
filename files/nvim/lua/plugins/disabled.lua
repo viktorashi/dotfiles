@@ -1,4 +1,4 @@
--- asta ca sa pot sa folosesc vim surround ca era enervant (inca nu merge vim surround lmao)
 return {
+  -- Flash's `s` mapping conflicts with the preferred surround mappings.
   { "folke/flash.nvim", enabled = false },
 }

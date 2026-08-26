@@ -10,7 +10,9 @@ return {
     keys = {
       {
         "<leader>u",
-        function() require("undotree").toggle() end,
+        function()
+          require("undotree").toggle()
+        end,
       },
     },
   },
