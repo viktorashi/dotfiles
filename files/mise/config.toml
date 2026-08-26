@@ -39,12 +39,15 @@ biome = "latest"
 prek = "latest"
 
 # Keep rustup's Cargo bin directory after standalone Mise tools on PATH.
-rust = { version = "latest", profile = "default", components = ["rust-analyzer"] }
+rust = { version = "latest", profile = "default", components = [
+  "rust-analyzer",
+] }
 
 [settings]
 lockfile = true
 minimum_release_age = "3d"
 idiomatic_version_file_enable_tools = ["node", "rust", "python"]
+experimental = true
 
 [settings.npm]
 package_manager = "bun"
