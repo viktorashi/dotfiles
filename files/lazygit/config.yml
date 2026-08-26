@@ -12,3 +12,10 @@ gui:
   shrinkSidePanelsToContent: true
 os:
   openDirInEditor: "nvim"
+keybinding:
+  universal:
+    # lazygit only defaults backspaceWord to <alt+backspace> on macOS; on Linux
+    # it's <ctrl+backspace> only, which Windows Terminal doesn't send. Bind both.
+    backspaceWord:
+      - <alt+backspace>
+      - <ctrl+backspace>
