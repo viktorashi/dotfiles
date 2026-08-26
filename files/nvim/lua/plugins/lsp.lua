@@ -7,7 +7,6 @@ return {
         -- Language extras provide most server settings. These additional
         -- servers are also resolved from the Mise-activated PATH.
         bashls = {},
-        rumdl = {},
         pyrefly = {
           root_dir = function(fname)
             local util = require("lspconfig.util")
@@ -53,8 +52,6 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        markdown = { "rumdl" },
-        ["markdown.mdx"] = { "rumdl" },
         python = { "ruff_format" },
       },
     },
@@ -65,9 +62,6 @@ return {
     opts = function(_, opts)
       opts.linters_by_ft = opts.linters_by_ft
         or {}
-      -- rumdl's LSP supplies Markdown diagnostics; avoid running a second
-      -- Markdown linter over the same buffer.
-      opts.linters_by_ft.markdown = {}
       opts.linters_by_ft.sh = { "shellcheck" }
     end,
   },
