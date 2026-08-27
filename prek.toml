@@ -1,0 +1,61 @@
+minimum_prek_version = "0.4.14"
+
+[[repos]]
+repo = "builtin"
+
+hooks = [
+  { id = "check-case-conflict" },
+  { id = "check-merge-conflict" },
+  { id = "check-symlinks" },
+  { id = "destroyed-symlinks" },
+  { id = "detect-private-key" },
+  { id = "check-json" },
+  { id = "check-toml" },
+  { id = "check-yaml" },
+]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "lua-format"
+name = "StyLua"
+entry = "mise exec -- stylua --check"
+language = "system"
+files = "\\.lua$"
+
+[[repos.hooks]]
+id = "shell-format"
+name = "shfmt"
+entry = "mise exec -- shfmt --diff"
+language = "system"
+files = "\\.sh$"
+
+[[repos.hooks]]
+id = "shell-lint"
+name = "ShellCheck"
+entry = "mise exec -- shellcheck"
+language = "system"
+files = "\\.sh$"
+
+[[repos.hooks]]
+id = "markdown-lint"
+name = "rumdl"
+entry = "mise exec -- rumdl check"
+language = "system"
+types = ["markdown"]
+
+[[repos.hooks]]
+id = "toml-format"
+name = "Taplo"
+entry = "mise exec -- taplo format --check"
+language = "system"
+types = ["toml"]
+
+[[repos.hooks]]
+id = "javascript-typescript-check"
+name = "TypeScript and Biome"
+entry = "mise exec -- bun run check"
+language = "system"
+files = "^(scripts/|package\\.json$|tsconfig\\.json$|biome\\.json)"
+pass_filenames = false
