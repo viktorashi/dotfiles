@@ -17,7 +17,7 @@
   "attention": {
     "enabled": true,
     "notifications": true,
-    "sound": false
+    "sound": true
   },
   "keybinds": {
     "editor_open": "ctrl+g"
