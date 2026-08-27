@@ -1,0 +1,11 @@
+[tasks.validate-windowsterm]
+description = "Validate Windows Terminal JSONC and find live settings"
+run = "bun run scripts/validate-windowsterm.ts"
+
+[tasks.check]
+description = "Run the TypeScript and Biome checks"
+run = "bun run check"
+
+[tasks.bootstrap]
+description = "Install mise tools and register prek Git hooks"
+run = ["mise install", "prek install --prepare-hooks"]
