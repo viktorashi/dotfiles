@@ -49,6 +49,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        esbonio = {
+          enabled = true,
+        },
         ltex_plus = {
           enabled = true,
         },

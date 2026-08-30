@@ -50,6 +50,8 @@ ninja = "latest"
 ccache = "latest"
 conan = "latest"
 "github:ltex-plus/ltex-ls-plus" = "latest"
+"pipx:esbonio" = "latest"
+"pipx:rstcheck" = "latest"
 
 [settings]
 lockfile = true
