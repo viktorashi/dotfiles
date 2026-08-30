@@ -42,6 +42,13 @@ prek = "latest"
 rust = { version = "latest", profile = "default", components = [
   "rust-analyzer",
 ] }
+clang = "latest"
+"conda:clangxx" = "latest"
+"conda:clang-tools" = "latest"
+cmake = "latest"
+ninja = "latest"
+ccache = "latest"
+conan = "latest"
 
 [settings]
 lockfile = true
