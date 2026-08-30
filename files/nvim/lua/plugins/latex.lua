@@ -49,6 +49,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        ltex_plus = {
+          enabled = true,
+        },
         texlab = {
           settings = {
             texlab = {

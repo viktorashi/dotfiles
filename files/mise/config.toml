@@ -49,6 +49,7 @@ cmake = "latest"
 ninja = "latest"
 ccache = "latest"
 conan = "latest"
+"github:ltex-plus/ltex-ls-plus" = "latest"
 
 [settings]
 lockfile = true
