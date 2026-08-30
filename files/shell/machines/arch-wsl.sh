@@ -1,3 +1,4 @@
+#! /usr/bin/bash
 # arch-wsl / leanoox — WSL2 under Windows, work laptop.
 
 # Windows tools reachable from inside WSL
@@ -21,12 +22,13 @@ alias yay-install='yay -S --noconfirm'
 alias yayS=yay-install
 
 #cica avoid, refreshing the lists without updating.
-alias pacman-update='sudo pacman -Syu'
-alias yay-update='yay -Syu'
+alias pacman-update='pacman-install -yu'
+alias yay-update='yay-install -yu'
 
 eval "$(/usr/bin/wsl2-ssh-agent)"
 
 # zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
-export PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')
+PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')
+export PATH
 
 sudo -S ip link set dev eth0 mtu 1300
