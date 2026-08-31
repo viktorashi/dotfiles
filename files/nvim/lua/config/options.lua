@@ -8,6 +8,7 @@ vim.g.lazyvim_python_lsp = "pyrefly"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr =
   "v:lua.LazyVim.treesitter.foldexpr()"
+vim.opt.list = false
 
 vim.o.exrc = true
 vim.o.secure = true
