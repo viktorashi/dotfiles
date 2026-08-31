@@ -246,3 +246,27 @@ map(
     desc = "Find Text (Root Dir)",
   }
 )
+
+local function insertFullPath()
+  local filepath = vim.fn.expand("%:p")
+  vim.fn.setreg("+", filepath)
+end
+
+local yank_path_desc =
+  "Yank la path-ul absolut la fișieru ăsta"
+
+map("o", "p", function()
+  if vim.v.operator ~= "y" then
+    return "p"
+  end
+
+  insertFullPath()
+  return "<Esc>"
+end, { expr = true, desc = yank_path_desc })
+
+map(
+  "n",
+  "<leader>yp",
+  insertFullPath,
+  { desc = yank_path_desc }
+)
