@@ -119,6 +119,8 @@ default_target_type = "symbolic"
 
 [arch.files]
 "files/arch/yay/config.json" = "~/.config/yay/config.json"
+"files/arch/makepkg/makepkg.conf" = "~/.makepkg.conf"
+"files/arch/makepkg/gitconfig" = "~/.config/makepkg/gitconfig"
 
 # ---------------------------------------------------------------- script-only packages
 # A package with no files is legal: `files` is #[serde(default)]. These exist purely so a
