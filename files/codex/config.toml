@@ -6,20 +6,27 @@
 # deliberately not tracked here — let codex re-create them locally.
 
 model = "gpt-5.6-sol"
-model_reasoning_effort = "low"
+model_reasoning_effort = "medium"
 personality = "pragmatic"
 approvals_reviewer = "user"
 fast_default_opt_out = true
-web_search = "live"  # fetch the most recent data (same as --search)
+web_search = "live"            # fetch the most recent data (same as --search)
 service_tier = "default"
 
 [tui]
-status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining"]
+status_line = [
+  "model-with-reasoning",
+  "current-dir",
+  "git-branch",
+  "context-remaining",
+]
 
 
 [mcp_servers.complaints]
 command = "/mnt/c/Users/istan/repos-projects/companion/mcp_bridge/development/rust_mcp_servers/target/debug/complaints-mcp-server"
-args = ["/mnt/c/Users/istan/repos-projects/integrity-extractor/extracts/fulls/73k-entries-130cols.parquet"]
+args = [
+  "/mnt/c/Users/istan/repos-projects/integrity-extractor/extracts/fulls/73k-entries-130cols.parquet",
+]
 
 
 [plugins."github@openai-curated"]
@@ -73,8 +80,14 @@ trust_level = "trusted"
 [projects."/home/istan/.dotfiles"]
 trust_level = "trusted"
 
+[projects."/home/istan/repos-projects/chestiune-randem"]
+trust_level = "trusted"
+
+[projects."/home/istan/.config"]
+trust_level = "trusted"
+
+[projects."/home/istan/repos-projects/stratec_work"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.4" = "gpt-5.6-terra"
-
-
-
