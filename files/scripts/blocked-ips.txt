@@ -1,0 +1,42 @@
+# Vercel/CDN IP addresses tested on corporate ethernet.
+# Format: IP_ADDRESS	DOMAIN (tab-separated)
+# The script test-blocked-ips.sh reads column 1 (IP) and column 2 (domain/SNI).
+#
+# Confirmed blocked/working on 2026-09-02 via TLS handshake test.
+# IPs rotate due to anycast — multiple domains share IPs across sessions.
+
+# --- BLOCKED (64.239.0.0/16 — Amazon/Vercel anycast) ---
+64.239.109.1	v0.dev
+64.239.109.1	turborepo.dev
+64.239.109.65	hyper.is
+64.239.109.129	turborepo.dev
+64.239.109.129	turbo.build
+64.239.123.1	vercel.com
+64.239.123.65	vercel.com
+64.239.123.65	turborepo.dev
+64.239.123.129	turbo.build
+64.239.123.129	vercel.com
+64.239.123.193	turborepo.dev
+64.239.123.193	v0.dev
+64.239.123.193	hyper.is
+
+# --- CONTROL GROUP (known working) ---
+64.29.17.3	vercel.app
+64.29.17.67	swr.vercel.app
+66.33.60.35	pnpm.io
+66.33.60.67	react.dev
+66.33.60.194	ui.shadcn.com
+76.76.21.21	sdk.vercel.ai
+76.76.21.22	react.dev
+76.76.21.93	ui.shadcn.com
+76.76.21.98	react.dev
+76.76.21.123	svelte.dev
+216.150.1.1	nuxt.com
+216.150.1.1	posthog.com
+216.150.1.129	authjs.dev
+216.150.1.193	supabase.com
+216.150.16.65	chakra-ui.com
+216.150.16.193	chakra-ui.com
+216.198.79.3	vercel.app
+216.198.79.67	swr.vercel.app
+216.230.86.1	nextjs.org
