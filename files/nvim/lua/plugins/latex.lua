@@ -53,9 +53,10 @@ return {
           enabled = true,
         },
         ltex_plus = {
-          enabled = true,
+          enabled = false,
         },
         texlab = {
+          enabled = false,
           settings = {
             texlab = {
               build = {
