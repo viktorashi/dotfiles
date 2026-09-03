@@ -39,6 +39,11 @@ Host localhostrun
     User nokey
     IdentityFile ~/.ssh/localhostrun
 
+Host spark-da41:
+  HostName spark-da41.intern.stratec.com
+  User vstan
+  IdentityFile ~/.ssh/id_ed25519_auth
+
 Host *
   AddKeysToAgent yes
   ControlMaster auto
