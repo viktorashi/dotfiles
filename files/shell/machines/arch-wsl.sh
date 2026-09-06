@@ -25,6 +25,12 @@ alias yayS=yay-install
 alias pacman-update='pacman-install -yu'
 alias yay-update='yay-install -yu'
 
+pkgof() {
+	local bin_path
+	bin_path="$(whence -p "$1")" || return 1
+	pacman -Qo "$bin_path"
+}
+
 eval "$(/usr/bin/wsl2-ssh-agent)"
 
 # zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
