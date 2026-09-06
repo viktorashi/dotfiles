@@ -27,7 +27,7 @@ files = "\\.lua$"
 [[repos.hooks]]
 id = "shell-format"
 name = "shfmt"
-entry = "mise exec -- shfmt --diff"
+entry = "mise exec -- shfmt --write"
 language = "system"
 files = "\\.sh$"
 
