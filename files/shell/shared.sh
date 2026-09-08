@@ -182,7 +182,8 @@ alias dcu='docker compose up'
 #detached
 alias dcud='docker compose up -d'
 alias dcd='docker compose down'
-alias docker-clean='docker system prune -a --volumes'
+alias docker-clean='docker system prune'
+alias docker-prune='docker system prune -a --volumes'
 #ba deci mi-au dat la dureri kkturile asteaa, nu le mai decomenta gataa
 #
 alias t='tmux'
