@@ -52,6 +52,9 @@ conan = "latest"
 "github:ltex-plus/ltex-ls-plus" = "latest"
 "pipx:esbonio" = "latest"
 "pipx:rstcheck" = "latest"
+"aqua:Azure/bicep" = "latest"
+pipx = "latest"
+ansible = { version = "latest", pipx_args = "--include-deps", uvx = false }
 
 [settings]
 lockfile = true
