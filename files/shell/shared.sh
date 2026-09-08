@@ -179,6 +179,8 @@ alias dp='docker ps -a'
 alias di='docker image'
 alias dil='docker image list'
 alias dcu='docker compose up'
+#detached
+alias dcud='docker compose up -d'
 alias dcd='docker compose down'
 alias docker-clean='docker system prune -a --volumes'
 #ba deci mi-au dat la dureri kkturile asteaa, nu le mai decomenta gataa
