@@ -4095,6 +4095,11 @@ version = "1.2.0"
 backend = "pipx:pyrefly"
 specifiers = ["latest"]
 
+[[tools."pipx:radian"]]
+version = "0.6.16"
+backend = "pipx:radian"
+specifiers = ["latest"]
+
 [[tools."pipx:rstcheck"]]
 version = "6.3.0"
 backend = "pipx:rstcheck"
