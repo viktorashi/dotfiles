@@ -55,6 +55,7 @@ conan = "latest"
 "aqua:Azure/bicep" = "latest"
 pipx = "latest"
 ansible = { version = "latest", pipx_args = "--include-deps", uvx = false }
+"pipx:radian" = "latest"
 
 [settings]
 lockfile = true
