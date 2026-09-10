@@ -1,3 +1,5 @@
+#! /bin/bash
+
 git config --global alias.st status
 git config --global alias.s status
 git config --global alias.f fetch
@@ -43,3 +45,13 @@ git config --global http.postBuffer 524288000
 #           -c '$wincmd w' -c 'wincmd J'
 
 git config --global core.excludesfile "$HOME/.config/git/ignore"
+
+# Default identity
+git config --global user.name "istan"
+git config --global user.email "i.stan@stratec.com"
+
+# Dynamic identity for viktorashi repos (any repo having a remote pointing to viktorashi on github)
+git config --global 'includeIf.hasconfig:remote.*.url:*://viktorashi@github.com/**.path' "$HOME/.config/git/config-viktorashi"
+git config --global 'includeIf.hasconfig:remote.*.url:*://github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
+git config --global 'includeIf.hasconfig:remote.*.url:git@github.com:viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
+git config --global 'includeIf.hasconfig:remote.*.url:ssh://git@github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
