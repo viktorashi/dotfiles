@@ -1,0 +1,8 @@
+[Unit]
+Description=Sync mise tools into pacman dummy metapackage
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/mise-sync-pacman --auto
+# mise needs PATH to find its own installs
+Environment=PATH=%h/.local/share/mise/shims:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
