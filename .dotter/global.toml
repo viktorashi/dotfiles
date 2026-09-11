@@ -135,3 +135,4 @@ default_target_type = "symbolic"
 [bin.files]
 "files/bin/restore-nvim-session" = "~/.local/bin/restore-nvim-session"
 "files/bin/restore-vim-session" = "~/.local/bin/restore-vim-session"
+"files/bin/mise-sync-pacman" = "~/.local/bin/mise-sync-pacman"

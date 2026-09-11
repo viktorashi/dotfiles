@@ -8,3 +8,6 @@ node_modules/
 
 # vim-obsession session files
 Session.vim
+
+# mise dummy package build cache
+.mise_hash
