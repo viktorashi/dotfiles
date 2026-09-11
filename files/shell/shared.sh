@@ -200,6 +200,22 @@ alias radian='clear && radian  --ask-save --save --restore-data --debug'
 alias miser='mise run'
 alias python="python3"
 
+# Auto-sync Pacman dummy packages when Mise tools change on Arch Linux
+if command -v pacman >/dev/null 2>&1; then
+	mise() {
+		command mise "$@"
+		local code=$?
+		if [ $code -eq 0 ]; then
+			case "${1:-}" in
+			install | i | use | u | upgrade | up | remove | rm | uninstall | set)
+				command -v mise-sync-pacman >/dev/null 2>&1 && mise-sync-pacman --auto
+				;;
+			esac
+		fi
+		return $code
+	}
+fi
+
 #alias fr='flutter run'
 #acm de cand cu zoxide nu prea mai e nevoie lmao
 #alias licenta='cd ~/Documents/toate-de-la-faculta-trecut/licenta/texuri/bachelor-thesis-repo/bachelor-thesis'
