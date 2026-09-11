@@ -1,0 +1,13 @@
+[Unit]
+Description=Watch mise config for pacman dummy-package sync
+
+[Path]
+PathChanged=%h/.config/mise/config.toml
+PathChanged=%h/.config/mise/mise.lock
+
+# Coalesce rapid writes (e.g. mise upgrade touching both files) into one trigger
+TriggerLimitIntervalSec=5s
+TriggerLimitBurst=1
+
+[Install]
+WantedBy=default.target
