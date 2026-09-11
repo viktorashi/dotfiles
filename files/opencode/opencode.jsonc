@@ -70,6 +70,19 @@
           "model": "gemini-2.5-flash"
         }
       }
+    },
+      "stratec-dgx-spark": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Sparku nostru",
+      "options": {
+        "baseURL": "https://spark-da41.intern.stratec.com/codellm/v1",
+        "apiKey": "{env:SPARK_API_KEY}"
+      },
+  "models": {
+    "exact-server-model-id": {
+      "name": "qwen3.8-flash-next"
+    }
+  }
     }
   },
   "plugin": [
