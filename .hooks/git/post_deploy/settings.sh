@@ -55,3 +55,5 @@ git config --global 'includeIf.hasconfig:remote.*.url:*://viktorashi@github.com/
 git config --global 'includeIf.hasconfig:remote.*.url:*://github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
 git config --global 'includeIf.hasconfig:remote.*.url:git@github.com:viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
 git config --global 'includeIf.hasconfig:remote.*.url:ssh://git@github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
+
+git config --global commit.gpgsign true
