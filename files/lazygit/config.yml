@@ -1,7 +1,9 @@
+promptToReturnFromSubprocess: false
+
 git:
+  overrideGpg: true
   diffRenderers:
     - command: delta --dark --paging=never --line-numbers
-      # overrideGpg: true
 commit:
   gpgsign: true
 gui:
