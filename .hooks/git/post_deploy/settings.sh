@@ -48,9 +48,8 @@ git config --global http.postBuffer 524288000
 
 git config --global core.excludesfile "$HOME/.config/git/ignore"
 
-# Default identity
-git config --global user.name "istan"
-git config --global user.email "i.stan@stratec.com"
+# The default work identity is enabled manually on arch-wsl only.
+# See files/git/README.md; deploying public keys does not provide a signing key.
 
 # Dynamic identity for viktorashi repos (any repo having a remote pointing to viktorashi on github)
 git config --global 'includeIf.hasconfig:remote.*.url:*://viktorashi@github.com/**.path' "$HOME/.config/git/config-viktorashi"
