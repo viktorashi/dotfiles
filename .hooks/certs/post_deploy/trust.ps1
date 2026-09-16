@@ -1,5 +1,5 @@
 param (
-    [string]$CertsDir = "$env:USERPROFILE\.dotfiles\files\certs"
+    [string]$CertsDir = "$env:USERPROFILE\.dotfiles\files\certs-keys"
 )
 
 # Requires Admin privileges to write to LocalMachine Root store
