@@ -15,7 +15,9 @@ git config --global alias.a add
 git config --global alias.l log
 git config --global alias.t tag
 git config --global alias.m merge
-git config --global pull.rebase false
+git config --global pull.rebase true
+# Keep background fetches from weakening implicit --force-with-lease checks.
+git config --global push.useForceIfIncludes true
 
 #sa scapam de line endingurile alea de kkt pe windows
 git config --global core.autocrlf true
