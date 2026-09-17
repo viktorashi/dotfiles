@@ -10,11 +10,12 @@ machine profile or deployment hook enables it. Other machines must opt in only
 after provisioning the corresponding private key.
 
 Public key archives live in `../certs-keys/`. Importing a public key permits
-verification; it does not enable signing. GnuPG trust decisions are local state
-and are not installed by Dotter.
+verification; it does not enable signing. The Git post-deploy hook imports and
+trusts the archived OpenPGP keys, then configures Git's SSH allowed-signers file.
 
 Read identities, fingerprints and expiry dates directly from the public keys:
 
 ```sh
-gpg --show-keys --with-fingerprint files/certs-keys/*.asc
+gpg --show-keys --with-fingerprint files/certs-keys/*.asc \
+  files/certs-keys/git-signing/openpgp/*.asc
 ```

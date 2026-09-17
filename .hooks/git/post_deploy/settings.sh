@@ -58,3 +58,29 @@ git config --global 'includeIf.hasconfig:remote.*.url:git@github.com:viktorashi/
 git config --global 'includeIf.hasconfig:remote.*.url:ssh://git@github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
 
 git config --global commit.gpgsign true
+
+# Install archived verification keys. These are public keys only; signing still
+# requires the corresponding private key to be provisioned on this machine.
+SIGNING_KEYS_DIR="$HOME/.dotfiles/files/certs-keys/git-signing"
+if [ -d "$SIGNING_KEYS_DIR/openpgp" ]; then
+	shopt -s nullglob
+	openpgp_keys=("$SIGNING_KEYS_DIR/openpgp/"*.asc)
+	shopt -u nullglob
+	if [ ${#openpgp_keys[@]} -gt 0 ]; then
+		gpg --batch --import "${openpgp_keys[@]}"
+
+		# Trust every archived key. Fingerprints are read from the keys themselves so
+		# there is no second fingerprint list to keep in sync.
+		mapfile -t openpgp_ownertrust < <(
+			gpg --batch --show-keys --with-colons "${openpgp_keys[@]}" |
+				awk -F: '$1 == "pub" { primary = 1; next } $1 == "fpr" && primary { print $10 ":6:"; primary = 0 }'
+		)
+		if [ ${#openpgp_ownertrust[@]} -gt 0 ]; then
+			printf '%s\n' "${openpgp_ownertrust[@]}" | gpg --batch --import-ownertrust
+		fi
+	fi
+fi
+
+if [ -f "$SIGNING_KEYS_DIR/ssh/allowed_signers" ]; then
+	git config --global gpg.ssh.allowedSignersFile "$SIGNING_KEYS_DIR/ssh/allowed_signers"
+fi
