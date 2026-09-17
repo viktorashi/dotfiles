@@ -1,2 +1,4 @@
 [wsl2]
 dnsTunneling=true
+memory=24GB
+swap=0
