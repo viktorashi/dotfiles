@@ -1,6 +1,5 @@
 [tools]
 github-cli = "latest"
-flyctl = "latest"
 node = "latest"
 npm = "latest"
 pnpm = "12"
@@ -48,14 +47,7 @@ clang = "latest"
 cmake = "latest"
 ninja = "latest"
 ccache = "latest"
-conan = "latest"
-"github:ltex-plus/ltex-ls-plus" = "latest"
-"pipx:esbonio" = "latest"
-"pipx:rstcheck" = "latest"
-"aqua:Azure/bicep" = "latest"
 pipx = "latest"
-ansible = { version = "latest", pipx_args = "--include-deps", uvx = false }
-"pipx:radian" = "latest"
 
 [settings]
 lockfile = true
