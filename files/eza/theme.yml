@@ -1,0 +1,6 @@
+extensions:
+  tofu:
+    icon:
+      glyph: "󰏖"
+      style:
+        fg: "#FFDA1A"

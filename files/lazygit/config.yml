@@ -12,6 +12,11 @@ gui:
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 4
   shrinkSidePanelsToContent: true
+  customIcons:
+    extensions:
+      .tofu:
+        icon: "󰏖"
+        color: "#FFDA1A"
 os:
   openDirInEditor: "nvim"
 keybinding:
