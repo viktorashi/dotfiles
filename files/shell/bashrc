@@ -4,6 +4,16 @@
 
 source ~/.config/shell/shared.sh
 
+if [[ $- == *i* ]]; then
+  __paste_clipboard() {
+    local clip
+    clip="$(wl-paste 2>/dev/null | tr -d '\r')"
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${clip}${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$(( READLINE_POINT + ${#clip} ))
+  }
+  bind -x '"\C-v": __paste_clipboard'
+fi
+
 function vol() {
   USAGE="usage: vol [-h | --help | NUMBER_FROM_0_TO_100 | -DECREMENT | +INCREMENT]"
 

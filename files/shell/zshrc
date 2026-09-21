@@ -24,6 +24,19 @@ sqlite3() {
         "$@"
 }
 
+
+paste-clipboard() {
+    local raw="$(wl-paste; printf 'x')"
+    raw="${raw%x}"
+    # Normalize CRLF to LF
+    raw="${raw//$'\r\n'/$'\n'}"
+    raw="${raw//$'\r'/}"
+    LBUFFER+="$raw"
+}
+zle -N paste-clipboard
+bindkey '^V' paste-clipboard
+
+
 _configure_opencode_project_config() {
     if [[ "$PWD" == "$HOME" ]]; then
         export OPENCODE_DISABLE_PROJECT_CONFIG=1

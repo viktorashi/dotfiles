@@ -71,3 +71,27 @@ if vim.g.neovide then
     end
   end
 end
+
+if vim.fn.has("wsl") == 1 then
+  vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = {
+      ["+"] = "clip.exe",
+      ["*"] = "clip.exe",
+    },
+    paste = {
+      ["+"] = {
+        "sh",
+        "-c",
+        "wl-paste | tr -d '\\r'",
+      },
+      ["*"] = {
+        "sh",
+        "-c",
+        "wl-paste | tr -d '\\r'",
+      },
+    },
+    cache_enabled = 1,
+  }
+  vim.opt.clipboard = "unnamedplus"
+end

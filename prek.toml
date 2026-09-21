@@ -20,7 +20,7 @@ repo = "local"
 [[repos.hooks]]
 id = "lua-format"
 name = "StyLua"
-entry = "mise exec -- stylua --check"
+entry = "mise exec -- stylua"
 language = "system"
 files = "\\.lua$"
 

@@ -270,3 +270,22 @@ map(
   insertFullPath,
   { desc = yank_path_desc }
 )
+
+map(
+  "i",
+  "<C-v>",
+  "<C-r><C-p>+",
+  { desc = "Paste" }
+)
+map("c", "<C-v>", function()
+  return vim.fn
+    .getreg("+")
+    :gsub("\r\n", " ")
+    :gsub("[\r\n]", " ")
+end, { expr = true, desc = "Paste" })
+map(
+  "t",
+  "<C-v>",
+  [[<C-\><C-n>"+pi]],
+  { desc = "Paste in terminal" }
+)

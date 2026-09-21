@@ -20,6 +20,10 @@
       "keys": "alt+v"
     },
     {
+      "command": "unbound", 
+      "keys": "ctrl+v" 
+    },
+    {
       "command": {
         "action": "switchToTab",
         "index": 0
