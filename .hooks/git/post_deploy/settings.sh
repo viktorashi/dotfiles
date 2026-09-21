@@ -69,12 +69,37 @@ if [ -d "$SIGNING_KEYS_DIR/openpgp" ]; then
 	if [ ${#openpgp_keys[@]} -gt 0 ]; then
 		gpg --batch --import "${openpgp_keys[@]}"
 
-		# Trust every archived key. Fingerprints are read from the keys themselves so
-		# there is no second fingerprint list to keep in sync.
-		mapfile -t openpgp_ownertrust < <(
+		# Read the primary fingerprints, rather than maintaining a second list.
+		mapfile -t archived_openpgp_fingerprints < <(
 			gpg --batch --show-keys --with-colons "${openpgp_keys[@]}" |
-				awk -F: '$1 == "pub" { primary = 1; next } $1 == "fpr" && primary { print $10 ":6:"; primary = 0 }'
+				awk -F: '$1 == "pub" { primary = 1; next } $1 == "fpr" && primary { print $10; primary = 0 }'
 		)
+		mapfile -t own_openpgp_fingerprints < <(
+			gpg --batch --with-colons --list-secret-keys |
+				awk -F: '$1 == "sec" { primary = 1; next } $1 == "fpr" && primary { print $10; primary = 0 }'
+		)
+
+		declare -A own_openpgp_key current_openpgp_ownertrust
+		for fingerprint in "${own_openpgp_fingerprints[@]}"; do
+			own_openpgp_key["$fingerprint"]=1
+		done
+		while IFS=: read -r fingerprint trust _; do
+			current_openpgp_ownertrust["$fingerprint"]=$trust
+		done < <(gpg --batch --export-ownertrust)
+
+		# Colleagues' archived keys are marginal introducers. Our private keys are
+		# ultimate. A manually selected full level for a public-only personal key
+		# is left alone.
+		openpgp_ownertrust=()
+		for fingerprint in "${archived_openpgp_fingerprints[@]}"; do
+			trust=4
+			if [ "${own_openpgp_key[$fingerprint]:-}" = 1 ]; then
+				trust=6
+			elif [ "${current_openpgp_ownertrust[$fingerprint]:-}" = 5 ]; then
+				continue
+			fi
+			openpgp_ownertrust+=("$fingerprint:$trust:")
+		done
 		if [ ${#openpgp_ownertrust[@]} -gt 0 ]; then
 			printf '%s\n' "${openpgp_ownertrust[@]}" | gpg --batch --import-ownertrust
 		fi
