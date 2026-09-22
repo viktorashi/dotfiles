@@ -166,6 +166,7 @@ alias lg=lazygit
 conflazygit() { lazygit --path "$DOTFILES" "$@"; }
 alias conflg="conflazygit"
 alias clazygit="conflazygit"
+alias lzd="lazydocker"
 
 #sunt prea putoare
 alias m='make'
