@@ -22,5 +22,8 @@
   "keybinds": {
     "editor_open": "ctrl+g"
   },
-  "theme": "cursor"
+  "theme": "cursor",
+  "plugin": [
+    "@prevalentware/opencode-goal-plugin"
+  ]
 }
