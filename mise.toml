@@ -9,3 +9,7 @@ run = "bun run check"
 [tasks.bootstrap]
 description = "Install mise tools and register prek Git hooks"
 run = ["mise install", "prek install --prepare-hooks"]
+
+[tasks.soundcore-q20i]
+description = "Enable Windows Bluetooth and open Soundcore Q20i settings"
+run = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/connect-soundcore-q20i.ps1"
