@@ -13,5 +13,12 @@ vim.filetype.add({
   },
   pattern = {
     [".*%.tofu%.json"] = "terraform",
+    [".*/templates/.*"] = function(path)
+      local chart = vim.fs.find("Chart.yaml", {
+        path = vim.fs.dirname(path),
+        upward = true,
+      })
+      return chart[1] and "helm" or nil
+    end,
   },
 })

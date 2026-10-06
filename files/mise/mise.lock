@@ -1802,6 +1802,66 @@ checksum = "sha256:8a4e35ab0b331c85d73567b12f2a444df187f483e5079ceffa6bda1faa2e7
 url = "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.zip"
 url_api = "https://api.github.com/repos/koalaman/shellcheck/releases/assets/279056944"
 
+[[tools."aqua:mrjosh/helm-ls"]]
+version = "0.5.4"
+backend = "aqua:mrjosh/helm-ls"
+specifiers = ["latest"]
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-arm64"]
+checksum = "sha256:565d4a298d15e69a1bc7275a7fcf287d364668e53fdf09110d76aac5c820f78c"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_arm64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167536"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-arm64-musl"]
+checksum = "sha256:565d4a298d15e69a1bc7275a7fcf287d364668e53fdf09110d76aac5c820f78c"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_arm64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167536"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-x64"]
+checksum = "sha256:5d857ba25c461d3218bb98d9e98cb61bc948bfa92b124667d7e6ed695fe2da5f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167516"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-x64-baseline"]
+checksum = "sha256:5d857ba25c461d3218bb98d9e98cb61bc948bfa92b124667d7e6ed695fe2da5f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167516"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-x64-musl"]
+checksum = "sha256:5d857ba25c461d3218bb98d9e98cb61bc948bfa92b124667d7e6ed695fe2da5f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167516"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:5d857ba25c461d3218bb98d9e98cb61bc948bfa92b124667d7e6ed695fe2da5f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167516"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.macos-arm64"]
+checksum = "sha256:8d917fedac8aa7c0199bccb5fc54df68303d215d2c76a47b59094ea272e250c1"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_darwin_arm64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167501"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.macos-x64"]
+checksum = "sha256:d2e2a201ddb698c333b2408549a43bfcfbe3b03662e259bb39c8f1b0a0b1f748"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_darwin_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167486"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.macos-x64-baseline"]
+checksum = "sha256:d2e2a201ddb698c333b2408549a43bfcfbe3b03662e259bb39c8f1b0a0b1f748"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_darwin_amd64"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167486"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.windows-x64"]
+checksum = "sha256:38ed1eea9c018365d4ba1c335c2955b067a4ae68fcfe18ed52b5dc1df51c860f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_windows_amd64.exe"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167538"
+
+[tools."aqua:mrjosh/helm-ls"."platforms.windows-x64-baseline"]
+checksum = "sha256:38ed1eea9c018365d4ba1c335c2955b067a4ae68fcfe18ed52b5dc1df51c860f"
+url = "https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_windows_amd64.exe"
+url_api = "https://api.github.com/repos/mrjosh/helm-ls/releases/assets/321167538"
+
 [[tools."aqua:mvdan/gofumpt"]]
 version = "0.11.0"
 backend = "aqua:mvdan/gofumpt"
