@@ -6,6 +6,7 @@ Include ~/.ssh/config.d/*
 Host db14
   User rvsclient
   HostName stratec-db14.intern.stratec.com
+  IdentityFile ~/.ssh/id_ed25519_auth
 
 #  qas-jumphost server
 Host qas-jumphost
