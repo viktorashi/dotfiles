@@ -4,6 +4,7 @@ git:
   overrideGpg: true
   diffRenderers:
     - command: delta --dark --paging=never --line-numbers
+  skipHookPrefix: "-"
 commit:
   gpgsign: true
 gui:
