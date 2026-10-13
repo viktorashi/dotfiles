@@ -21,3 +21,7 @@ Im usually running everything in `tmux`, so if something is up, you can actually
 ```bash
 tmux capture-pane -p -t target_session:target_window.target_pane
 ```
+
+---
+
+For subagent tasks, always try using a subagent that's dumber than you, when available. This can mean it has "stupid" or "dumb" in its name etc. or that you know what model you are, and what this one will be running.
