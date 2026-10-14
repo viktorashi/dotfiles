@@ -55,6 +55,7 @@ lockfile = true
 minimum_release_age = "3d"
 idiomatic_version_file_enable_tools = ["node", "rust", "python"]
 experimental = true
+auto_update = false
 
 [settings.npm]
 package_manager = "bun"
