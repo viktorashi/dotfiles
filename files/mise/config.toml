@@ -49,6 +49,8 @@ cmake = "latest"
 ninja = "latest"
 ccache = "latest"
 pipx = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+gallery-dl = "latest"
 
 [settings]
 lockfile = true
