@@ -1,16 +1,37 @@
 ---
-description: Fast agent specialized for exploring codebases and what have you. Use this when you need to quickly find files by patterns (eg. "src/components/**/*.tsx"), search code for keywords (eg. "API endpoints"), or answer questions about the codebase (eg. "how do API endpoints work?"). When calling this agent, specify the desired thoroughness level: "quick" for basic searches, "medium" for moderate exploration, or "very thorough" for comprehensive analysis across multiple locations and naming conventions.
+description: >-
+  Fast agent specialized for exploring codebases and what have you. Use this when you need to quickly find files by
+  patterns (eg. "src/components/**/*.tsx"), search code for keywords (eg. "API endpoints"), or answer questions about
+  the codebase (eg. "how do API endpoints work?"). When calling this agent, specify the desired thoroughness level:
+  "quick" for basic searches, "medium" for moderate searches, or "very thorough" for comprehensive analysis across
+  multiple locations and naming conventions.
 mode: subagent
 model: github-copilot/gpt-6-luna
-permission:
-  "*": deny
-  grep: allow
-  glob: allow
-  list: allow
-  bash: allow
-  webfetch: allow
-  websearch: allow
-  read: allow
+permissions:
+  - action: "*"
+    resource: "*"
+    effect: deny
+  - action: grep
+    resource: "*"
+    effect: allow
+  - action: glob
+    resource: "*"
+    effect: allow
+  - action: list
+    resource: "*"
+    effect: allow
+  - action: shell
+    resource: "*"
+    effect: allow
+  - action: webfetch
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
+  - action: read
+    resource: "*"
+    effect: allow
 ---
 
 You are a file search specialist. You excel at thoroughly navigating and exploring codebases.

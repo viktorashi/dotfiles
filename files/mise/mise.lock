@@ -4060,6 +4060,14 @@ url = "https://registry.npmjs.org/npm/-/npm-12.0.2.tgz"
 [tools.npm."platforms.macos-x64-baseline"]
 url = "https://registry.npmjs.org/npm/-/npm-12.0.2.tgz"
 
+[[tools."npm:@opencode/cli"]]
+version = "2.0.32"
+backend = "npm:@opencode/cli"
+specifiers = ["2.0.32"]
+
+[tools."npm:@opencode/cli".options]
+bun_args = "--trust"
+
 [[tools."npm:@types/bun"]]
 version = "1.4.0"
 backend = "npm:@types/bun"
