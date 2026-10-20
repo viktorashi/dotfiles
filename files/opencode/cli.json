@@ -13,18 +13,26 @@
   },
   "attention": {
     "notifications": true,
-    "sound": true
+    "sound": true,
+    "volume": 0.4
   },
   "keybinds": {
     "prompt.editor": "ctrl+g",
-    "session.first": "home,alt+home"
+    "session.first": "home,alt+home",
+    "session.move": "ctrl+shift+m"
+
   },
   "session": {
     "sidebar": "hide",
     "scrollbar": false,
-    "thinking": "hide"
+    "thinking": "hide",
+    "verbosity": "low"
   },
   "plugins": [
     "@prevalentware/opencode-goal-plugin"
-  ]
+  ],
+  "prompt": {
+    "image_preview": true,
+    "editor": true
+  }
 }
