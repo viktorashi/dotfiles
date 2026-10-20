@@ -25,3 +25,7 @@ tmux capture-pane -p -t target_session:target_window.target_pane
 ---
 
 For subagent tasks, always try using a subagent that's dumber than you, when available. This can mean it has "stupid" or "dumb" in its name etc. or that you know what model you are, and what this one will be running.
+
+---
+
+When something is blocked on access you don't have (permissions, app registrations, IT grants, credentials), don't stop there and don't hand me a plan. Make it actually work now with the credentials you do have (or that I have: ask me for the ones that unblock the most, e.g. a token, SSH key or a one-time login), as a clearly marked, tracked WORKAROUND with its revert written next to it, then keep the proper fix on the todo list.
