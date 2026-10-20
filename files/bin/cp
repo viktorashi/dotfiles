@@ -1,0 +1,5 @@
+#!/bin/sh
+# Transparent wrapper around GNU cp to enable opportunistic reflink (copy-on-write)
+# by default in all shells, scripts, and non-interactive subshells.
+# Falls back to standard copy on non-CoW filesystems (ext4) and cross-device links.
+exec /usr/bin/cp --reflink=auto "$@"

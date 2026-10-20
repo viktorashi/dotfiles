@@ -278,6 +278,8 @@ fi
 #
 eval "$(zoxide init zsh)"
 
+eval "$(lane shellenv)"
+
 
 
 

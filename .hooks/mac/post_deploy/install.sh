@@ -3,14 +3,12 @@ brew install opera-gx alt-tab ghostty bat bat-extras colima docker docker-compos
 #cu docker compose
 mkdir -p ~/.docker/cli-plugins && ln -sfn /opt/homebrew/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
-
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
 nvm use --lts
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-
 
 command -v rustup >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

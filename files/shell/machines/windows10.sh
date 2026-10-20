@@ -2,7 +2,7 @@
 
 # MSYS2 toolchain, ahead of anything Windows puts on PATH
 for d in /ucrt64/bin /msys64/usr/bin /usr/local/bin /usr/bin /bin; do
-  [ -d "$d" ] && PATH="$d:$PATH"
+	[ -d "$d" ] && PATH="$d:$PATH"
 done
 export PATH
 

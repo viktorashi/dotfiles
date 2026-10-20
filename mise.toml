@@ -15,5 +15,5 @@ description = "Enable Windows Bluetooth and open Soundcore Q20i settings"
 run = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/connect-soundcore-q20i.ps1"
 
 [tasks.clear-gpg]
-description = "Foloseste cand ti-a expirat cache-u de gpg-agent si-ti trebuie iara passphraseu"
-run = "echo test | gpg --clearsign"
+description = "Curata lock-urile gpg, restarteaza gpg-agent si cere din nou passphrase-ul"
+run = "scripts/clear-gpg.sh"

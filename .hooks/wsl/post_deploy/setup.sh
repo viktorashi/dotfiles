@@ -9,7 +9,7 @@ git config --global credential.https://dev.azure.com.useHttpPath true
 # Ensure systemd-resolved doesn't hijack WSL DNS
 sudo systemctl disable systemd-resolved --now 2>/dev/null || true
 if [ -L /etc/resolv.conf ]; then
-    sudo rm -f /etc/resolv.conf
+	sudo rm -f /etc/resolv.conf
 fi
 
 # Disables root password (optional)

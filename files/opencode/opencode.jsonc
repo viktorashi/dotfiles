@@ -93,5 +93,6 @@
   "plugins": [
     "file://{env:HOME}/projects-repos/opencode-vibeguard",
     "@prevalentware/opencode-goal-plugin",
+    "git+https://github.com/anomalyco/opencode-plugin-lane.git"
   ]
 }

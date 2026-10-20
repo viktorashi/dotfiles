@@ -1,0 +1,7 @@
+# Globally disable checks that do not match our dotfiles conventions:
+# SC2148: Sourced machine-specific profile fragments without shebangs
+# SC1091: External / environment-installed files not followed (nvm.sh, cargo env, broot)
+# SC2034: Unused variables (e.g. read loops extracting positional fields)
+# SC2076: Regex quoting in bash [[ =~ ]]
+# SC2086: Double quote to prevent globbing/word splitting
+disable=SC2148,SC1091,SC2034,SC2076,SC2086

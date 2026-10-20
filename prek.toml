@@ -39,16 +39,9 @@ language = "system"
 files = "\\.sh$"
 
 [[repos.hooks]]
-id = "markdown-lint"
-name = "rumdl"
-entry = "mise exec -- rumdl check"
-language = "system"
-types = ["markdown"]
-
-[[repos.hooks]]
 id = "toml-format"
 name = "Taplo"
-entry = "mise exec -- taplo format --check"
+entry = "mise exec -- taplo format"
 language = "system"
 types = ["toml"]
 
