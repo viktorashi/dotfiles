@@ -57,6 +57,11 @@ git config --global 'includeIf.hasconfig:remote.*.url:*://github.com/viktorashi/
 git config --global 'includeIf.hasconfig:remote.*.url:git@github.com:viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
 git config --global 'includeIf.hasconfig:remote.*.url:ssh://git@github.com/viktorashi/**.path' "$HOME/.config/git/config-viktorashi"
 
+# Dynamic credential helper for GitHub (resolves viktorashi vs i-stan_stratec via gh hosts.yml without popups)
+git config --global --unset-all credential.https://github.com.helper 2>/dev/null || true
+git config --global --add credential.https://github.com.helper ""
+git config --global --add credential.https://github.com.helper "$HOME/.local/bin/gh-smart-credential"
+
 git config --global commit.gpgsign true
 
 # Install archived verification keys. These are public keys only; signing still
