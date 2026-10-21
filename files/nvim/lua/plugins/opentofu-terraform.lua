@@ -23,13 +23,6 @@ return {
             "terraform",
           },
         },
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
         tflint = {
           enabled = true,
           filetypes = { "terraform" },

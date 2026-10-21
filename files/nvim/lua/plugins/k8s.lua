@@ -1,0 +1,27 @@
+return {
+  -- 1. Tell Tree-sitter to use the terraform/hcl parser for "opentofu" filetype
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.treesitter.language.register(
+        "Tiltfile",
+        "tiltfile"
+      )
+    end,
+  },
+
+  -- 2. Enable tofu_ls in lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        tilt_ls = {
+          enabled = true,
+          filetypes = {
+            "tiltfile",
+          },
+        },
+      },
+    },
+  },
+}
