@@ -32,6 +32,8 @@ pkgof() {
 }
 
 eval "$(/usr/bin/wsl2-ssh-agent)"
+# the work key lives in the Windows ssh-agent; if it is not loaded yet (after a Windows reboot), one WSLg passphrase popup
+ssh-add -l >/dev/null 2>&1 || { [ -n "$DISPLAY" ] && flock -n "${XDG_RUNTIME_DIR:-/tmp}/ssh-load-key.lock" ssh-load-key >/dev/null 2>&1 </dev/null & } 2>/dev/null
 
 # zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
 PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')

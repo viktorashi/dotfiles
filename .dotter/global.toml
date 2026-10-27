@@ -134,6 +134,7 @@ default_target_type = "symbolic"
 "files/bin/restore-nvim-session" = "~/.local/bin/restore-nvim-session"
 "files/bin/restore-vim-session" = "~/.local/bin/restore-vim-session"
 "files/bin/mise-sync-pacman" = "~/.local/bin/mise-sync-pacman"
+"files/bin/ssh-load-key" = "~/.local/bin/ssh-load-key"
 # Transparent wrapper around GNU cp to enable opportunistic reflink (copy-on-write)
 # by default for both interactive and non-interactive operations (e.g. on /mnt/fast-cow XFS mount).
 # Falls back to standard copy on non-CoW filesystems (ext4) and cross-device links.

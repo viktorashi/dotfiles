@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Load ~/.ssh/id_ed25519_auth into the Windows ssh-agent (via wsl2-ssh-agent), asking for the
+# passphrase in a WSLg popup instead of a terminal. The agent keeps it until it stops or Windows reboots.
+set -euo pipefail
+key=${1:-$HOME/.ssh/id_ed25519_auth}
+ssh-add -l 2>/dev/null | grep -qF "$(ssh-keygen -lf "$key.pub" | cut -d' ' -f2)" && exit 0
+askpass=$(mktemp) && trap 'rm -f "$askpass"' EXIT
+printf '#!/bin/sh\nexec zenity --password --title="SSH key" --text="Passphrase for $1"\n' >"$askpass"
+chmod +x "$askpass"
+SSH_ASKPASS=$askpass SSH_ASKPASS_REQUIRE=force ssh-add "$key" </dev/null
