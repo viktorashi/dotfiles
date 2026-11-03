@@ -45,6 +45,14 @@ Host spark
   User vstan
   IdentityFile ~/.ssh/id_ed25519_auth
 
+# Bitbucket Data Center (on-prem) — SSH on port 7999
+Host git.stratec.com
+  HostName git.stratec.com
+  Port 7999
+  User git
+  IdentityFile ~/.ssh/id_ed25519_auth
+  IdentitiesOnly yes
+
 Host *
   AddKeysToAgent yes
   ControlMaster auto
