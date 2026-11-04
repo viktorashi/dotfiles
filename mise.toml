@@ -14,6 +14,10 @@ run = ["mise install", "prek install --prepare-hooks"]
 description = "Enable Windows Bluetooth and open Soundcore Q20i settings"
 run = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/connect-soundcore-q20i.ps1"
 
+[tasks.fix-bluetooth]
+description = "Reset Windows Bluetooth adapter when stuck in error state (Code 43)"
+run = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/fix-bluetooth.ps1"
+
 [tasks.clear-gpg]
 description = "Curata lock-urile gpg, restarteaza gpg-agent si cere din nou passphrase-ul"
 run = "scripts/clear-gpg.sh"

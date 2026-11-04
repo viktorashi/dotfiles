@@ -26,6 +26,20 @@ if ($problemCode -eq 22) {
         throw
     }
 }
+elseif ($problemCode -eq 43) {
+    Write-Warning "Bluetooth adapter is reporting problem code 43 (device stopped)."
+    Write-Host "Attempting automatic Bluetooth adapter reset..." -ForegroundColor Cyan
+    $fixScript = Join-Path $PSScriptRoot 'fix-bluetooth.ps1'
+    if (Test-Path $fixScript) {
+        & $fixScript
+        $adapter = Get-PnpDevice -InstanceId $adapter.InstanceId -ErrorAction SilentlyContinue
+        $problemCode = (Get-PnpDeviceProperty -InstanceId $adapter.InstanceId `
+            -KeyName DEVPKEY_Device_ProblemCode -ErrorAction SilentlyContinue).Data
+    }
+    if ($problemCode -and $problemCode -ne 0) {
+        throw "Bluetooth adapter still reports problem code $problemCode after reset attempt. Run 'mise run fix-bluetooth' or check Device Manager."
+    }
+}
 elseif ($problemCode -and $problemCode -ne 0) {
     throw "Bluetooth adapter reports problem code $problemCode. Check Device Manager."
 }
