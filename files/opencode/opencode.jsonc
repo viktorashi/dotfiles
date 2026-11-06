@@ -7,7 +7,7 @@
 // ~/.local/state/opencode/kv.json (c) -> ~/.config/opencode/cli.json (c)
 // ~/.local/share/opencode/opencode.json (c) -> ~/.config/opencode/opencode.json (c)
 //
-// restu project-specific mai poate fi overloadut si din 
+// restu project-specific mai poate fi overloadut si din
 //
 // <project>/.opencode/opencode.json # project server config
 //
@@ -19,8 +19,8 @@
     {
       "action": "*",
       "resource": "*",
-      "effect": "allow"
-    }
+      "effect": "allow",
+    },
   ],
   "formatter": {},
   "lsp": {},
@@ -28,37 +28,29 @@
     {
       "effect": "deny",
       "action": "provider.use",
-      "resource": "opencode"
-    }
+      "resource": "opencode",
+    },
   ],
   "mcp": {
     "servers": {
       "gh_grep": {
         "type": "remote",
         "url": "https://mcp.grep.app",
-        "disabled": true
+        "disabled": true,
       },
       "github-personal": {
         "type": "local",
-        "command": [
-          "npx",
-          "-y",
-          "@modelcontextprotocol/server-github"
-        ],
+        "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
         "environment": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}",
         },
-        "disabled": true
+        "disabled": true,
       },
       "github-work": {
         "type": "local",
-        "command": [
-          "npx",
-          "-y",
-          "@modelcontextprotocol/server-github"
-        ],
+        "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
         "environment": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_WORK_ACCESS_TOKEN}"
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_WORK_ACCESS_TOKEN}",
         },
         "disabled": true,
       },
@@ -73,23 +65,23 @@
       "package": "aisdk:@ai-sdk/google",
       "settings": {
         "websearch_cited": {
-          "model": "gemini-2.5-flash"
-        }
-      }
+          "model": "gemini-2.5-flash",
+        },
+      },
     },
     "stratec-dgx-spark": {
       "package": "aisdk:@ai-sdk/openai-compatible",
       "name": "Sparku nostru",
       "settings": {
         "baseURL": "http://spark-da41.intern.stratec.com/codellm/v1",
-        "apiKey": "{env:SPARK_API_KEY}"
+        "apiKey": "{env:SPARK_API_KEY}",
       },
       "models": {
         "qwen3.8-flash-next": {
-          "name": "qwen3.8-flash-next"
-        }
-      }
-    }
+          "name": "qwen3.8-flash-next",
+        },
+      },
+    },
   },
   // VibeGuard's dual-version adapter is kept in the personal projects-repos clone.
   // Cited-search and show-tools still expose only the V1 API; the PTY V2 subpath
@@ -97,6 +89,6 @@
   "plugins": [
     "file://{env:HOME}/projects-repos/opencode-vibeguard",
     "@prevalentware/opencode-goal-plugin",
-    "git+https://github.com/anomalyco/opencode-plugin-lane.git"
-  ]
+    "git+https://github.com/anomalyco/opencode-plugin-lane.git",
+  ],
 }
