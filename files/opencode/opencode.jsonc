@@ -60,9 +60,13 @@
         "environment": {
           "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_WORK_ACCESS_TOKEN}"
         },
-        "disabled": true
-      }
-    }
+        "disabled": true,
+      },
+      "integrity": {
+        "type": "remote",
+        "url": "https://aistratec-ai-capital.swedencentral.cloudapp.azure.com/mcp/integrity/",
+      },
+    },
   },
   "providers": {
     "google": {
