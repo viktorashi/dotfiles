@@ -54,10 +54,6 @@
         },
         "disabled": true,
       },
-      "integrity": {
-        "type": "remote",
-        "url": "https://aistratec-ai-capital.swedencentral.cloudapp.azure.com/mcp/integrity/",
-      },
     },
   },
   "providers": {
