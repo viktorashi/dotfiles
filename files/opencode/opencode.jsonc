@@ -79,11 +79,12 @@
       },
     },
   },
-  // VibeGuard's dual-version adapter is kept in the personal projects-repos clone.
+  // VibeGuard from our fork until upstream merges V2 support (#11) and the placeholder-leak fix (#13);
+  // then back to the npm package.
   // Cited-search and show-tools still expose only the V1 API; the PTY V2 subpath
   // fails to resolve in this CLI and is left disabled until its loader path works.
   "plugins": [
-    "file://{env:HOME}/projects-repos/opencode-vibeguard",
+    "git+https://github.com/viktorashi/opencode-vibeguard.git#fix/unrestored-placeholders",
     "@prevalentware/opencode-goal-plugin",
     "git+https://github.com/anomalyco/opencode-plugin-lane.git",
   ],
