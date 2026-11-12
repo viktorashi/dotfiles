@@ -2,4 +2,15 @@
 # WSLg graphical passphrase prompt for ssh-keygen / ssh-add.
 # Invoked automatically via SSH_ASKPASS when no controlling TTY is available
 # (e.g. from lazygit, IDE git integrations, background scripts).
-exec zenity --password --title="SSH" --text="${1:-Enter passphrase:}"
+TITLE="SSH Passphrase"
+
+# Ensure the window grabs keyboard focus the instant it appears:
+# 1. xdotool activates the window under Xwayland.
+# 2. Windows AppActivate brings the top-level WSLg window to the foreground.
+(
+	sleep 0.15
+	xdotool search --name "$TITLE" windowactivate 2>/dev/null || true
+	/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "(New-Object -ComObject WScript.Shell).AppActivate('$TITLE')" </dev/null 2>/dev/null || true
+) &
+
+exec zenity --password --title="$TITLE" --text="${1:-Enter passphrase:}" --modal
