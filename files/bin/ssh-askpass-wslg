@@ -1,0 +1,5 @@
+#!/bin/sh
+# WSLg graphical passphrase prompt for ssh-keygen / ssh-add.
+# Invoked automatically via SSH_ASKPASS when no controlling TTY is available
+# (e.g. from lazygit, IDE git integrations, background scripts).
+exec zenity --password --title="SSH" --text="${1:-Enter passphrase:}"

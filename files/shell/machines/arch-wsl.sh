@@ -31,9 +31,15 @@ pkgof() {
 	pacman -Qo "$bin_path"
 }
 
-eval "$(/usr/bin/wsl2-ssh-agent)"
-# the work key lives in the Windows ssh-agent; if it is not loaded yet (after a Windows reboot), one WSLg passphrase popup
-ssh-add -l >/dev/null 2>&1 || { [ -n "$DISPLAY" ] && flock -n "${XDG_RUNTIME_DIR:-/tmp}/ssh-load-key.lock" ssh-load-key >/dev/null 2>&1 </dev/null & } 2>/dev/null
+# ── SSH agent ────────────────────────────────────────────────────────
+# wsl2-ssh-agent runs as a systemd user unit bridging Windows OpenSSH Agent
+# (service is set to Automatic startup in Windows).
+export SSH_AUTH_SOCK="$HOME/.ssh/wsl2-ssh-agent.sock"
+
+# WSLg askpass — lets ssh-keygen (git SSH-signing) and ssh-add pop a
+# graphical passphrase dialog when no controlling TTY is available
+# (lazygit, IDE integrations, background scripts).
+export SSH_ASKPASS="$HOME/.local/bin/ssh-askpass-wslg"
 
 # zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
 PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')

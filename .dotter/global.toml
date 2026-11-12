@@ -113,7 +113,7 @@ default_target_type = "symbolic"
 [wsl.files]
 "files/wsl/wsl.conf" = { target = "/etc/wsl.conf", type = "symbolic", owner = "root" }
 "files/wsl/WSLInterop.conf" = { target = "/etc/binfmt.d/WSLInterop.conf", type = "symbolic", owner = "root" }
-"files/windows/wslconfig" = { target = "${USERPROFILE:-/mnt/c/Users/istan}/.wslconfig", type = "copy" }
+"files/windows/wslconfig" = { target = "${USERPROFILE:-/mnt/c/Users/istan}/.wslconfig", type = "symbolic" }
 
 
 [arch.files]
@@ -135,6 +135,7 @@ default_target_type = "symbolic"
 "files/bin/restore-vim-session" = "~/.local/bin/restore-vim-session"
 "files/bin/mise-sync-pacman" = "~/.local/bin/mise-sync-pacman"
 "files/bin/ssh-load-key" = "~/.local/bin/ssh-load-key"
+"files/bin/ssh-askpass-wslg" = "~/.local/bin/ssh-askpass-wslg"
 # Transparent wrapper around GNU cp to enable opportunistic reflink (copy-on-write)
 # by default for both interactive and non-interactive operations (e.g. on /mnt/fast-cow XFS mount).
 # Falls back to standard copy on non-CoW filesystems (ext4) and cross-device links.

@@ -1,5 +1,6 @@
 [Unit]
 Description=SSH agent
+ConditionVirtualization=!wsl
 
 [Service]
 Type=simple

@@ -1,0 +1,13 @@
+[Unit]
+Description=WSL2 SSH Agent Bridge to Windows OpenSSH Agent
+ConditionVirtualization=wsl
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wsl2-ssh-agent -foreground -socket %h/.ssh/wsl2-ssh-agent.sock
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

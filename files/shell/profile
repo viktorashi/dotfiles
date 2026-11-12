@@ -38,8 +38,8 @@ esac
 # rust
 [ -x "$HOME/.cargo/bin/sccache" ] && export RUSTC_WRAPPER="$HOME/.cargo/bin/sccache"
 
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-$(gpgconf --list-dirs agent-ssh-socket 2>/dev/null)}"
+export GPG_TTY=$(tty 2>/dev/null || true)
 
 export PASTEL_COLOR_MODE=24bit
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true

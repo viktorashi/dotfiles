@@ -120,11 +120,10 @@ NEWLINE=$'\n'
 setopt PROMPT_SUBST
 PROMPT='$(active_env_prompt)${COLOR_USR}%n@%M ${COLOR_DIR}${PWD#"${PWD%/*/*}/"} ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}% '
 
-# New tabs inherit the terminal app environment, not necessarily ~/.profile.
-# Point interactive zsh shells at the live gpg-agent SSH socket every time.
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export GPG_TTY="$(tty)"
-gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+# Point interactive zsh shells at the live gpg-agent SSH socket if not already set by machine.
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-$(gpgconf --list-dirs agent-ssh-socket 2>/dev/null)}"
+export GPG_TTY="$(tty 2>/dev/null || true)"
+[ -n "$GPG_TTY" ] && gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
