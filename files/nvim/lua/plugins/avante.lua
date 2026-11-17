@@ -7,6 +7,15 @@ return {
       or "make",
     event = "VeryLazy",
     version = false,
+    dependencies = {
+      "ColinKennedy/mega.logging",
+      {
+        "ColinKennedy/mega.cmdparse",
+        dependencies = {
+          "ColinKennedy/mega.logging",
+        },
+      },
+    },
     opts = {
       instructions_file = "avante.md",
       provider = "copilot",
