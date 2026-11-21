@@ -74,8 +74,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-autoload -U bashcompinit
-bashcompinit
+# bash completion (if installed)
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # machine-specific, deployed by dotter (see .config/shell/machines/)
 [ -f "$HOME/.config/shell/machine.sh" ] && . "$HOME/.config/shell/machine.sh"

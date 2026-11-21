@@ -1,4 +1,6 @@
 [install]
-globalDir = "~/.bun/install/global"
-globalBinDir = "~/.bun/bin"
+globalDir = "/mnt/fast-cow/bun/install/global"
+globalBinDir = "/mnt/fast-cow/bun/bin"
 
+[install.cache]
+dir = "/mnt/fast-cow/cache/bun"

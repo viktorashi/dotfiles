@@ -1,6 +1,23 @@
 # shellcheck shell=bash
 # s-au mutat aici toate sa fie frumix
 
+# Copy-on-Write (XFS) Storage on /mnt/fast-cow
+if [ -d "/mnt/fast-cow" ]; then
+	export FAST_COW_DIR="/mnt/fast-cow"
+	export XDG_CACHE_HOME="/mnt/fast-cow/cache"
+	export UV_CACHE_DIR="/mnt/fast-cow/cache/uv"
+	export PIP_CACHE_DIR="/mnt/fast-cow/cache/pip"
+	export SCCACHE_DIR="/mnt/fast-cow/cache/sccache"
+	export PNPM_HOME="/mnt/fast-cow/pnpm"
+	export MISE_DATA_DIR="/mnt/fast-cow/mise"
+	export MISE_CACHE_DIR="/mnt/fast-cow/cache/mise"
+	export CARGO_HOME="/mnt/fast-cow/cargo"
+	export RUSTUP_HOME="/mnt/fast-cow/rustup"
+	export GOPATH="/mnt/fast-cow/go"
+	export GOMODCACHE="/mnt/fast-cow/go/pkg/mod"
+	export BUN_INSTALL="/mnt/fast-cow/bun"
+fi
+
 # Let the shell prompt decide how virtual environments are displayed.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 

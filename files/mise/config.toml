@@ -65,6 +65,9 @@ package_manager = "bun"
 
 [env]
 BUN_OPTIONS = "--bun"
+CARGO_HOME = "/mnt/fast-cow/cargo"
+RUSTUP_HOME = "/mnt/fast-cow/rustup"
+GOPATH = "/mnt/fast-cow/go"
 
 [bootstrap.mise_shell_activate]
 zshrc = false
