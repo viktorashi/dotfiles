@@ -1,7 +1,11 @@
 #! /usr/bin/bash
 # arch-wsl / leanoox — WSL2 under Windows, work laptop.
 
-# Windows tools reachable from inside WSL
+# Windows tools reachable from inside WSL (appendWindowsPath is OFF in wsl.conf,
+# so we whitelist only the handful of .exe's we actually call from Linux).
+export PATH="$PATH:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0"
+export PATH="$PATH:/mnt/c/WINDOWS"
+export PATH="$PATH:/mnt/c/Users/istan/scoop/apps/vscode/current/bin"
 export PATH="$PATH:/mnt/c/Program Files/Integrity/ILMClient13/bin/"
 
 # midnight commander vim keymap, installed to /etc by the mc package
@@ -41,8 +45,7 @@ export SSH_AUTH_SOCK="$HOME/.ssh/wsl2-ssh-agent.sock"
 # (lazygit, IDE integrations, background scripts).
 export SSH_ASKPASS="$HOME/.local/bin/ssh-askpass-wslg"
 
-# zic aplicatii din Linux ca trebuie sa dea call la scoop, scoatel drq
-PATH=$(echo "$PATH" | sed -e 's|:/mnt/c/Users/istan/scoop/shims||' -e 's|/mnt/c/Users/istan/scoop/shims:||')
+# With appendWindowsPath=false, scoop shims are no longer injected — nothing to strip.
 export PATH
 
-sudo -S ip link set dev eth0 mtu 1300
+# MTU is handled by the wsl-mtu.service systemd unit — no need to run on every shell.

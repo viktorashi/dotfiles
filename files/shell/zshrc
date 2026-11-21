@@ -44,7 +44,7 @@ _configure_opencode_project_config() {
         unset OPENCODE_DISABLE_PROJECT_CONFIG
     fi
 }
-add-zsh-hook precmd _configure_opencode_project_config
+# Only chpwd needed — PWD only changes when changing directories, not on every prompt
 add-zsh-hook chpwd _configure_opencode_project_config
 _configure_opencode_project_config
 
@@ -64,21 +64,16 @@ setopt EXTENDED_HISTORY
 _configure_history_file() {
     local hist_root pane_key
     hist_root="$HOME/.zsh_history.d"
-    mkdir -p "$hist_root"
+    [[ -d "$hist_root" ]] || mkdir -p "$hist_root"
 
     if [[ -n "${TMUX_PANE-}" ]]; then
         pane_key="$(tmux display-message -p -t "${TMUX_PANE}" '#{session_name}:#{window_index}.#{pane_index}' 2>/dev/null)"
         pane_key="${pane_key//[^A-Za-z0-9_.:-]/_}"
         [[ -n "$pane_key" ]] || pane_key="tmux_unknown"
-        export HISTFILE="${hist_root}/history_${pane_key}.zsh"
+        HISTFILE="${hist_root}/history_${pane_key}.zsh"
     else
-        export HISTFILE="$HOME/.zsh_history"
+        HISTFILE="$HOME/.zsh_history"
     fi
-
-    if [[ "${__ZSH_HISTORY_LOADED_FOR-}" != "$HISTFILE" && -r "$HISTFILE" ]]; then
-        fc -R "$HISTFILE"
-    fi
-    export __ZSH_HISTORY_LOADED_FOR="$HISTFILE"
 }
 _configure_history_file
 
@@ -127,7 +122,15 @@ export GPG_TTY="$(tty 2>/dev/null || true)"
 
 fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
-compinit -u
+# Use the cached completion dump unless it's older than 24 hours.
+# compinit -C is zsh's built-in mechanism: it skips the full fpath scan and
+# security audit, reading the existing .zcompdump directly. This is the same
+# approach oh-my-zsh, prezto, and zinit use internally.
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit -u
+else
+  compinit -C -u
+fi
 
 # =============================================================================
 #
@@ -282,13 +285,13 @@ eval "$(lane shellenv)"
 
 
 
-command -v codex >/dev/null 2>&1 && eval "$(codex completion zsh)"
-command -v batman >/dev/null 2>&1 && eval "$(batman --export-env)"
-autoload -U bashcompinit && bashcompinit
-
-command -v register-python-argcomplete >/dev/null 2>&1 && eval "$(register-python-argcomplete pipx)"
-
-command -v prek >/dev/null 2>&1 && eval "$(COMPLETE=zsh prek)"
+# batman pager configuration (avoid running subshell on every startup)
+if command -v batman >/dev/null 2>&1; then
+    export MANPAGER="env BATMAN_IS_BEING_MANPAGER=yes bash /usr/sbin/batman"
+    export MANROFFOPT="-c"
+fi
+# Note: completions for codex, pipx, prek, and mise are installed in ~/.zsh/completions/
+# and autoloaded on-demand by compinit instead of running slow subshells on every startup.
 
 # Fix vi-mode backspace: allow deleting past the insert-mode entry point
 # (overrides /etc/zsh/zshrc which sets vi-backward-delete-char, which blocks this)
@@ -321,8 +324,6 @@ eval "$(mise activate zsh)"
 # runtime containers have no mise at all). Lets per-repo mise.<env>.toml
 # files gate dev-only tools behind MISE_ENV=dev automatically.
 [[ -n "$MISE_SHELL" ]] && export MISE_ENV=dev
-eval "$(mise completion zsh)"
-command -v usage >/dev/null 2>&1 && source <(usage g completion-init zsh)
 
 [[ -f ~/.secrets.sh ]] && source ~/.secrets.sh
 
