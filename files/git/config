@@ -1,0 +1,80 @@
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+	pager = delta
+	excludesfile = ~/.config/git/ignore
+	autocrlf = input
+
+[alias]
+	st = status
+	s = status
+	f = fetch
+	c = commit
+	b = branch
+	co = checkout
+	sw = switch
+	a = add
+	d = diff
+	l = log
+	t = tag
+	m = merge
+	p = pull
+	ps = push
+
+[pull]
+	rebase = true
+
+[push]
+	useForceIfIncludes = true
+	autoSetupRemote = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	syntax-theme = Dracula
+	line-numbers = true
+	side-by-side = false
+
+[diff]
+	tool = vimdiff
+
+[merge]
+	tool = vimdiff
+	conflictStyle = zdiff3
+
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[http]
+	postBuffer = 524288000
+
+[credential]
+	useHttpPath = true
+	gitHubAccountFiltering = false
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
+[credential "https://github.com"]
+	helper =
+	helper = /home/istan/.local/bin/gh-smart-credential
+
+[commit]
+	gpgsign = true
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.dotfiles/files/certs-keys/git-signing/ssh/allowed_signers
+
+# Dynamic identity for viktorashi repos (any repo having a remote pointing to viktorashi on github)
+[includeIf "hasconfig:remote.*.url:*://viktorashi@github.com/**"]
+	path = ~/.config/git/config-viktorashi
+[includeIf "hasconfig:remote.*.url:*://github.com/viktorashi/**"]
+	path = ~/.config/git/config-viktorashi
+[includeIf "hasconfig:remote.*.url:git@github.com:viktorashi/**"]
+	path = ~/.config/git/config-viktorashi
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/viktorashi/**"]
+	path = ~/.config/git/config-viktorashi
