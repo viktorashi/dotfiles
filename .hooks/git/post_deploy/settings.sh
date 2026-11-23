@@ -61,6 +61,7 @@ git config --global 'includeIf.hasconfig:remote.*.url:ssh://git@github.com/vikto
 git config --global --unset-all credential.https://github.com.helper 2>/dev/null || true
 git config --global --add credential.https://github.com.helper ""
 git config --global --add credential.https://github.com.helper "$HOME/.local/bin/gh-smart-credential"
+git config --global credential.useHttpPath true
 
 git config --global commit.gpgsign true
 
